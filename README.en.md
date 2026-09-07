@@ -52,7 +52,7 @@ Do not recreate JobManager with empty state after a release has produced output.
 - Reconciled **3,833,704** cumulative acknowledged records, **6,538** metric keys and **646,242** associations, including all failed load attempts.
 - The earlier **70-test snapshot** and [hosted Docker CI](https://github.com/JDinSeattle/AdPulse/actions/runs/34075884766) passed, including real large-batch conflict/retry checks, an occupied-worker SIGKILL and crash-after-write/before-offset-commit sink replay.
 
-- **0.3.0:** disk-backed reference containers and verified receipt indexes, timestamped background inspection with explicit failure/expiry, and a four-query limit per API process. **88 Python/Java regressions** pass locally.
+- **0.3.0:** disk-backed reference containers and verified receipt indexes, timestamped background inspection with explicit failure/expiry, and a four-query limit per API process. **91 Python/Java regressions** pass locally.
 - Three alternating pairs on identical **2 CPU / 4 GiB / no-swap** Docker budgets and a frozen **200,000-record** fixture produced identical complete output hashes. Median process peak RSS fell **86.3%** (987 → 135 MiB), at **2.29× elapsed time** and about **605 MiB** scratch disk. This is a memory/time tradeoff, not a throughput speedup.
 - Indexed/cached HTTP diagnostics remove per-request ClickHouse calls. [Serving measurements](docs/evidence/scaling/paired-serving.json) separately report setup/refresh and request costs; their staleness semantics and synthetic archive scope are explicit.
 

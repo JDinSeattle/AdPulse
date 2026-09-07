@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import os
 import sqlite3
+import tempfile
 from dataclasses import dataclass
 
 import requests
@@ -103,6 +104,34 @@ class ClickHouse:
             response.raise_for_status()
             response.raw.decode_content = True
             for line in chunks(response.raw, max_bytes=1024 ** 4):
+                if line.strip():
+                    yield json.loads(line)
+
+    def spooled_query(self, sql, parameters=None, *, directory, max_bytes=8 * 1024 ** 3):
+        """Drain HTTP to bounded scratch disk before a slow SQLite consumer.
+
+        A caller's inserts must not hold a multi-GB server response open until
+        the server's send timeout. The temporary file is removed on every exit;
+        malformed/truncated JSON still aborts the caller's transaction.
+        """
+        from .archive_index import chunks
+        params = {"output_format_json_quote_64bit_integers": 0, "max_execution_time": 120,
+                  "max_memory_usage": 512 * 1024 * 1024, "max_threads": 2,
+                  "timeout_overflow_mode": "throw", "max_rows_to_read": 100_000_000,
+                  "read_overflow_mode": "throw",
+                  **{f"param_{key}": value for key, value in (parameters or {}).items()}}
+        with tempfile.TemporaryFile(dir=directory) as spool:
+            size = 0
+            with self.session.post(self.url, params=params, data=sql.encode(), auth=self.auth,
+                                   timeout=(3, 125), stream=True) as response:
+                response.raise_for_status()
+                for block in response.iter_content(64 * 1024):
+                    size += len(block)
+                    if size > max_bytes:
+                        raise ValueError("Inspection query spool exceeds byte budget")
+                    spool.write(block)
+            spool.seek(0)
+            for line in chunks(spool, max_bytes=max_bytes):
                 if line.strip():
                     yield json.loads(line)
 

@@ -16,7 +16,7 @@
 
 当前聚合按完整指标键集中，贡献以 MapState 保存；大活动可能成为聚合热点。版本一提供热点生成器和 subtask 观测，不声称已经实现二阶段加盐聚合。后续只有在负载证据表明确有瓶颈时，才拆分可结合聚合，click_id 关联键保持不变。
 
-维度历史为广播小表；回放 oracle 为内存小样本实现。完整归档扫描与 HTTP 大结果查询适合实验规模，增长到长时间千万级事件时，应分页读取、外排 / DuckDB 分区复算、维护归档索引，并对查询增加范围约束。
+维度历史为广播小表。0.3.0 的完整核对改用 SQLite 磁盘集合、排序与结果比较，归档有持久 receipt 索引，HTTP 查询保留分页和预算。默认小样本 oracle 与旧 CLI replay --publish 仍使用内存路径；磁盘版本不等于无限容量，仍受 scratch / 索引磁盘、维表和查询预算约束。受控对照见 [本机容量优化](scaling-validation.md)。
 
 ## 实测流程
 
@@ -48,4 +48,4 @@ MPLCONFIGDIR=.cache/matplotlib uv run --no-project --python 3.12 --with matplotl
 
 最终容量采样直接读取 TaskManager REST 的 `totalProcessMemory` 和作业实际并行度；这属于 Flink 配置预算，区别于 Docker 采样用量和宿主机物理内存。完整环境记录见 `docs/evidence/operations/environment.json`。所有早停与不满足 SLO 的尝试保留为失败报告。
 
-完整离线 oracle 会把归档与业务输入全量载入 Python 内存；最终数百万条输入重算期间另采集了 `docs/evidence/operations/oracle-resources.json` 的 Linux `/proc` RSS/HWM。它是单次采样、不是最终峰值，也不是实时 worker 内存。更大数据量需要分区或外排验证，不把本次全量通过解释为参考计算器具备无界扩展能力。
+历史内存版离线 oracle 会把归档与业务输入全量载入 Python 内存；最终数百万条输入重算期间另采集了 `docs/evidence/operations/oracle-resources.json` 的 Linux `/proc` RSS/HWM。它是单次采样、不是最终峰值，也不是实时 worker 内存。更大数据量需要分区或外排验证，不把本次全量通过解释为参考计算器具备无界扩展能力。

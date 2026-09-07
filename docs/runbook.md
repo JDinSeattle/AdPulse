@@ -118,7 +118,9 @@ make reconcile OUTPUT=artifacts/reconcile/new-run.json
 
 `make smoke` 的全量参考路径默认使用磁盘实现；设置 `ADPULSE_REFERENCE_BACKEND=memory` 可运行旧小样本参考。现有 `adpulse replay --publish` 的快照发布仍是批量内存工具，本轮没有把它宣称为无界流式发布。
 
-`inspection-coverage` 和 `inspection-metrics` 分别维护归档/来源检查与监控快照，单写者文件锁防止手动刷新与后台循环重叠；API 只读共享 `inspection-data` 卷。两个服务分别限制 1 GiB / 512 MiB、各 1 CPU。SQL 查询通常 512 MiB / 120 秒预算；缺失 lineage 的 grace-hash anti-join 另限制 64 MiB join table 和 4 GiB 临时外排空间。超限保留失败状态并告警。
+`inspection-coverage` 和 `inspection-metrics` 分别维护归档/来源检查与监控快照，单写者文件锁防止手动刷新与后台循环重叠；API 使用 SQLite `mode=ro` 只读查询。共享 `inspection-data` 卷必须可写，因为最后一个检查连接关闭后，WAL 读者可能需要重建 `-shm/-wal` 辅助文件；这不是文件系统写隔离。两个服务分别限制 1 GiB / 512 MiB、各 1 CPU。SQL 查询通常 512 MiB / 120 秒预算；缺失 lineage 的 grace-hash anti-join 另限制 64 MiB join table 和 4 GiB 临时外排空间。超限保留失败状态并告警。
+
+全量 receipt / quality HTTP 结果先流入自动清理的临时磁盘文件（每份最大 8 GiB），再写 SQLite，避免慢消费者让 HTTP 连接长期阻塞。该成本独立于持久索引、WAL 和 oracle scratch；空间不足或超限会发布失败状态，不保留旧成功结果。
 
 首次建立大归档索引需要时间。在快照未建立、失败或过期时，trace/reconcile/quality 返回 503，`/metrics` 仍输出快照健康状态和 API 查询指标，省略旧业务值。检查日志、磁盘、`adpulse_inspection_snapshot_ready` 及快照时间，不能只看 API `/health`。主动刷新可执行：
 

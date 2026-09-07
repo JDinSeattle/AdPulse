@@ -209,7 +209,9 @@ services:
       ADPULSE_CURSOR_SECRET: ${ADPULSE_CURSOR_SECRET:-adpulse-local-cursor-key-change-for-shared-deployments}
       ADPULSE_INSPECTION_DIR: /inspection
       ADPULSE_QUERY_CONCURRENCY: "4"
-    volumes: ["inspection-data:/inspection:ro"]
+    # SQLite mode=ro protects SQL writes; WAL readers still need directory
+    # writes to recreate -shm/-wal after the last inspector connection closes.
+    volumes: ["inspection-data:/inspection"]
     ports: ["127.0.0.1:8080:8080"]
     depends_on:
       bootstrap: {condition: service_completed_successfully}

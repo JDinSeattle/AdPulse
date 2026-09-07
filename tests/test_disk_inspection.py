@@ -16,6 +16,7 @@ from adpulse.generator import generate, receipts
 from adpulse.inspection import SnapshotUnavailable, publish, read_snapshot
 from adpulse.oracle import calculate
 from adpulse.reconciliation import compare_streams
+from adpulse.storage import ClickHouse
 
 
 @pytest.mark.parametrize("scenario", ["normal", "mixed", "duplicates", "schema", "conversion-first", "out-of-order", "hotspot"])
@@ -203,3 +204,35 @@ def test_query_overload_rejects_without_dependency_and_releases_slot(monkeypatch
     with pytest.raises(ValueError):
         api.result_page("metric", None, None, 1, {})
     assert slot.acquire(blocking=False)
+
+
+@pytest.mark.parametrize('case', ['valid', 'truncated', 'oversized'])
+def test_query_spool_closes_upstream_before_consumption_and_cleans_up(tmp_path, case):
+    class Response:
+        closed = False
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            self.closed = True
+
+        def raise_for_status(self):
+            pass
+
+        def iter_content(self, size):
+            yield b'{"receipt_id":"'
+            yield '广告'.encode()
+            yield b'"}\n' if case != 'truncated' else b'"'
+    response = Response()
+    db = ClickHouse()
+    db.session.post = lambda *a, **kw: response
+    result = db.spooled_query('query', directory=tmp_path, max_bytes=4 if case=='oversized' else 100)
+    if case=='valid':
+        assert next(result) == {'receipt_id':'广告'}
+        assert response.closed
+        result.close()
+    else:
+        with pytest.raises(ValueError):
+            list(result)
+    assert response.closed and not list(tmp_path.iterdir())

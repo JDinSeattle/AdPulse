@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "run_url": "https://github.com/JDinSeattle/AdPulse/actions/runs/34081499082",
+  "commit": "261a2cf17c0a0cc3a16803fa7cd8fb6ccc5275ef",
+  "failed_stage": "Actual HTTP trace after coverage writer closed",
+  "error": "503; separate local read-only-volume probe reproduced sqlite3.OperationalError: unable to open database file",
+  "fix": "API volume permits WAL sidecar creation; database is still opened with SQLite mode=ro. No filesystem write-isolation claim.",
+  "log_sha256": "2691c5470674c5100d03a251c424ac0006ddebe227d3b95fbd9e6a59d19340ea"
+}

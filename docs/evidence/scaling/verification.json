@@ -1,10 +1,10 @@
 {
   "passed": true,
-  "python_tests": 78,
+  "python_tests": 81,
   "java_tests": 10,
-  "total_tests": 88,
+  "total_tests": 91,
   "command": "make verify",
-  "log_sha256": "ce70180af3bc9b6ea4b98b31c7333571d80152a24735668562ae2dd58b73fe0f",
+  "log_sha256": "fb0e663c1cee2179063d63119ac51cbeb69744562ae5a7004bc878886bca8b39",
   "environment": "Local Python 3.12, Java 17 target; native RocksDB JUnit tests included; Docker integrations separate",
   "warnings": [
     "Starlette httpx TestClient deprecation",

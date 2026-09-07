@@ -86,8 +86,8 @@ def inspect_archive(root, *, db=None, objects=None):
     db, objects = db or ClickHouse(), objects or S3Objects()
     with closing(ArchiveIndex(root / "archive.sqlite")) as index:
         refreshed = index.refresh(objects)
-        expected = (r["receipt_id"] for r in db.iter_query("SELECT arrayJoin(receipt_ids) AS receipt_id FROM adpulse.receipts FINAL FORMAT JSONEachRow"))
-        lineage = db.iter_query("SELECT receipt_id,disposition,payload FROM adpulse.quality FINAL FORMAT JSONEachRow")
+        expected = (r["receipt_id"] for r in db.spooled_query("SELECT arrayJoin(receipt_ids) AS receipt_id FROM adpulse.receipts FINAL FORMAT JSONEachRow", directory=root))
+        lineage = db.spooled_query("SELECT receipt_id,disposition,payload FROM adpulse.quality FINAL FORMAT JSONEachRow", directory=root)
         completeness = index.coverage(expected, lineage)
         quality_summary = list(db.iter_query("SELECT disposition,error_code,rule_version,count() AS records FROM adpulse.quality FINAL GROUP BY disposition,error_code,rule_version LIMIT 1001 FORMAT JSONEachRow"))
         if len(quality_summary) > 1000:
@@ -181,7 +181,8 @@ def main():
             result = run_once(args.kind, root, wait_lock=args.wait_lock)
             print(canonical({k: result[k] for k in ("kind", "status", "duration_seconds", "generated_at")}), flush=True)
         except Exception as exc:
-            print(canonical(dict(kind=args.kind, status="error", error_type=type(exc).__name__)), flush=True)
+            print(canonical(dict(kind=args.kind, status="error", error_type=type(exc).__name__,
+                                 detail=str(exc)[:500])), flush=True)
             if args.once:
                 raise
         if args.once:
