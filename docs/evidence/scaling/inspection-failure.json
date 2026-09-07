@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "observations": [
+    {
+      "case": "fresh-coverage",
+      "status": 200,
+      "retry_after": null
+    },
+    {
+      "case": "closed-writer-index-readable",
+      "status": 404,
+      "retry_after": null
+    },
+    {
+      "case": "fresh-metrics",
+      "status": 200,
+      "retry_after": null
+    },
+    {
+      "case": "expired/v1/reconcile",
+      "status": 503,
+      "retry_after": "30"
+    },
+    {
+      "case": "expired/v1/quality",
+      "status": 503,
+      "retry_after": "30"
+    },
+    {
+      "case": "expired/v1/trace/absent",
+      "status": 503,
+      "retry_after": "30"
+    },
+    {
+      "case": "expired-metrics",
+      "status": 200,
+      "retry_after": null
+    },
+    {
+      "case": "error/v1/reconcile",
+      "status": 503,
+      "retry_after": "30"
+    },
+    {
+      "case": "error/v1/quality",
+      "status": 503,
+      "retry_after": "30"
+    },
+    {
+      "case": "error/v1/trace/absent",
+      "status": 503,
+      "retry_after": "30"
+    },
+    {
+      "case": "error-metrics",
+      "status": 200,
+      "retry_after": null
+    },
+    {
+      "case": "injected-permit-exhaustion",
+      "status": 503,
+      "retry_after": "1"
+    },
+    {
+      "case": "recovered-coverage",
+      "status": 200,
+      "retry_after": null
+    },
+    {
+      "case": "recovered-metrics",
+      "status": 200,
+      "retry_after": null
+    }
+  ],
+  "environment": "Actual Uvicorn loopback HTTP; synthetic inspection snapshots and in-process permit exhaustion; no business dependency failure injected",
+  "boundary": "Verifies HTTP failure/expiry/recovery contract and permit rejection, not real database saturation or production failure recovery."
+}

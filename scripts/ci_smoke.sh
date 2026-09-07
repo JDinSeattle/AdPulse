@@ -31,6 +31,7 @@ PY
 "${compose[@]}" exec -T inspection-coverage python -m adpulse.inspection coverage --once --wait-lock
 "${compose[@]}" exec -T inspection-metrics python -m adpulse.inspection metrics --once --wait-lock
 .venv/bin/python scripts/inspection_acceptance.py --output artifacts/ci/inspection.json --timeout 180
+.venv/bin/python scripts/inspection_failure_acceptance.py --output artifacts/ci/inspection-failure.json
 .venv/bin/python -m adpulse.cli replay --from-s3 --release ci-verified --publish --output artifacts/ci/replay
 .venv/bin/python scripts/reconciliation_query_acceptance.py --release ci-verified --output artifacts/ci/reference-query.json
 .venv/bin/python scripts/query_acceptance.py --release ci-verified --output artifacts/ci/query.json
