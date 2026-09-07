@@ -1,0 +1,16 @@
+{
+  "recorded_at_utc_approximately": "2026-09-07T02:55:42Z",
+  "scope": "One Linux /proc status sample during the independent whole-history Python oracle; not streaming worker memory or a final process-peak claim.",
+  "provenance": "Preserved from the actual exec output in this validation session. A later read occurred after the process completed, so no final process peak is asserted.",
+  "method": "Read /proc/PID/status only for the process whose second command argument was artifacts/operations/final_capacity_load.py.",
+  "observed_lines": [
+    "Name: python",
+    "State: R (running)",
+    "VmHWM: 30309276 kB",
+    "VmRSS: 30309276 kB"
+  ],
+  "sampled_rss_kernel_kb": 30309276,
+  "high_water_seen_kernel_kb": 30309276,
+  "resume_eligible": false,
+  "limitation": "Exhaustive archive/oracle materialization has substantial memory cost and is not an unbounded scalable replay implementation."
+}

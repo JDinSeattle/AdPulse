@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "differences": [],
+  "completeness": {
+    "acknowledged": 3833704,
+    "archived": 3833704,
+    "archive_missing": [],
+    "classified": 3833704,
+    "processing_pending": [],
+    "archive_complete": true,
+    "lineage_complete": true
+  },
+  "acknowledged": 3833704,
+  "expected_metrics": 6538,
+  "actual_metrics": 6538,
+  "expected_associations": 646242,
+  "actual_associations": 646242,
+  "environment": "local Docker on shared host, synthetic advertising events; two 8192m TaskManagers, clean parallelism 2, attribution parallelism 6, sink batch 2000, 64 KiB lookup parameters",
+  "scope": "whole cumulative acknowledged input including migration, worker failures, all four rejected load attempts, strict capacity restoration and completed 1800-second target runs",
+  "elapsed_seconds": 603.093,
+  "checked_at_epoch": 1788749840.5489974
+}

@@ -48,7 +48,11 @@ Do not recreate JobManager with empty state after a release has produced output.
 - Isolated three-broker Docker experiment: a leader SIGKILL recovered to a new acknowledgment in **12.007 s**; loss of quorum returned **503**; **124** acknowledged raw records matched their transactional manifests after recovery.
 - Bounded query regression checks include real PostgreSQL pointer races, latest-state filtering, immutable-release traversal and server-side budget rejection. Earlier measured first-page performance is retained with its original runtime and limitations in [query validation](docs/refresh-validation.md).
 
-Full reports, experiment methods and current long-test/CI status are in [operations validation](docs/operations-validation.md). A single-host replica experiment is not a physical-host failure test. Default Compose still uses one Kafka broker and no JobManager HA; no production, managed-cloud, 26-hour capacity, cloud-cost or ML-serving claim is made.
+- Completed two 30-minute local input runs. The **1,000 events/s capacity profile** used two **8 GiB Flink process budgets** and attribution parallelism 6: **1,800,211** synthetic receipts all visible at **19.370 s P95**. Earlier 100/s validation used smaller process budgets; this is not a same-resource speedup comparison.
+- Reconciled **3,833,704** cumulative acknowledged records, **6,538** metric keys and **646,242** associations, including all failed load attempts.
+- **70 Python/Java tests** and [hosted Docker CI](https://github.com/JDinSeattle/AdPulse/actions/runs/34075884766) passed, including real large-batch conflict/retry checks, an occupied-worker SIGKILL and crash-after-write/before-offset-commit sink replay.
+
+Full reports, experiment methods, rejected attempts and CI provenance are in [operations validation](docs/operations-validation.md). A single-host replica experiment is not a physical-host failure test. Default Compose still uses one Kafka broker and no JobManager HA; no production, managed-cloud, 26-hour capacity, cloud-cost or ML-serving claim is made.
 
 ## Reproduce fault and load tests
 
@@ -59,6 +63,9 @@ Full reports, experiment methods and current long-test/CI status are in [operati
 docker compose -f deployment/compose.quorum.yaml stop
 
 .venv/bin/python scripts/loadtest.py --rate 100 --seconds 1800 --output artifacts/load-100.json
+# Existing validated jobs: restore retained state into the explicit capacity profile first.
+.venv/bin/python scripts/capacity_restore.py --output artifacts/capacity-restore
+# Reconcile the full retained input before starting this load.
 .venv/bin/python scripts/loadtest.py --rate 1000 --seconds 1800 --output artifacts/load-1000.json
 ```
 

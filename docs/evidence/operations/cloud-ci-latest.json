@@ -1,0 +1,307 @@
+{
+  "passed": true,
+  "run_url": "https://github.com/JDinSeattle/AdPulse/actions/runs/34075884766",
+  "conclusion": "success",
+  "environment": {
+    "environment": "GitHub-hosted runner",
+    "run_id": "34075884766",
+    "commit": "0edc466bf1a7a3bb4502c3c7b05843638d461f6d",
+    "os": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "cpu_count": 4,
+    "cloud_service_deployment": false
+  },
+  "scope": "GitHub-hosted Docker integration on default resource profile; capacity-profile local performance is separately measured",
+  "artifacts": {
+    "integration/report.json": {
+      "sha256": "13889a76dd0ed0995a8a19e76555088114a50f56c9e727e51c64cb2ff88d17ae",
+      "report": {
+        "passed": true,
+        "differences": [],
+        "completeness": {
+          "acknowledged": 194,
+          "archived": 194,
+          "archive_missing": [],
+          "classified": 194,
+          "processing_pending": [],
+          "archive_complete": true,
+          "lineage_complete": true
+        },
+        "acknowledged": 194,
+        "expected_metrics": 94,
+        "actual_metrics": 94,
+        "expected_associations": 23,
+        "actual_associations": 23,
+        "mode": "docker-kafka-flink-clickhouse-s3",
+        "scenario": "mixed",
+        "submitted_records": 194,
+        "convergence_seconds": 28.847,
+        "checkpoint_counts": {
+          "72ae67a1f358f93cfe032cf68d3d7f96": {
+            "restored": 0,
+            "total": 4,
+            "in_progress": 0,
+            "completed": 4,
+            "failed": 0
+          },
+          "ce90b6866add337d419efef3fbe7b177": {
+            "restored": 0,
+            "total": 4,
+            "in_progress": 0,
+            "completed": 4,
+            "failed": 0
+          }
+        },
+        "archive_complete": true,
+        "sink_complete": true,
+        "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f"
+      }
+    },
+    "replay/report.json": {
+      "sha256": "9f2cfc1a5a6c1d5ed58e8cacdee0cfb52cf89e7c7279eacabed224d1c250bae1",
+      "report": {
+        "release_id": "ci-verified",
+        "input_manifest_sha256": "7648347e82096aeb061bfc072a10ba419d63eb90345a542b886397e5bbadf355",
+        "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f",
+        "acknowledged": 194,
+        "archived": 194,
+        "archive_missing": [],
+        "classified": 194,
+        "processing_pending": [],
+        "archive_complete": true,
+        "lineage_complete": true,
+        "passed": true,
+        "differences": [],
+        "sink_complete": true
+      }
+    },
+    "query.json": {
+      "sha256": "d38fb7048e384b2f99904fec42153f8bd8db37f842dc6fd8632b618b91970af3",
+      "report": {
+        "started_at_ms": 1788747771578,
+        "environment": "real local ClickHouse and PostgreSQL, synthetic query fixtures; ASGI TestClient",
+        "reference_release": "ci-verified",
+        "fixture_releases": [
+          "query-test-3939d3004486-a",
+          "query-test-3939d3004486-b"
+        ],
+        "passed": true,
+        "concurrent_pointer_switches": 21,
+        "latest_filter_no_resurrection": true,
+        "retry_stable": true,
+        "fixture_distinct_rows": 37,
+        "real_budget_rejections": [
+          "scan_rows",
+          "response_bytes"
+        ],
+        "full_traversal": {
+          "associations": {
+            "rows": 23,
+            "pages": 1,
+            "equal_to_full_snapshot": true
+          },
+          "metrics": {
+            "rows": 94,
+            "pages": 1,
+            "equal_to_full_snapshot": true
+          }
+        },
+        "original_active_preserved": true,
+        "finished_at_ms": 1788747772275
+      }
+    },
+    "sink-acceptance.json": {
+      "sha256": "e2cb6d2d4e6dd2f29ee6ddfb179a970245f307ad572bfa88b07f0d42ed53b108",
+      "report": {
+        "passed": true,
+        "started_at_epoch": 1788747772.5192258,
+        "release": "sink-batch-test-e7def35c759b",
+        "batch_messages": 2000,
+        "environment": "real ClickHouse; synthetic Kafka message metadata, no broker involved in this helper",
+        "unbounded_parameter_bytes": 384001,
+        "lookup_chunks": 6,
+        "max_lookup_parameter_bytes": 65473,
+        "unbounded_parameter_rejected": true,
+        "baseline_error": "HTML Form Exception: Field value too long",
+        "exact_logical_results": 2000,
+        "exact_deliveries": 2000,
+        "identical_retry_verified": true,
+        "conflicting_offset_rejected": true,
+        "partition_change_rejected": true,
+        "fixture_rows_removed": true,
+        "elapsed_seconds": 1.179
+      }
+    },
+    "drills/worker-restart/report.json": {
+      "sha256": "68f52ce9a66ad0d25a53db5b340e1330c7a4f606813c93043fdb964d3b5a02fc",
+      "report": {
+        "scenario": "worker-restart",
+        "mode": "docker-real-components",
+        "passed": true,
+        "fault_target": {
+          "service": "taskmanager-1",
+          "taskmanager_id": "172.18.0.7:33319-177dc9",
+          "running_subtasks": 24
+        },
+        "running_after_seconds": 20.212,
+        "differences": [],
+        "completeness": {
+          "acknowledged": 271,
+          "archived": 271,
+          "archive_missing": [],
+          "classified": 271,
+          "processing_pending": [],
+          "archive_complete": true,
+          "lineage_complete": true
+        },
+        "acknowledged": 271,
+        "expected_metrics": 105,
+        "actual_metrics": 105,
+        "expected_associations": 38,
+        "actual_associations": 38,
+        "checkpoint_counts": {
+          "72ae67a1f358f93cfe032cf68d3d7f96": {
+            "restored": 1,
+            "total": 9,
+            "in_progress": 0,
+            "completed": 8,
+            "failed": 1
+          },
+          "ce90b6866add337d419efef3fbe7b177": {
+            "restored": 1,
+            "total": 9,
+            "in_progress": 0,
+            "completed": 7,
+            "failed": 2
+          }
+        },
+        "elapsed_seconds": 41.332
+      }
+    },
+    "drills/sink-replay/report.json": {
+      "sha256": "0ce4afc347dbfb1a26badf732b6ae073b3680674222e3d2550af115d786c5bf3",
+      "report": {
+        "scenario": "sink-replay",
+        "mode": "docker-real-components",
+        "passed": true,
+        "injected_exit_code": 77,
+        "write_before_crash": {
+          "fault": "after_result_write_before_commit",
+          "result_records": 19,
+          "offsets": [
+            [
+              "adpulse.results.live-v1",
+              0,
+              64
+            ],
+            [
+              "adpulse.results.live-v1",
+              0,
+              65
+            ],
+            [
+              "adpulse.results.live-v1",
+              2,
+              79
+            ],
+            [
+              "adpulse.results.live-v1",
+              2,
+              80
+            ],
+            [
+              "adpulse.results.live-v1",
+              2,
+              81
+            ],
+            [
+              "adpulse.results.live-v1",
+              2,
+              82
+            ],
+            [
+              "adpulse.results.live-v1",
+              2,
+              83
+            ],
+            [
+              "adpulse.results.live-v1",
+              1,
+              92
+            ],
+            [
+              "adpulse.results.live-v1",
+              1,
+              93
+            ],
+            [
+              "adpulse.results.live-v1",
+              1,
+              94
+            ],
+            [
+              "adpulse.results.live-v1",
+              1,
+              95
+            ],
+            [
+              "adpulse.results.live-v1",
+              1,
+              96
+            ],
+            [
+              "adpulse.results.live-v1",
+              1,
+              97
+            ],
+            [
+              "adpulse.results.live-v1",
+              1,
+              98
+            ],
+            [
+              "adpulse.results.live-v1",
+              1,
+              99
+            ],
+            [
+              "adpulse.results.live-v1",
+              1,
+              100
+            ],
+            [
+              "adpulse.results.live-v1",
+              1,
+              101
+            ],
+            [
+              "adpulse.results.live-v1",
+              1,
+              102
+            ],
+            [
+              "adpulse.results.live-v1",
+              1,
+              103
+            ]
+          ]
+        },
+        "differences": [],
+        "completeness": {
+          "acknowledged": 340,
+          "archived": 340,
+          "archive_missing": [],
+          "classified": 340,
+          "processing_pending": [],
+          "archive_complete": true,
+          "lineage_complete": true
+        },
+        "acknowledged": 340,
+        "expected_metrics": 148,
+        "actual_metrics": 148,
+        "expected_associations": 48,
+        "actual_associations": 48,
+        "elapsed_seconds": 63.832
+      }
+    }
+  }
+}

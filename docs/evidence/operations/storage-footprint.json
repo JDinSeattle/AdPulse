@@ -1,0 +1,239 @@
+{
+  "scope": "Live RocksDB directories on the two local capacity-profile TaskManagers; not a consistent snapshot, full 26-hour capacity, checkpoint repository or cold-copy backup footprint",
+  "unit": "du apparent bytes, not RAM or allocated disk blocks",
+  "command_template": [
+    "docker",
+    "exec",
+    "CONTAINER",
+    "find",
+    "/tmp",
+    "-type",
+    "d",
+    "-name",
+    "db",
+    "-prune",
+    "-exec",
+    "du",
+    "-sb",
+    "{}",
+    "+"
+  ],
+  "samples": [
+    {
+      "captured_at_epoch": 1788748424.1646502,
+      "workers": {
+        "adpulse-taskmanager-1-1": {
+          "apparent_bytes": 644625801,
+          "databases": [
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_5a2d45764a77f0b53e39e5b6cac294bc__4_6__uuid_5db2e18d-ebc3-41f5-aa68-57fe4589f41e",
+              "apparent_bytes": 60470783
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b227d0260f0da48d2577445949ad9bcf__4_6__uuid_3c3a2d62-4197-4de8-9337-b55d1e82d1f3",
+              "apparent_bytes": 47497084
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_5a2d45764a77f0b53e39e5b6cac294bc__5_6__uuid_8a29d83d-6266-4e32-bcbd-e963a5d6df83",
+              "apparent_bytes": 56592296
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_5a2d45764a77f0b53e39e5b6cac294bc__3_6__uuid_e11c95b9-aa74-4f91-a8cc-9a388c53ecc3",
+              "apparent_bytes": 56813877
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b227d0260f0da48d2577445949ad9bcf__3_6__uuid_d426618e-ebbf-4fcf-9adc-cd7bb53ef96a",
+              "apparent_bytes": 41550858
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b3e32360884b7f019747371a8f5e8110__1_6__uuid_9490ac98-2e4d-4cdd-9bf9-84b552a4123c",
+              "apparent_bytes": 59489969
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b227d0260f0da48d2577445949ad9bcf__5_6__uuid_f5af4389-61db-4348-96aa-74a08cd32aef",
+              "apparent_bytes": 40144666
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b3e32360884b7f019747371a8f5e8110__5_6__uuid_3220fe33-987d-43c0-83ca-0036ec81aeb6",
+              "apparent_bytes": 56694843
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b227d0260f0da48d2577445949ad9bcf__1_6__uuid_2c864cbe-fa6e-4167-a103-d3ce60b02156",
+              "apparent_bytes": 46643570
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b3e32360884b7f019747371a8f5e8110__3_6__uuid_12498f07-7b7c-4334-9825-a32d1cc0349a",
+              "apparent_bytes": 56830521
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b3e32360884b7f019747371a8f5e8110__4_6__uuid_2eea23a3-13f9-41a7-898f-762b35c5ba56",
+              "apparent_bytes": 59422092
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_5a2d45764a77f0b53e39e5b6cac294bc__1_6__uuid_9e58108c-91ec-479b-b94d-f4bb36f36770",
+              "apparent_bytes": 62475242
+            }
+          ],
+          "exit_code": 0,
+          "live_scan_warnings": ""
+        },
+        "adpulse-taskmanager-2-1": {
+          "apparent_bytes": 354549002,
+          "databases": [
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b227d0260f0da48d2577445949ad9bcf__6_6__uuid_fb21a9ed-e194-470b-b5a2-2b278c111dff",
+              "apparent_bytes": 38801522
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_5a2d45764a77f0b53e39e5b6cac294bc__6_6__uuid_e9e8ea16-3791-484c-b723-8b20f3b9de90",
+              "apparent_bytes": 56730513
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_5a2d45764a77f0b53e39e5b6cac294bc__2_6__uuid_1afb9618-ca95-445d-a46c-d1b00033f4a5",
+              "apparent_bytes": 56737467
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b227d0260f0da48d2577445949ad9bcf__2_6__uuid_5a7d2ede-0e49-49b8-ba23-16cac1d1ad1a",
+              "apparent_bytes": 46404558
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b3e32360884b7f019747371a8f5e8110__6_6__uuid_f3a6a8f3-dd02-4268-9681-a34bfce1c2d8",
+              "apparent_bytes": 56890400
+            },
+            {
+              "operator_directory": "job_521de7ccddafc8eb73ae5881fe749853_op_KeyedProcessOperator_684012569623cf634c59855cca188d60__1_2__uuid_eb99b2b9-4ada-4ebe-810e-f26639234218",
+              "apparent_bytes": 11100086
+            },
+            {
+              "operator_directory": "job_521de7ccddafc8eb73ae5881fe749853_op_KeyedProcessOperator_684012569623cf634c59855cca188d60__2_2__uuid_68da2c04-043c-4233-a818-f2a8e69204c1",
+              "apparent_bytes": 11128776
+            },
+            {
+              "operator_directory": "job_521de7ccddafc8eb73ae5881fe749853_op_KeyedProcessOperator_ddf6df551f5df5cc5bc24e0aeb383bd6__2_2__uuid_20b4486f-aeb9-43ad-8e4f-b56578873599",
+              "apparent_bytes": 10035823
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b3e32360884b7f019747371a8f5e8110__2_6__uuid_e176059e-9dd7-4e14-a247-3c1c3668f7ab",
+              "apparent_bytes": 56691804
+            },
+            {
+              "operator_directory": "job_521de7ccddafc8eb73ae5881fe749853_op_KeyedProcessOperator_ddf6df551f5df5cc5bc24e0aeb383bd6__1_2__uuid_f660e2d7-1a28-4360-977d-89ca794b513d",
+              "apparent_bytes": 10028053
+            }
+          ],
+          "exit_code": 0,
+          "live_scan_warnings": ""
+        }
+      },
+      "nearest_prior_input_sample_seconds": 997.303
+    },
+    {
+      "captured_at_epoch": 1788749423.0886075,
+      "workers": {
+        "adpulse-taskmanager-1-1": {
+          "apparent_bytes": 805615699,
+          "databases": [
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_5a2d45764a77f0b53e39e5b6cac294bc__4_6__uuid_5db2e18d-ebc3-41f5-aa68-57fe4589f41e",
+              "apparent_bytes": 74953275
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b227d0260f0da48d2577445949ad9bcf__4_6__uuid_3c3a2d62-4197-4de8-9337-b55d1e82d1f3",
+              "apparent_bytes": 59880784
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_5a2d45764a77f0b53e39e5b6cac294bc__5_6__uuid_8a29d83d-6266-4e32-bcbd-e963a5d6df83",
+              "apparent_bytes": 71501257
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_5a2d45764a77f0b53e39e5b6cac294bc__3_6__uuid_e11c95b9-aa74-4f91-a8cc-9a388c53ecc3",
+              "apparent_bytes": 71767136
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b227d0260f0da48d2577445949ad9bcf__3_6__uuid_d426618e-ebbf-4fcf-9adc-cd7bb53ef96a",
+              "apparent_bytes": 51351106
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b3e32360884b7f019747371a8f5e8110__1_6__uuid_9490ac98-2e4d-4cdd-9bf9-84b552a4123c",
+              "apparent_bytes": 75107990
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b227d0260f0da48d2577445949ad9bcf__5_6__uuid_f5af4389-61db-4348-96aa-74a08cd32aef",
+              "apparent_bytes": 49720550
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b3e32360884b7f019747371a8f5e8110__5_6__uuid_3220fe33-987d-43c0-83ca-0036ec81aeb6",
+              "apparent_bytes": 71672995
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b227d0260f0da48d2577445949ad9bcf__1_6__uuid_2c864cbe-fa6e-4167-a103-d3ce60b02156",
+              "apparent_bytes": 58005866
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b3e32360884b7f019747371a8f5e8110__3_6__uuid_12498f07-7b7c-4334-9825-a32d1cc0349a",
+              "apparent_bytes": 71702207
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b3e32360884b7f019747371a8f5e8110__4_6__uuid_2eea23a3-13f9-41a7-898f-762b35c5ba56",
+              "apparent_bytes": 75009775
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_5a2d45764a77f0b53e39e5b6cac294bc__1_6__uuid_9e58108c-91ec-479b-b94d-f4bb36f36770",
+              "apparent_bytes": 74942758
+            }
+          ],
+          "exit_code": 0,
+          "live_scan_warnings": ""
+        },
+        "adpulse-taskmanager-2-1": {
+          "apparent_bytes": 421341340,
+          "databases": [
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b227d0260f0da48d2577445949ad9bcf__6_6__uuid_fb21a9ed-e194-470b-b5a2-2b278c111dff",
+              "apparent_bytes": 49804160
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_5a2d45764a77f0b53e39e5b6cac294bc__6_6__uuid_e9e8ea16-3791-484c-b723-8b20f3b9de90",
+              "apparent_bytes": 71563908
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_5a2d45764a77f0b53e39e5b6cac294bc__2_6__uuid_1afb9618-ca95-445d-a46c-d1b00033f4a5",
+              "apparent_bytes": 71595891
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b227d0260f0da48d2577445949ad9bcf__2_6__uuid_5a7d2ede-0e49-49b8-ba23-16cac1d1ad1a",
+              "apparent_bytes": 56497917
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b3e32360884b7f019747371a8f5e8110__6_6__uuid_f3a6a8f3-dd02-4268-9681-a34bfce1c2d8",
+              "apparent_bytes": 71795247
+            },
+            {
+              "operator_directory": "job_521de7ccddafc8eb73ae5881fe749853_op_KeyedProcessOperator_684012569623cf634c59855cca188d60__1_2__uuid_eb99b2b9-4ada-4ebe-810e-f26639234218",
+              "apparent_bytes": 7512730
+            },
+            {
+              "operator_directory": "job_521de7ccddafc8eb73ae5881fe749853_op_KeyedProcessOperator_684012569623cf634c59855cca188d60__2_2__uuid_68da2c04-043c-4233-a818-f2a8e69204c1",
+              "apparent_bytes": 7503472
+            },
+            {
+              "operator_directory": "job_521de7ccddafc8eb73ae5881fe749853_op_KeyedProcessOperator_ddf6df551f5df5cc5bc24e0aeb383bd6__2_2__uuid_20b4486f-aeb9-43ad-8e4f-b56578873599",
+              "apparent_bytes": 6675795
+            },
+            {
+              "operator_directory": "job_c965f4fb0c8f7d400559b8b47b5407d5_op_KeyedProcessOperator_b3e32360884b7f019747371a8f5e8110__2_6__uuid_e176059e-9dd7-4e14-a247-3c1c3668f7ab",
+              "apparent_bytes": 71678598
+            },
+            {
+              "operator_directory": "job_521de7ccddafc8eb73ae5881fe749853_op_KeyedProcessOperator_ddf6df551f5df5cc5bc24e0aeb383bd6__1_2__uuid_f660e2d7-1a28-4360-977d-89ca794b513d",
+              "apparent_bytes": 6713622
+            }
+          ],
+          "exit_code": 0,
+          "live_scan_warnings": ""
+        }
+      },
+      "nearest_prior_input_sample_seconds": 1750.518
+    }
+  ]
+}

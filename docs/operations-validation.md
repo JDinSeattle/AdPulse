@@ -2,6 +2,21 @@
 
 本轮于 2026-09-06（America/Los_Angeles）执行，部分报告 UTC 日期为 2026-09-07。环境为本地 Linux / Docker，业务输入全部为合成广告事件。此前的短测、失败记录和查询基线保留在原验收文档中。本页逐项区分实际完成与尚未完成的验证。
 
+## 最终完成结果
+
+| 负载 | 配置 | 输入时长 | 确认并全部可见 | 实测速率 | 全体 receipt P95 |
+| --- | --- | --- | --- | --- | --- |
+| 100 target | 2×2 GiB 进程预算，归因并行度 3，batch 200；Bloom 前 | 1,800.000 秒 | 180,002 | 100.00/s | 27.517 秒 |
+| 1,000 target | 2×8 GiB 进程预算，归因并行度 6，batch 2000；Bloom / 64 KiB 参数 | 1,800.000 秒 | 1,800,211 | 1,000.12/s | 19.370 秒 |
+
+两档完成各 30 分钟，满足各自运行的速率、新鲜度、完整可见和 checkpoint 验收。最终 1,000 档两个作业新增成功 checkpoint 分别为 182, 182，期间失败/恢复增量均为零，容器身份、启动时间与重启计数保持一致。配置预算不是实际 RSS；两档配置和历史状态不同，不计算同资源性能提升百分比。完整数据见 [100 报告](evidence/operations/steady-100.json)、[1,000 报告](evidence/operations/steady-1000.json)及 [采样图](evidence/operations/load-timeline.png)。
+
+包含四次失败输入在内，累计 **3,833,704** 条已确认输入的归档、分类和来源对账完整；**6,538** 个指标键、**646,242** 条转化关联与独立 oracle 完全一致。该 [最终对账](evidence/operations/final-reconciliation.json)是全历史检查，和负载 prefix 的可见性测量分开。
+
+当前运行代码的 [成功云端 CI](https://github.com/JDinSeattle/AdPulse/actions/runs/34075884766)在默认资源配置上完成真实完整栈、回放、查询预算、大参数批次、实际 worker 中断和 sink 提交前崩溃；[报告及下载 artifact hash](evidence/operations/cloud-ci-latest.json)保留原始计数。worker 回到 RUNNING 为 20.212 秒，业务对账 41.332 秒；sink 故障实际退出码 77，恢复后累计 340 条输入业务结果一致。不是托管数据库、跨宿主机部署或生产服务。
+
+四次失败/早停、一次云端故障目标选择失败均保留，不能改写为成功容量指标。30 分钟输入未覆盖 26 小时状态保留周期；真实跨物理机/可用区故障、云服务部署与账单、生产 SLA 仍未验证。
+
 ## 选择依据与优先级
 
 | 工作 | 岗位能力 / 工程价值 | 验收 |
@@ -52,7 +67,7 @@ Flink **1.20.3 → 1.20.5**；ClickHouse **24.8.14.39 → 26.3.32.14 LTS**。两
 
 Bloom 修改后的第二次输入仍出现下游积压，572.695 秒时停止；572,779 条全部可见，最终 P95 54.065 秒、最大 64.385 秒。P95 未越过 60 秒，但没有完成目标时长，因此 [本次报告](evidence/operations/steady-1000-bloom-only.json)仍不具备 30 分钟容量资格。[第二次诊断](evidence/operations/sink-diagnosis.json)显示 Flink aggregate 已非持续满忙，而 sink 的 quality/results 消费积压增加。将 sink 最大批次从 200 调为 2,000 条 Kafka 消息，保留一秒 poll 返回部分批次、同步写入及写入后提交位点。此处消息数不是单张表行数；依据 [ClickHouse 同步批量写入指南](https://clickhouse.com/docs/concepts/best-practices/selecting-an-insert-strategy)摊薄查询/写入固定开销，代价是单批内存和重放范围增加。没有启用不等待落盘的异步确认。
 
-[全历史 1,190,619 条输入](evidence/operations/after-bloom-only-reconciliation.json)对账通过后，部署批次调整并重新开始 1,000 events/s 完整长测。100 档使用 Bloom 前 / batch=200 配置；最终 1,000 档使用 Bloom / batch=2000，具体 [环境与配置](evidence/operations/environment.json)单列。前后状态规模、配置和宿主机负载不同，不能据此计算受控性能提升百分比。每分钟记录实际接收、可见积压、P95、Docker CPU/内存、checkpoint 大小/时长/计数。报告中 `passed` 与 `sustained_target_duration_met` 分开；只有时长与所有验收条件同时满足才能称本地 30 分钟验证通过。
+[全历史 1,190,619 条输入](evidence/operations/after-bloom-only-reconciliation.json)对账通过后，部署批次调整并重新开始 1,000 events/s 完整长测（后续按真实失败进一步修复参数边界并扩容；最终配置与结果见上表）。100 档使用 Bloom 前 / batch=200 配置；最终 1,000 档使用 Bloom / batch=2000，具体 [环境与配置](evidence/operations/environment.json)单列。前后状态规模、配置和宿主机负载不同，不能据此计算受控性能提升百分比。每分钟记录实际接收、可见积压、P95、Docker CPU/内存、checkpoint 大小/时长/计数。报告中 `passed` 与 `sustained_target_duration_met` 分开；只有时长与所有验收条件同时满足才能称本地 30 分钟验证通过。
 
 ## 云端边界
 

@@ -9,5 +9,10 @@
   "ci_initial_run": "https://github.com/JDinSeattle/AdPulse/actions/runs/34072376249",
   "ci_initial_status": "completed",
   "initial_public_files": 121,
-  "ci_initial_conclusion": "success"
+  "ci_initial_conclusion": "success",
+  "verified_code_commit": "0edc466bf1a7a3bb4502c3c7b05843638d461f6d",
+  "verified_ci_run": "https://github.com/JDinSeattle/AdPulse/actions/runs/34075884766",
+  "verified_ci_conclusion": "success",
+  "code_equivalence_report": "docs/evidence/operations/ci-source-equivalence.json",
+  "evidence_boundary": "Subsequent publication contains completed measurements, plots and documentation; runtime code matches the verified CI commit."
 }

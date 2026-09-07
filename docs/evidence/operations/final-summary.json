@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "synthetic_data": true,
+  "environment": "local Docker capacity profile and separately qualified hosted-CI default profile",
+  "load_reports": {
+    "100": {
+      "accepted": 180002,
+      "seconds": 1800.0,
+      "observed_events_per_second": 100.0,
+      "p95_seconds": 27.517
+    },
+    "1000": {
+      "accepted": 1800211,
+      "seconds": 1800.0,
+      "observed_events_per_second": 1000.12,
+      "p95_seconds": 19.37
+    }
+  },
+  "whole_history": {
+    "acknowledged": 3833704,
+    "actual_metrics": 6538,
+    "actual_associations": 646242
+  },
+  "cloud_run": "https://github.com/JDinSeattle/AdPulse/actions/runs/34075884766",
+  "regression_tests": 70,
+  "failed_load_attempts_retained": 4,
+  "limitations": [
+    "Single physical host for local replica lab",
+    "30 minutes per target, not a full 26-hour capacity horizon",
+    "Hosted container CI, not managed cloud services or production",
+    "Different resource profiles and initial retained state; no controlled percentage speedup claim"
+  ]
+}

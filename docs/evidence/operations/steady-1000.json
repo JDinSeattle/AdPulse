@@ -1,0 +1,683 @@
+{
+  "started_at": "2026-09-07T02:16:53.738697+00:00",
+  "target_rate": 1000,
+  "requested_duration_seconds": 1800,
+  "duration_seconds": 1800.0,
+  "accepted": 1800211,
+  "client_batch_prefix": "load-747413738-",
+  "observed_events_per_second": 1000.12,
+  "freshness": {
+    "visible": 1800211,
+    "p95_seconds": 19.37,
+    "max_seconds": 29.284
+  },
+  "complete_visibility": true,
+  "catchup_seconds": 21.57,
+  "sustained_target_duration_met": true,
+  "target_rate_met": true,
+  "freshness_slo_seconds": 60,
+  "freshness_slo_met": true,
+  "runtime_healthy": true,
+  "checkpoint_deltas": {
+    "521de7ccddafc8eb73ae5881fe749853": {
+      "completed": 182,
+      "failed": 0,
+      "restored": 0
+    },
+    "c965f4fb0c8f7d400559b8b47b5407d5": {
+      "completed": 182,
+      "failed": 0,
+      "restored": 0
+    }
+  },
+  "sample_count": 28,
+  "sampling_errors": [],
+  "failure": null,
+  "environment": {
+    "os": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+    "python": "3.12.13",
+    "mode": "single-host-single-broker",
+    "shared_developer_host": true
+  },
+  "versions": {
+    "flink": "1.20.5",
+    "clickhouse": "26.3.32.14"
+  },
+  "before_runtime": {
+    "jobs": {
+      "521de7ccddafc8eb73ae5881fe749853": {
+        "state": "RUNNING",
+        "name": "AdPulse · cleaning and quality · rules-v1",
+        "parallelism": 2,
+        "counts": {
+          "restored": 1,
+          "total": 37,
+          "in_progress": 0,
+          "completed": 37,
+          "failed": 0
+        },
+        "checkpoint_bytes": 13742641,
+        "checkpoint_duration_ms": 291,
+        "checkpoint_timestamp_ms": 1788747411926
+      },
+      "c965f4fb0c8f7d400559b8b47b5407d5": {
+        "state": "RUNNING",
+        "name": "AdPulse · attribution and metrics · explicit-click-v1",
+        "parallelism": 6,
+        "counts": {
+          "restored": 1,
+          "total": 36,
+          "in_progress": 0,
+          "completed": 35,
+          "failed": 1
+        },
+        "checkpoint_bytes": 650555905,
+        "checkpoint_duration_ms": 79,
+        "checkpoint_timestamp_ms": 1788747412976
+      }
+    },
+    "containers": [
+      {
+        "BlockIO": "137MB / 1.72GB",
+        "CPUPerc": "1.92%",
+        "Container": "adpulse-taskmanager-1-1",
+        "ID": "d57d40af0f76",
+        "MemPerc": "3.11%",
+        "MemUsage": "3.834GiB / 123.2GiB",
+        "Name": "adpulse-taskmanager-1-1",
+        "NetIO": "268MB / 287MB",
+        "PIDs": "339"
+      },
+      {
+        "BlockIO": "1.95MB / 173MB",
+        "CPUPerc": "1.43%",
+        "Container": "adpulse-jobmanager-1",
+        "ID": "9199579de7d9",
+        "MemPerc": "0.92%",
+        "MemUsage": "1.138GiB / 123.2GiB",
+        "Name": "adpulse-jobmanager-1",
+        "NetIO": "71.4MB / 71.7MB",
+        "PIDs": "254"
+      },
+      {
+        "BlockIO": "66.3MB / 1.43GB",
+        "CPUPerc": "5.24%",
+        "Container": "adpulse-taskmanager-2-1",
+        "ID": "9c7f94e8615c",
+        "MemPerc": "3.12%",
+        "MemUsage": "3.841GiB / 123.2GiB",
+        "Name": "adpulse-taskmanager-2-1",
+        "NetIO": "306MB / 232MB",
+        "PIDs": "280"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.09%",
+        "Container": "adpulse-sink-1",
+        "ID": "fdcddfb4bb9d",
+        "MemPerc": "0.15%",
+        "MemUsage": "194.3MiB / 123.2GiB",
+        "Name": "adpulse-sink-1",
+        "NetIO": "984MB / 2.02GB",
+        "PIDs": "6"
+      },
+      {
+        "BlockIO": "33.2MB / 14.5GB",
+        "CPUPerc": "44.41%",
+        "Container": "adpulse-clickhouse-1",
+        "ID": "d98f6f57cebc",
+        "MemPerc": "1.02%",
+        "MemUsage": "1.256GiB / 123.2GiB",
+        "Name": "adpulse-clickhouse-1",
+        "NetIO": "4.7GB / 1.01GB",
+        "PIDs": "877"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "30.67%",
+        "Container": "adpulse-api-1",
+        "ID": "112a0272eae1",
+        "MemPerc": "0.20%",
+        "MemUsage": "257.5MiB / 123.2GiB",
+        "Name": "adpulse-api-1",
+        "NetIO": "773MB / 38.2MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.86MB / 0B",
+        "CPUPerc": "9.50%",
+        "Container": "adpulse-collector-1",
+        "ID": "3aad6c610fde",
+        "MemPerc": "0.03%",
+        "MemUsage": "39.69MiB / 123.2GiB",
+        "Name": "adpulse-collector-1",
+        "NetIO": "68.7kB / 150kB",
+        "PIDs": "6"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.05%",
+        "Container": "adpulse-archive-1",
+        "ID": "0aaeb11059e9",
+        "MemPerc": "0.05%",
+        "MemUsage": "63.09MiB / 123.2GiB",
+        "Name": "adpulse-archive-1",
+        "NetIO": "2.4GB / 2.98GB",
+        "PIDs": "6"
+      },
+      {
+        "BlockIO": "5.75MB / 19.2MB",
+        "CPUPerc": "0.50%",
+        "Container": "adpulse-connect-1",
+        "ID": "23241ae40339",
+        "MemPerc": "0.44%",
+        "MemUsage": "552.1MiB / 123.2GiB",
+        "Name": "adpulse-connect-1",
+        "NetIO": "13.9MB / 12MB",
+        "PIDs": "95"
+      },
+      {
+        "BlockIO": "2.89MB / 69.2MB",
+        "CPUPerc": "0.41%",
+        "Container": "adpulse-postgres-1",
+        "ID": "e32c2f7c5bf7",
+        "MemPerc": "0.03%",
+        "MemUsage": "37.11MiB / 123.2GiB",
+        "Name": "adpulse-postgres-1",
+        "NetIO": "10.3MB / 15.7MB",
+        "PIDs": "9"
+      },
+      {
+        "BlockIO": "16.4MB / 5.57GB",
+        "CPUPerc": "1.41%",
+        "Container": "adpulse-kafka-1",
+        "ID": "c546c20f3a92",
+        "MemPerc": "0.66%",
+        "MemUsage": "835.3MiB / 123.2GiB",
+        "Name": "adpulse-kafka-1",
+        "NetIO": "5.42GB / 8GB",
+        "PIDs": "129"
+      },
+      {
+        "BlockIO": "3.22MB / 43MB",
+        "CPUPerc": "0.07%",
+        "Container": "adpulse-prometheus-1",
+        "ID": "00effd608723",
+        "MemPerc": "0.09%",
+        "MemUsage": "109MiB / 123.2GiB",
+        "Name": "adpulse-prometheus-1",
+        "NetIO": "112MB / 5.83MB",
+        "PIDs": "36"
+      },
+      {
+        "BlockIO": "173MB / 3.18GB",
+        "CPUPerc": "2.40%",
+        "Container": "adpulse-minio-1",
+        "ID": "44d65e8f5af4",
+        "MemPerc": "0.31%",
+        "MemUsage": "392.1MiB / 123.2GiB",
+        "Name": "adpulse-minio-1",
+        "NetIO": "3.21GB / 11.4GB",
+        "PIDs": "37"
+      },
+      {
+        "BlockIO": "7.79MB / 0B",
+        "CPUPerc": "0.04%",
+        "Container": "adpulse-alertmanager-1",
+        "ID": "b0a430044e96",
+        "MemPerc": "0.02%",
+        "MemUsage": "22.84MiB / 123.2GiB",
+        "Name": "adpulse-alertmanager-1",
+        "NetIO": "1.18MB / 126kB",
+        "PIDs": "21"
+      },
+      {
+        "BlockIO": "28MB / 63MB",
+        "CPUPerc": "0.09%",
+        "Container": "adpulse-grafana-1",
+        "ID": "ba9b39e3df06",
+        "MemPerc": "0.07%",
+        "MemUsage": "91.62MiB / 123.2GiB",
+        "Name": "adpulse-grafana-1",
+        "NetIO": "15.2MB / 58.2MB",
+        "PIDs": "34"
+      }
+    ],
+    "flink_taskmanagers": {
+      "172.23.0.4:39649-79ea8b": {
+        "process_budget_bytes": 8589934592,
+        "slots": 4
+      },
+      "172.23.0.8:41723-7efb0e": {
+        "process_budget_bytes": 8589934592,
+        "slots": 4
+      }
+    },
+    "container_state": {
+      "adpulse-taskmanager-1-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "d57d40af0f7662e18805467045303ca65173c2bf7354a7daf83f6345d7423379",
+        "started_at": "2026-09-07T02:10:34.728877842Z"
+      },
+      "adpulse-jobmanager-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "9199579de7d9e4faf784adf892b72ffd36bd2cbf428538dc35aae2fc18e4bc5c",
+        "started_at": "2026-09-07T02:10:34.739279355Z"
+      },
+      "adpulse-taskmanager-2-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "9c7f94e8615c16ab8fe88fc78fbdce8d935f61acf60d3996042fc0c7fad1b68a",
+        "started_at": "2026-09-07T02:10:34.735874748Z"
+      },
+      "adpulse-sink-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "fdcddfb4bb9dd99706279bec97d2b2c2693550cd8045d4660b6e62f32b07f157",
+        "started_at": "2026-09-07T01:55:04.961097134Z"
+      },
+      "adpulse-clickhouse-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "d98f6f57cebc06aae00560ae1f92a8be553964ec97f7402d2c9ba7cf0691f03e",
+        "started_at": "2026-09-07T00:40:02.273882734Z"
+      },
+      "adpulse-api-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "112a0272eae159a1fb4f7b32c7656c637cab0f1061cbede1d424ba35b328306d",
+        "started_at": "2026-09-07T00:42:56.2415325Z"
+      },
+      "adpulse-collector-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "3aad6c610fdecc8fad875019d31c789ec862c892eb0e8cda3abcaa0a0ac89f9c",
+        "started_at": "2026-09-07T02:11:19.273608333Z"
+      },
+      "adpulse-archive-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "0aaeb11059e905b4e5bb2551ba523d52ed2707e8dd45f260453c5929f6b0a7f3",
+        "started_at": "2026-09-07T00:10:10.175888039Z"
+      },
+      "adpulse-connect-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "23241ae403392cd45b96d6d541a71fb230546f86feb8ffa63b8cae24dcc9151d",
+        "started_at": "2026-09-06T22:55:24.95756969Z"
+      },
+      "adpulse-postgres-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "e32c2f7c5bf7a0be71ab807b6e1c69e129aa864bc5adb59b9ffa0ccf8815b46c",
+        "started_at": "2026-09-06T22:55:13.54412473Z"
+      },
+      "adpulse-kafka-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "c546c20f3a923f3425700de2d3d36f73872b629cd3869b904ce5f4f99a8e0515",
+        "started_at": "2026-09-06T22:55:13.457009851Z"
+      },
+      "adpulse-prometheus-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "00effd6087230055358170dbe52b1e2e3b4edbec11770bc9e3b48b680d767af0",
+        "started_at": "2026-09-07T00:10:10.760255848Z"
+      },
+      "adpulse-minio-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "44d65e8f5af48b801af26f72f58823afcb45837752b6d78eded8bd9dc5ec9fef",
+        "started_at": "2026-09-06T22:55:13.535896499Z"
+      },
+      "adpulse-alertmanager-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "b0a430044e96d2ec84a7a2682bc660902b51b701f14cfdcaf7a7af473eed165d",
+        "started_at": "2026-09-06T22:55:13.432987818Z"
+      },
+      "adpulse-grafana-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "ba9b39e3df06bb01060af4f9cb4063302484fd105b4a796a8923d748352af1e8",
+        "started_at": "2026-09-06T22:55:13.539663288Z"
+      }
+    }
+  },
+  "after_runtime": {
+    "jobs": {
+      "521de7ccddafc8eb73ae5881fe749853": {
+        "state": "RUNNING",
+        "name": "AdPulse · cleaning and quality · rules-v1",
+        "parallelism": 2,
+        "counts": {
+          "restored": 1,
+          "total": 219,
+          "in_progress": 0,
+          "completed": 219,
+          "failed": 0
+        },
+        "checkpoint_bytes": 42719604,
+        "checkpoint_duration_ms": 281,
+        "checkpoint_timestamp_ms": 1788749231916
+      },
+      "c965f4fb0c8f7d400559b8b47b5407d5": {
+        "state": "RUNNING",
+        "name": "AdPulse · attribution and metrics · explicit-click-v1",
+        "parallelism": 6,
+        "counts": {
+          "restored": 1,
+          "total": 218,
+          "in_progress": 0,
+          "completed": 217,
+          "failed": 1
+        },
+        "checkpoint_bytes": 1198130946,
+        "checkpoint_duration_ms": 474,
+        "checkpoint_timestamp_ms": 1788749233371
+      }
+    },
+    "containers": [
+      {
+        "BlockIO": "442MB / 59GB",
+        "CPUPerc": "5.36%",
+        "Container": "adpulse-taskmanager-1-1",
+        "ID": "d57d40af0f76",
+        "MemPerc": "4.16%",
+        "MemUsage": "5.126GiB / 123.2GiB",
+        "Name": "adpulse-taskmanager-1-1",
+        "NetIO": "2.88GB / 2.8GB",
+        "PIDs": "345"
+      },
+      {
+        "BlockIO": "1.99MB / 353MB",
+        "CPUPerc": "0.50%",
+        "Container": "adpulse-jobmanager-1",
+        "ID": "9199579de7d9",
+        "MemPerc": "1.04%",
+        "MemUsage": "1.284GiB / 123.2GiB",
+        "Name": "adpulse-jobmanager-1",
+        "NetIO": "268MB / 97.4MB",
+        "PIDs": "260"
+      },
+      {
+        "BlockIO": "182MB / 33.2GB",
+        "CPUPerc": "5.58%",
+        "Container": "adpulse-taskmanager-2-1",
+        "ID": "9c7f94e8615c",
+        "MemPerc": "4.42%",
+        "MemUsage": "5.444GiB / 123.2GiB",
+        "Name": "adpulse-taskmanager-2-1",
+        "NetIO": "3.74GB / 4.54GB",
+        "PIDs": "294"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.05%",
+        "Container": "adpulse-sink-1",
+        "ID": "fdcddfb4bb9d",
+        "MemPerc": "0.13%",
+        "MemUsage": "162.5MiB / 123.2GiB",
+        "Name": "adpulse-sink-1",
+        "NetIO": "3.09GB / 6.34GB",
+        "PIDs": "6"
+      },
+      {
+        "BlockIO": "1.11GB / 21.5GB",
+        "CPUPerc": "122.80%",
+        "Container": "adpulse-clickhouse-1",
+        "ID": "d98f6f57cebc",
+        "MemPerc": "2.51%",
+        "MemUsage": "3.087GiB / 123.2GiB",
+        "Name": "adpulse-clickhouse-1",
+        "NetIO": "9.01GB / 2GB",
+        "PIDs": "877"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "2.47%",
+        "Container": "adpulse-api-1",
+        "ID": "112a0272eae1",
+        "MemPerc": "0.20%",
+        "MemUsage": "249.4MiB / 123.2GiB",
+        "Name": "adpulse-api-1",
+        "NetIO": "1.76GB / 51.6MB",
+        "PIDs": "2"
+      },
+      {
+        "BlockIO": "2.86MB / 0B",
+        "CPUPerc": "0.12%",
+        "Container": "adpulse-collector-1",
+        "ID": "3aad6c610fde",
+        "MemPerc": "0.03%",
+        "MemUsage": "41.04MiB / 123.2GiB",
+        "Name": "adpulse-collector-1",
+        "NetIO": "781MB / 1.63GB",
+        "PIDs": "6"
+      },
+      {
+        "BlockIO": "0B / 0B",
+        "CPUPerc": "0.06%",
+        "Container": "adpulse-archive-1",
+        "ID": "0aaeb11059e9",
+        "MemPerc": "0.05%",
+        "MemUsage": "62.34MiB / 123.2GiB",
+        "Name": "adpulse-archive-1",
+        "NetIO": "4.65GB / 5.78GB",
+        "PIDs": "6"
+      },
+      {
+        "BlockIO": "5.8MB / 22.5MB",
+        "CPUPerc": "0.56%",
+        "Container": "adpulse-connect-1",
+        "ID": "23241ae40339",
+        "MemPerc": "0.44%",
+        "MemUsage": "552.7MiB / 123.2GiB",
+        "Name": "adpulse-connect-1",
+        "NetIO": "16MB / 13.8MB",
+        "PIDs": "95"
+      },
+      {
+        "BlockIO": "2.89MB / 69.2MB",
+        "CPUPerc": "4.97%",
+        "Container": "adpulse-postgres-1",
+        "ID": "e32c2f7c5bf7",
+        "MemPerc": "0.03%",
+        "MemUsage": "38.26MiB / 123.2GiB",
+        "Name": "adpulse-postgres-1",
+        "NetIO": "11MB / 16.2MB",
+        "PIDs": "9"
+      },
+      {
+        "BlockIO": "16.4MB / 10.4GB",
+        "CPUPerc": "1.19%",
+        "Container": "adpulse-kafka-1",
+        "ID": "c546c20f3a92",
+        "MemPerc": "0.77%",
+        "MemUsage": "971MiB / 123.2GiB",
+        "Name": "adpulse-kafka-1",
+        "NetIO": "10.1GB / 14.9GB",
+        "PIDs": "129"
+      },
+      {
+        "BlockIO": "3.22MB / 53.9MB",
+        "CPUPerc": "0.04%",
+        "Container": "adpulse-prometheus-1",
+        "ID": "00effd608723",
+        "MemPerc": "0.09%",
+        "MemUsage": "112.5MiB / 123.2GiB",
+        "Name": "adpulse-prometheus-1",
+        "NetIO": "145MB / 7.27MB",
+        "PIDs": "36"
+      },
+      {
+        "BlockIO": "184MB / 5.99GB",
+        "CPUPerc": "0.00%",
+        "Container": "adpulse-minio-1",
+        "ID": "44d65e8f5af4",
+        "MemPerc": "0.56%",
+        "MemUsage": "708.3MiB / 123.2GiB",
+        "Name": "adpulse-minio-1",
+        "NetIO": "6GB / 11.4GB",
+        "PIDs": "37"
+      },
+      {
+        "BlockIO": "7.8MB / 0B",
+        "CPUPerc": "0.04%",
+        "Container": "adpulse-alertmanager-1",
+        "ID": "b0a430044e96",
+        "MemPerc": "0.02%",
+        "MemUsage": "22.9MiB / 123.2GiB",
+        "Name": "adpulse-alertmanager-1",
+        "NetIO": "1.32MB / 137kB",
+        "PIDs": "21"
+      },
+      {
+        "BlockIO": "28MB / 63.1MB",
+        "CPUPerc": "0.08%",
+        "Container": "adpulse-grafana-1",
+        "ID": "ba9b39e3df06",
+        "MemPerc": "0.07%",
+        "MemUsage": "91.38MiB / 123.2GiB",
+        "Name": "adpulse-grafana-1",
+        "NetIO": "15.3MB / 58.2MB",
+        "PIDs": "34"
+      }
+    ],
+    "flink_taskmanagers": {
+      "172.23.0.4:39649-79ea8b": {
+        "process_budget_bytes": 8589934592,
+        "slots": 4
+      },
+      "172.23.0.8:41723-7efb0e": {
+        "process_budget_bytes": 8589934592,
+        "slots": 4
+      }
+    },
+    "container_state": {
+      "adpulse-taskmanager-1-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "d57d40af0f7662e18805467045303ca65173c2bf7354a7daf83f6345d7423379",
+        "started_at": "2026-09-07T02:10:34.728877842Z"
+      },
+      "adpulse-jobmanager-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "9199579de7d9e4faf784adf892b72ffd36bd2cbf428538dc35aae2fc18e4bc5c",
+        "started_at": "2026-09-07T02:10:34.739279355Z"
+      },
+      "adpulse-taskmanager-2-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "9c7f94e8615c16ab8fe88fc78fbdce8d935f61acf60d3996042fc0c7fad1b68a",
+        "started_at": "2026-09-07T02:10:34.735874748Z"
+      },
+      "adpulse-sink-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "fdcddfb4bb9dd99706279bec97d2b2c2693550cd8045d4660b6e62f32b07f157",
+        "started_at": "2026-09-07T01:55:04.961097134Z"
+      },
+      "adpulse-clickhouse-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "d98f6f57cebc06aae00560ae1f92a8be553964ec97f7402d2c9ba7cf0691f03e",
+        "started_at": "2026-09-07T00:40:02.273882734Z"
+      },
+      "adpulse-api-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "112a0272eae159a1fb4f7b32c7656c637cab0f1061cbede1d424ba35b328306d",
+        "started_at": "2026-09-07T00:42:56.2415325Z"
+      },
+      "adpulse-collector-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "3aad6c610fdecc8fad875019d31c789ec862c892eb0e8cda3abcaa0a0ac89f9c",
+        "started_at": "2026-09-07T02:11:19.273608333Z"
+      },
+      "adpulse-archive-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "0aaeb11059e905b4e5bb2551ba523d52ed2707e8dd45f260453c5929f6b0a7f3",
+        "started_at": "2026-09-07T00:10:10.175888039Z"
+      },
+      "adpulse-connect-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "23241ae403392cd45b96d6d541a71fb230546f86feb8ffa63b8cae24dcc9151d",
+        "started_at": "2026-09-06T22:55:24.95756969Z"
+      },
+      "adpulse-postgres-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "e32c2f7c5bf7a0be71ab807b6e1c69e129aa864bc5adb59b9ffa0ccf8815b46c",
+        "started_at": "2026-09-06T22:55:13.54412473Z"
+      },
+      "adpulse-kafka-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "c546c20f3a923f3425700de2d3d36f73872b629cd3869b904ce5f4f99a8e0515",
+        "started_at": "2026-09-06T22:55:13.457009851Z"
+      },
+      "adpulse-prometheus-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "00effd6087230055358170dbe52b1e2e3b4edbec11770bc9e3b48b680d767af0",
+        "started_at": "2026-09-07T00:10:10.760255848Z"
+      },
+      "adpulse-minio-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "44d65e8f5af48b801af26f72f58823afcb45837752b6d78eded8bd9dc5ec9fef",
+        "started_at": "2026-09-06T22:55:13.535896499Z"
+      },
+      "adpulse-alertmanager-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "b0a430044e96d2ec84a7a2682bc660902b51b701f14cfdcaf7a7af473eed165d",
+        "started_at": "2026-09-06T22:55:13.432987818Z"
+      },
+      "adpulse-grafana-1": {
+        "oom_killed": false,
+        "restart_count": 0,
+        "status": "running",
+        "container_id": "ba9b39e3df06bb01060af4f9cb4063302484fd105b4a796a8923d748352af1e8",
+        "started_at": "2026-09-06T22:55:13.539663288Z"
+      }
+    }
+  },
+  "passed": true
+}

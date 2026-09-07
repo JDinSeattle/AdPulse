@@ -47,3 +47,5 @@ MPLCONFIGDIR=.cache/matplotlib uv run --no-project --python 3.12 --with matplotl
 已保留的 100 档使用 2×2 GiB Flink 进程预算及归因并行度 3。累积状态增长后，该配置在 1,000 档仍发生 RocksDB 点读饱和；单独使用 `deployment/capacity.env` 的 2×8 GiB / 归因并行度 6 重新验收。CPU/内存预算、并行度和初始状态均不同，不能用二者声称相同资源上的代码提速比例。托管 CI 使用默认 2 GiB / 并行度 2 配置，只证明集成与故障语义。
 
 最终容量采样直接读取 TaskManager REST 的 `totalProcessMemory` 和作业实际并行度；这属于 Flink 配置预算，区别于 Docker 采样用量和宿主机物理内存。完整环境记录见 `docs/evidence/operations/environment.json`。所有早停与不满足 SLO 的尝试保留为失败报告。
+
+完整离线 oracle 会把归档与业务输入全量载入 Python 内存；最终数百万条输入重算期间另采集了 `docs/evidence/operations/oracle-resources.json` 的 Linux `/proc` RSS/HWM。它是单次采样、不是最终峰值，也不是实时 worker 内存。更大数据量需要分区或外排验证，不把本次全量通过解释为参考计算器具备无界扩展能力。

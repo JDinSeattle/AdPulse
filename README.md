@@ -98,4 +98,4 @@ curl http://localhost:8080/v1/quality
 | `tests/`, `scripts/` | Python / Java 验收、集成、故障、负载脚本 |
 | `docs/` | 契约、指标、交付语义、容量、发布恢复手册、实测证据 |
 
-默认完整栈保持单 broker；独立三 broker Docker 实验已验证 leader 故障、quorum 丢失与事务恢复。Flink 1.20.5 / ClickHouse 26.3 LTS 迁移及录屏已完成；长测和云端 CI 的当前状态见运维验收。所有副本仍位于单宿主机，不能据此声称物理机或可用区容错。
+默认完整栈保持单 broker；独立三 broker Docker 实验已验证 leader 故障、quorum 丢失与事务恢复。Flink 1.20.5 / ClickHouse 26.3 LTS 迁移及录屏已完成；100/1,000 两档各 30 分钟已完成，1,000 档 P95 19.370 秒（2×8 GiB 进程预算、归因并行度 6）；云端 Docker CI 已通过，详见运维验收。所有副本仍位于单宿主机，不能据此声称物理机或可用区容错。
