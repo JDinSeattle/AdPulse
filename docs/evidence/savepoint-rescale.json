@@ -1,0 +1,30 @@
+{
+  "scenario": "savepoint-rescale",
+  "mode": "docker-real-components",
+  "passed": true,
+  "differences": [],
+  "completeness": {
+    "acknowledged": 1409,
+    "archived": 1409,
+    "archive_missing": [],
+    "classified": 1409,
+    "processing_pending": [],
+    "archive_complete": true,
+    "lineage_complete": true
+  },
+  "acknowledged": 1409,
+  "expected_metrics": 532,
+  "actual_metrics": 532,
+  "expected_associations": 229,
+  "actual_associations": 229,
+  "savepoint": "file:/opt/flink/state/savepoints/savepoint-84f861-badecd9a5e74",
+  "restored_job": "ad15301f421de02b7738bd4b6083ef5e",
+  "requested_parallelism": 3,
+  "restored_checkpoint": {
+    "id": 64,
+    "restore_timestamp": 1788736544824,
+    "is_savepoint": true,
+    "external_path": "file:/opt/flink/state/savepoints/savepoint-84f861-badecd9a5e74"
+  },
+  "elapsed_seconds": 30.937
+}

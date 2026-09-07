@@ -1,0 +1,18 @@
+{
+  "git_status": "unavailable: empty read-only .git placeholder",
+  "files": {
+    "adpulse/api.py": "487ce75314a42351da73f86ac2a048b25dd7d5bf0f10e638e7e4585c0add24f1",
+    "adpulse/pagination.py": "86624504a16125142a07ae6e72d1608a036ee6c4fad03fcdd9735a782b500f3b",
+    "adpulse/storage.py": "4bba06efa2a924d120bb7a5da13b77093151a4085396259b3d13f31318ff0fe5",
+    "adpulse/releases.py": "6876e09021a04efb1c097d7528982e578c31ac1edf6df389a093ac45510815eb",
+    "tests/test_query_api.py": "478a771057dd8c554724b3e6d738adddea0c6ad465dbf96d47686d76a17421af",
+    "scripts/query_acceptance.py": "e666bf87103a19a77b49eae296946dabeaea9bac2d343680988c03491e41ae6a",
+    "scripts/query_benchmark.py": "37ddb14d16e9e3c71dcb1b562ee36888a42a1bdd277f72bb2e66a992f306b9cf",
+    "requirements.lock": "655a85c762476216f2e1e0ed8ca267b747882104f0a343b3165458db71030fa8",
+    "pyproject.toml": "4ea045b482fac283fca69f8ca338ccba91e6a11e0bd951d19a2c03da2fe7ecb8",
+    "deployment/compose.yaml": "6066e3fdcb2244e14b99b6c6a069a44f438d1a883f0c56a086bca0fbb9aeb1cb",
+    "monitoring/alerts.yml": "1da12312f574e907d71ff6b849656e8514bb542525ae75e1fefe5fa691d726d9",
+    "monitoring/grafana/dashboards/adpulse.json": "2857b25fa41604574cfab9c562133f7db4332fc53c279331971859368126e9d1",
+    ".github/workflows/ci.yml": "d5c9fa50b24edfbdae3d80ffa802ef6ce77ed9da1af5eb0bdb549f4894a0a21e"
+  }
+}

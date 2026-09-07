@@ -1,0 +1,47 @@
+{
+  "method": "one warmup then five serial in-process endpoint calls using real local ClickHouse; tracemalloc enabled; includes fetch and Python parse, excludes ASGI wire overhead",
+  "environment": {
+    "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+    "python": "3.12.13",
+    "clickhouse": "24.8.14.39",
+    "packages": {
+      "fastapi": "0.115.12",
+      "starlette": "0.46.2",
+      "requests": "2.32.3"
+    }
+  },
+  "release": "replay-verified-20260906",
+  "source_sha256": "55f588d225bbd4c19fa118a332a25231e5dd86e1ce222ee51a28da1ce595dd4a",
+  "measurements": [
+    {
+      "seconds": 0.6126363940020383,
+      "peak_python_bytes": 71273914,
+      "response_bytes": 12717463,
+      "rows": 21667
+    },
+    {
+      "seconds": 0.6090663830000267,
+      "peak_python_bytes": 71272746,
+      "response_bytes": 12717463,
+      "rows": 21667
+    },
+    {
+      "seconds": 0.5589733180022449,
+      "peak_python_bytes": 71272386,
+      "response_bytes": 12717463,
+      "rows": 21667
+    },
+    {
+      "seconds": 0.5925599069996679,
+      "peak_python_bytes": 71272346,
+      "response_bytes": 12717463,
+      "rows": 21667
+    },
+    {
+      "seconds": 0.5589731590007432,
+      "peak_python_bytes": 71271802,
+      "response_bytes": 12717463,
+      "rows": 21667
+    }
+  ]
+}

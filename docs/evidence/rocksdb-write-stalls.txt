@@ -1,0 +1,3 @@
+Runtime log sample captured before checkpoint-based tuning recovery:
+2026/09/06-23:26:49.081580 7b57776ff640 [WARN] [/column_family.cc:900] [pending-click-json-v1] Stopping writes because we have 2 immutable memtables (waiting for flush), max_write_buffer_number is set to 2
+2026/09/06-23:26:49.260929 7b57776ff640 [WARN] [/column_family.cc:900] [impression-json-v1] Stopping writes because we have 2 immutable memtables (waiting for flush), max_write_buffer_number is set to 2

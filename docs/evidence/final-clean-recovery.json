@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "previous_job": "3c65e949e060f2ee5d5e476429444dc6",
+  "restored_job": "112522b9b1edc21d761a1bdda07f9b22",
+  "restored_from": "file:/opt/flink/state/checkpoints/clean-live-v1/3c65e949e060f2ee5d5e476429444dc6/chk-225",
+  "restored_checkpoint": {
+    "id": 225,
+    "restore_timestamp": 1788738022922,
+    "is_savepoint": true,
+    "external_path": "file:/opt/flink/state/checkpoints/clean-live-v1/3c65e949e060f2ee5d5e476429444dc6/chk-225"
+  },
+  "counts": {
+    "restored": 1,
+    "total": 1,
+    "in_progress": 0,
+    "completed": 1,
+    "failed": 0
+  },
+  "recovery_seconds": 16.594,
+  "allow_non_restored_state": false
+}

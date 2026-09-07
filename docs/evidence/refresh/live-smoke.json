@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "differences": [],
+  "completeness": {
+    "acknowledged": 128166,
+    "archived": 128166,
+    "archive_missing": [],
+    "classified": 128166,
+    "processing_pending": [],
+    "archive_complete": true,
+    "lineage_complete": true
+  },
+  "acknowledged": 128166,
+  "expected_metrics": 1183,
+  "actual_metrics": 1183,
+  "expected_associations": 21670,
+  "actual_associations": 21670,
+  "mode": "docker-kafka-flink-clickhouse-s3",
+  "scenario": "mixed",
+  "submitted_records": 27,
+  "convergence_seconds": 27.664,
+  "checkpoint_counts": {
+    "112522b9b1edc21d761a1bdda07f9b22": {
+      "restored": 1,
+      "total": 203,
+      "in_progress": 0,
+      "completed": 203,
+      "failed": 0
+    },
+    "aa86d9c67e1ab3727eea3efd1c9da1f1": {
+      "restored": 1,
+      "total": 269,
+      "in_progress": 0,
+      "completed": 269,
+      "failed": 0
+    }
+  },
+  "archive_complete": true,
+  "sink_complete": true,
+  "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f"
+}

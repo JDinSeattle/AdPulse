@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://adpulse.local/contracts/event-v1",
+  "title": "AdPulse synthetic event v1; epoch milliseconds, minor-unit values",
+  "type": "object",
+  "required": ["event_id", "event_type", "event_time", "schema_version", "app_id", "trace_id", "advertiser_id", "user_id", "campaign_id", "app_version"],
+  "properties": {
+    "event_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "event_type": {"enum": ["impression", "click", "conversion"]},
+    "event_time": {"type": "integer", "minimum": 0, "maximum": 4102444800000},
+    "received_at": {"type": "integer", "minimum": 0},
+    "schema_version": {"const": 1},
+    "app_id": {"type": "string", "minLength": 1},
+    "trace_id": {"type": "string", "minLength": 1},
+    "advertiser_id": {"type": "string", "minLength": 1},
+    "user_id": {"type": "string", "minLength": 1},
+    "campaign_id": {"type": "string", "minLength": 1},
+    "app_version": {"type": "string", "minLength": 1},
+    "impression_id": {"type": "string", "minLength": 1},
+    "click_id": {"type": "string", "minLength": 1},
+    "conversion_id": {"type": "string", "minLength": 1},
+    "ad_id": {"type": "string", "minLength": 1},
+    "region": {"type": "string", "pattern": "^[A-Z]{2}$"},
+    "experiment_id": {"type": "string", "minLength": 1},
+    "variant": {"enum": ["control", "treatment"]},
+    "conversion_type": {"enum": ["purchase", "signup", "install"]},
+    "value_minor": {"type": "integer", "minimum": 0, "maximum": 1000000000000},
+    "currency": {"type": "string", "pattern": "^[A-Z]{3}$"}
+  },
+  "allOf": [
+    {"if": {"properties": {"event_type": {"const": "impression"}}}, "then": {"required": ["impression_id", "ad_id", "region", "experiment_id", "variant"]}},
+    {"if": {"properties": {"event_type": {"const": "click"}}}, "then": {"required": ["click_id", "impression_id"]}},
+    {"if": {"properties": {"event_type": {"const": "conversion"}}}, "then": {"required": ["conversion_id", "click_id", "conversion_type", "value_minor", "currency"]}}
+  ],
+  "additionalProperties": false
+}

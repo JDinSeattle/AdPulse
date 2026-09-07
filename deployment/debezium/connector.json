@@ -1,0 +1,17 @@
+{
+  "name": "adpulse-campaigns",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1", "database.hostname": "postgres", "database.port": "5432",
+    "database.user": "debezium", "database.password": "adpulse-cdc-local",
+    "database.dbname": "adpulse", "topic.prefix": "adpulse.cdc",
+    "plugin.name": "pgoutput", "slot.name": "adpulse_campaigns",
+    "publication.name": "adpulse_publication", "publication.autocreate.mode": "disabled",
+    "table.include.list": "public.campaign_versions", "snapshot.mode": "initial",
+    "heartbeat.interval.ms": "10000", "tombstones.on.delete": "true",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false"
+  }
+}

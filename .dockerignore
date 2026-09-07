@@ -1,0 +1,11 @@
+.cache
+.venv
+.git
+.agents
+.codex
+artifacts
+**/__pycache__
+**/.pytest_cache
+**/target/classes
+**/target/test-classes
+**/target/surefire-reports

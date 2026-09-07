@@ -1,0 +1,289 @@
+{
+  "passed": true,
+  "run_id": "256315fbb2674265be35184f7bf59b2e",
+  "environment": "single-host-three-broker-processes",
+  "replication_factor": 3,
+  "min_insync_replicas": 2,
+  "producer_acks": "all",
+  "isolation": "read_committed",
+  "combined_broker_controller": true,
+  "physical_host_fault_tested": false,
+  "steps": [
+    {
+      "label": "baseline",
+      "http_status": 202,
+      "elapsed_seconds": 1.815
+    },
+    {
+      "label": "one-broker-down",
+      "http_status": 202,
+      "elapsed_seconds": 1.681
+    },
+    {
+      "label": "no-quorum",
+      "http_status": 503,
+      "elapsed_seconds": 30.006
+    },
+    {
+      "label": "quorum-restored",
+      "http_status": 202,
+      "elapsed_seconds": 1.281
+    }
+  ],
+  "before_topology": {
+    "adpulse-quorum.raw": {
+      "0": {
+        "leader": 3,
+        "replicas": [
+          3,
+          1,
+          2
+        ],
+        "isrs": [
+          3,
+          1,
+          2
+        ]
+      },
+      "1": {
+        "leader": 1,
+        "replicas": [
+          1,
+          2,
+          3
+        ],
+        "isrs": [
+          1,
+          2,
+          3
+        ]
+      },
+      "2": {
+        "leader": 2,
+        "replicas": [
+          2,
+          3,
+          1
+        ],
+        "isrs": [
+          2,
+          3,
+          1
+        ]
+      }
+    },
+    "adpulse-quorum.receipts": {
+      "0": {
+        "leader": 3,
+        "replicas": [
+          3,
+          1,
+          2
+        ],
+        "isrs": [
+          3,
+          1,
+          2
+        ]
+      },
+      "1": {
+        "leader": 1,
+        "replicas": [
+          1,
+          2,
+          3
+        ],
+        "isrs": [
+          1,
+          2,
+          3
+        ]
+      },
+      "2": {
+        "leader": 2,
+        "replicas": [
+          2,
+          3,
+          1
+        ],
+        "isrs": [
+          2,
+          3,
+          1
+        ]
+      }
+    }
+  },
+  "leader_failure_to_ack_seconds": 12.007,
+  "degraded_topology": {
+    "adpulse-quorum.raw": {
+      "0": {
+        "leader": 1,
+        "replicas": [
+          3,
+          1,
+          2
+        ],
+        "isrs": [
+          1,
+          2
+        ]
+      },
+      "1": {
+        "leader": 1,
+        "replicas": [
+          1,
+          2,
+          3
+        ],
+        "isrs": [
+          1,
+          2
+        ]
+      },
+      "2": {
+        "leader": 2,
+        "replicas": [
+          2,
+          3,
+          1
+        ],
+        "isrs": [
+          2,
+          1
+        ]
+      }
+    },
+    "adpulse-quorum.receipts": {
+      "0": {
+        "leader": 1,
+        "replicas": [
+          3,
+          1,
+          2
+        ],
+        "isrs": [
+          1,
+          2
+        ]
+      },
+      "1": {
+        "leader": 1,
+        "replicas": [
+          1,
+          2,
+          3
+        ],
+        "isrs": [
+          1,
+          2
+        ]
+      },
+      "2": {
+        "leader": 2,
+        "replicas": [
+          2,
+          3,
+          1
+        ],
+        "isrs": [
+          2,
+          1
+        ]
+      }
+    }
+  },
+  "no_quorum_failed_closed": true,
+  "reconciliation": {
+    "acknowledged_receipts": 124,
+    "verified_raw": 124,
+    "verified_manifests": 3,
+    "all_partition_eofs": true
+  },
+  "unacknowledged_failed_batch_visible": false,
+  "after_topology": {
+    "adpulse-quorum.raw": {
+      "0": {
+        "leader": 2,
+        "replicas": [
+          3,
+          1,
+          2
+        ],
+        "isrs": [
+          2,
+          3,
+          1
+        ]
+      },
+      "1": {
+        "leader": 2,
+        "replicas": [
+          1,
+          2,
+          3
+        ],
+        "isrs": [
+          2,
+          3,
+          1
+        ]
+      },
+      "2": {
+        "leader": 2,
+        "replicas": [
+          2,
+          3,
+          1
+        ],
+        "isrs": [
+          2,
+          3,
+          1
+        ]
+      }
+    },
+    "adpulse-quorum.receipts": {
+      "0": {
+        "leader": 2,
+        "replicas": [
+          3,
+          1,
+          2
+        ],
+        "isrs": [
+          2,
+          3,
+          1
+        ]
+      },
+      "1": {
+        "leader": 2,
+        "replicas": [
+          1,
+          2,
+          3
+        ],
+        "isrs": [
+          2,
+          3,
+          1
+        ]
+      },
+      "2": {
+        "leader": 2,
+        "replicas": [
+          2,
+          3,
+          1
+        ],
+        "isrs": [
+          2,
+          3,
+          1
+        ]
+      }
+    }
+  },
+  "cleanup": "all lab services restarted; volumes retained"
+}

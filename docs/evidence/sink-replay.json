@@ -1,0 +1,168 @@
+{
+  "scenario": "sink-replay",
+  "mode": "docker-real-components",
+  "passed": true,
+  "injected_exit_code": 77,
+  "write_before_crash": {
+    "fault": "after_result_write_before_commit",
+    "result_records": 28,
+    "offsets": [
+      [
+        "adpulse.results.live-v1",
+        0,
+        381
+      ],
+      [
+        "adpulse.results.live-v1",
+        0,
+        382
+      ],
+      [
+        "adpulse.results.live-v1",
+        0,
+        383
+      ],
+      [
+        "adpulse.results.live-v1",
+        0,
+        384
+      ],
+      [
+        "adpulse.results.live-v1",
+        0,
+        385
+      ],
+      [
+        "adpulse.results.live-v1",
+        0,
+        386
+      ],
+      [
+        "adpulse.results.live-v1",
+        0,
+        387
+      ],
+      [
+        "adpulse.results.live-v1",
+        0,
+        388
+      ],
+      [
+        "adpulse.results.live-v1",
+        0,
+        389
+      ],
+      [
+        "adpulse.results.live-v1",
+        0,
+        390
+      ],
+      [
+        "adpulse.results.live-v1",
+        1,
+        381
+      ],
+      [
+        "adpulse.results.live-v1",
+        1,
+        382
+      ],
+      [
+        "adpulse.results.live-v1",
+        1,
+        383
+      ],
+      [
+        "adpulse.results.live-v1",
+        1,
+        384
+      ],
+      [
+        "adpulse.results.live-v1",
+        1,
+        385
+      ],
+      [
+        "adpulse.results.live-v1",
+        1,
+        386
+      ],
+      [
+        "adpulse.results.live-v1",
+        1,
+        387
+      ],
+      [
+        "adpulse.results.live-v1",
+        1,
+        388
+      ],
+      [
+        "adpulse.results.live-v1",
+        1,
+        389
+      ],
+      [
+        "adpulse.results.live-v1",
+        1,
+        390
+      ],
+      [
+        "adpulse.results.live-v1",
+        1,
+        391
+      ],
+      [
+        "adpulse.results.live-v1",
+        1,
+        392
+      ],
+      [
+        "adpulse.results.live-v1",
+        2,
+        343
+      ],
+      [
+        "adpulse.results.live-v1",
+        2,
+        344
+      ],
+      [
+        "adpulse.results.live-v1",
+        2,
+        345
+      ],
+      [
+        "adpulse.results.live-v1",
+        2,
+        346
+      ],
+      [
+        "adpulse.results.live-v1",
+        2,
+        347
+      ],
+      [
+        "adpulse.results.live-v1",
+        2,
+        348
+      ]
+    ]
+  },
+  "differences": [],
+  "completeness": {
+    "acknowledged": 1273,
+    "archived": 1273,
+    "archive_missing": [],
+    "classified": 1273,
+    "processing_pending": [],
+    "archive_complete": true,
+    "lineage_complete": true
+  },
+  "acknowledged": 1273,
+  "expected_metrics": 450,
+  "actual_metrics": 450,
+  "expected_associations": 203,
+  "actual_associations": 203,
+  "elapsed_seconds": 53.824
+}

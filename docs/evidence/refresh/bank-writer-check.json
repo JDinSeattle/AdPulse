@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "rehearsal_json_validation": [],
+  "other_experiences_preserved": 8,
+  "other_evidence_preserved": 269,
+  "backups_created_and_parsed": true,
+  "concurrent_edit_detected": true,
+  "metric_values_checked_against_reports": 11,
+  "scope": "temporary directory rehearsal, before authorized target write; per-file atomic replacement with journal, not two-file ACID"
+}

@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "python_tests": 51,
+  "java_tests": 9,
+  "total_tests": 60,
+  "java_failures": 0,
+  "java_errors": 0,
+  "ruff": "passed",
+  "compileall": "passed",
+  "commands": [
+    "make verify",
+    "pytest --junitxml=docs/evidence/refresh/python-tests.xml",
+    "scripts/query_acceptance.py",
+    "scripts/query_benchmark.py",
+    "scripts/integration.py --users 10"
+  ],
+  "host": {
+    "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+    "cpu": "13th Gen Intel(R) Core(TM) i9-13900K",
+    "logical_cpus": 32,
+    "mem_total": "MemTotal:       129209084 kB",
+    "isolation": "shared developer workstation; other project containers running; no CPU affinity or exclusive host reservation"
+  },
+  "limitations": [
+    "51 Python and 9 Java cases; real query integration, HTTP and smoke counted separately",
+    "httpx TestClient and anyio deprecated aliases emit warnings",
+    "Hosted GitHub Actions not executed"
+  ],
+  "promtool": {
+    "rules": 9,
+    "status": "passed"
+  },
+  "deployed_python_packages": {
+    "adpulse": "0.2.0",
+    "fastapi": "0.141.1",
+    "starlette": "1.6.0"
+  }
+}

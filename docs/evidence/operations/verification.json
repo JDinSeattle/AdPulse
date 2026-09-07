@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "python": {
+    "tests": 57,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "java": {
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "total_tests": 66,
+  "checked_at": "2026-09-07T01:03:04.107640+00:00",
+  "lint": "ruff passed",
+  "python_runtime": "3.12.13",
+  "java_bytecode_target": 17,
+  "flink_dependencies": "1.20.5",
+  "environment": "local process tests; Flink operator harness; real Docker acceptance reported separately",
+  "warnings": [
+    "Starlette httpx TestClient and anyio BlockingPortal deprecations"
+  ],
+  "execution_note": "Initial restricted-sandbox ASGI run stopped progressing and was interrupted; final complete suite executed with local communication permitted."
+}

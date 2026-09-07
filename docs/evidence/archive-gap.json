@@ -1,0 +1,22 @@
+{
+  "scenario": "archive-gap",
+  "mode": "docker-real-components",
+  "passed": true,
+  "observed_missing_receipts": 65,
+  "differences": [],
+  "completeness": {
+    "acknowledged": 1201,
+    "archived": 1201,
+    "archive_missing": [],
+    "classified": 1201,
+    "processing_pending": [],
+    "archive_complete": true,
+    "lineage_complete": true
+  },
+  "acknowledged": 1201,
+  "expected_metrics": 399,
+  "actual_metrics": 399,
+  "expected_associations": 189,
+  "actual_associations": 189,
+  "elapsed_seconds": 29.427
+}

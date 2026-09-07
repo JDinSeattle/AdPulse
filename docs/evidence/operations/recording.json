@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "environment": "local Docker services; fresh headless Chrome browser",
+  "captured_at": "2026-09-07T01:04:46.197Z",
+  "synthetic_data": true,
+  "video_path": "docs/demo/adpulse-local-demo.mp4",
+  "sha256": "223dd1c11cad93d4112f3edf949309673a82c4a06647e046609599121f3516f6",
+  "duration_seconds": 60.24,
+  "bytes": 2173923,
+  "resolution": [
+    1440,
+    1000
+  ],
+  "chapters": [
+    {
+      "name": "Live synthetic advertising metrics",
+      "at_seconds": 1.4,
+      "url": "http://localhost:13000/d/adpulse-overview/a54bd12?from=now-15m&to=now&refresh=10s&kiosk=&orgId=1&timezone=browser&var-campaign=$__all&var-region=$__all&var-app_version=$__all"
+    },
+    {
+      "name": "Worker health, consumer lag and checkpoints",
+      "at_seconds": 14,
+      "url": "http://localhost:13000/d/adpulse-overview/a54bd12?from=now-15m&to=now&refresh=10s&kiosk=&orgId=1&timezone=browser&var-campaign=$__all&var-region=$__all&var-app_version=$__all"
+    },
+    {
+      "name": "Governance and bounded query telemetry",
+      "at_seconds": 24.1,
+      "url": "http://localhost:13000/d/adpulse-overview/a54bd12?from=now-15m&to=now&refresh=10s&kiosk=&orgId=1&timezone=browser&var-campaign=$__all&var-region=$__all&var-app_version=$__all"
+    },
+    {
+      "name": "Two real Flink jobs after state migration",
+      "at_seconds": 32.1,
+      "url": "http://localhost:18081/#/job/running"
+    },
+    {
+      "name": "Attribution operator topology",
+      "at_seconds": 39.9,
+      "url": "http://localhost:18081/#/job/running/bbef5461afc709d21bafb76810fa24ec/overview"
+    },
+    {
+      "name": "Persistent checkpoints and restored state",
+      "at_seconds": 49.1,
+      "url": "http://localhost:18081/#/job/running/bbef5461afc709d21bafb76810fa24ec/checkpoints"
+    }
+  ],
+  "qa": "Captured six chapters; inspected checkpoint detail and decoded final video frames for live chart/valid-watermark readability. No narration."
+}

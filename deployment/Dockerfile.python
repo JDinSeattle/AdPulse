@@ -1,0 +1,11 @@
+FROM python:3.12.10-slim
+WORKDIR /app
+COPY requirements.lock /app/requirements.lock
+RUN pip install --no-cache-dir -r requirements.lock
+COPY pyproject.toml /app/
+COPY adpulse /app/adpulse
+COPY contracts /app/contracts
+COPY deployment /app/deployment
+RUN pip install --no-deps . && useradd -m -u 10001 adpulse
+USER adpulse
+ENV PYTHONUNBUFFERED=1 ADPULSE_ROOT=/app

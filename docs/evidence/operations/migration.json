@@ -1,0 +1,176 @@
+{
+  "passed": true,
+  "environment": "local-docker-single-host",
+  "started_at_epoch": 1788741574.6641314,
+  "source_volume_retained": "adpulse_clickhouse-data",
+  "target_volume": "adpulse_clickhouse-data-v26",
+  "from_flink": "1.20.3",
+  "from_clickhouse": "24.8.14.39",
+  "savepoints": [
+    {
+      "job_id": "112522b9b1edc21d761a1bdda07f9b22",
+      "name": "AdPulse · cleaning and quality · rules-v1",
+      "parallelism": 2,
+      "savepoint": "file:/opt/flink/state/savepoints/savepoint-112522-c19c3c04bf5d"
+    },
+    {
+      "job_id": "aa86d9c67e1ab3727eea3efd1c9da1f1",
+      "name": "AdPulse · attribution and metrics · explicit-click-v1",
+      "parallelism": 3,
+      "savepoint": "file:/opt/flink/state/savepoints/savepoint-aa86d9-8273caabd466"
+    }
+  ],
+  "phase": "validated",
+  "before_reconciliation": {
+    "passed": true,
+    "differences": [],
+    "completeness": {
+      "acknowledged": 128166,
+      "archived": 128166,
+      "archive_missing": [],
+      "classified": 128166,
+      "processing_pending": [],
+      "archive_complete": true,
+      "lineage_complete": true
+    },
+    "acknowledged": 128166,
+    "expected_metrics": 1183,
+    "actual_metrics": 1183,
+    "expected_associations": 21670,
+    "actual_associations": 21670
+  },
+  "before_tables": {
+    "results": {
+      "logical_rows": 46550,
+      "sha256": "85085c19fd9a9d2b5a003d165c35738e5e35b961862494953ee4fdd9ed5f3c43"
+    },
+    "deliveries": {
+      "logical_rows": 207458,
+      "sha256": "2aee0bfe5dc67b227455ab96d405a957fdf20c8c68ff1ab2de5252307693633e"
+    },
+    "quality": {
+      "logical_rows": 128186,
+      "sha256": "6440bcafbf55e8705d5bb967282e909cb6b06726e6975a707c59fb1a2d3661af"
+    },
+    "receipts": {
+      "logical_rows": 1415,
+      "sha256": "54c57f2e1a5a2e3c22c04c5089c0bf1b456cdfd72613b3d9f0a7fd3bb3e88f45"
+    },
+    "visibility": {
+      "logical_rows": 321285,
+      "sha256": "29a8c25e4736fc918d4a7ac9ed1ffa61497dad1c8ed5ad055e6f93d84d8b3ec0"
+    }
+  },
+  "after_tables": {
+    "results": {
+      "logical_rows": 46550,
+      "sha256": "85085c19fd9a9d2b5a003d165c35738e5e35b961862494953ee4fdd9ed5f3c43"
+    },
+    "deliveries": {
+      "logical_rows": 207458,
+      "sha256": "2aee0bfe5dc67b227455ab96d405a957fdf20c8c68ff1ab2de5252307693633e"
+    },
+    "quality": {
+      "logical_rows": 128186,
+      "sha256": "6440bcafbf55e8705d5bb967282e909cb6b06726e6975a707c59fb1a2d3661af"
+    },
+    "receipts": {
+      "logical_rows": 1415,
+      "sha256": "54c57f2e1a5a2e3c22c04c5089c0bf1b456cdfd72613b3d9f0a7fd3bb3e88f45"
+    },
+    "visibility": {
+      "logical_rows": 321285,
+      "sha256": "29a8c25e4736fc918d4a7ac9ed1ffa61497dad1c8ed5ad055e6f93d84d8b3ec0"
+    }
+  },
+  "table_fingerprints_equal": true,
+  "initial_wire_format_mismatch": "24.8 quotes UInt64 in JSONEachRow by default; 26.3 emits JSON numbers. Explicit output_format_json_quote_64bit_integers=0 makes wire format equal; no business fields excluded.",
+  "restores": [
+    {
+      "passed": true,
+      "previous_job": "112522b9b1edc21d761a1bdda07f9b22",
+      "restored_job": "c04282955e4c50593fc99cc0677b3588",
+      "restored_from": "file:/opt/flink/state/savepoints/savepoint-112522-c19c3c04bf5d",
+      "restored_checkpoint": {
+        "id": 583,
+        "restore_timestamp": 1788741757120,
+        "is_savepoint": true,
+        "external_path": "file:/opt/flink/state/savepoints/savepoint-112522-c19c3c04bf5d"
+      },
+      "counts": {
+        "restored": 1,
+        "total": 1,
+        "in_progress": 0,
+        "completed": 1,
+        "failed": 0
+      },
+      "recovery_seconds": 9.583,
+      "allow_non_restored_state": false
+    },
+    {
+      "passed": true,
+      "previous_job": "aa86d9c67e1ab3727eea3efd1c9da1f1",
+      "restored_job": "bbef5461afc709d21bafb76810fa24ec",
+      "restored_from": "file:/opt/flink/state/savepoints/savepoint-aa86d9-8273caabd466",
+      "restored_checkpoint": {
+        "id": 534,
+        "restore_timestamp": 1788741765620,
+        "is_savepoint": true,
+        "external_path": "file:/opt/flink/state/savepoints/savepoint-aa86d9-8273caabd466"
+      },
+      "counts": {
+        "restored": 1,
+        "total": 1,
+        "in_progress": 0,
+        "completed": 1,
+        "failed": 0
+      },
+      "recovery_seconds": 8.342,
+      "allow_non_restored_state": false
+    }
+  ],
+  "after_reconciliation": {
+    "passed": true,
+    "differences": [],
+    "completeness": {
+      "acknowledged": 128188,
+      "archived": 128188,
+      "archive_missing": [],
+      "classified": 128188,
+      "processing_pending": [],
+      "archive_complete": true,
+      "lineage_complete": true
+    },
+    "acknowledged": 128188,
+    "expected_metrics": 1211,
+    "actual_metrics": 1211,
+    "expected_associations": 21672,
+    "actual_associations": 21672,
+    "mode": "docker-kafka-flink-clickhouse-s3",
+    "scenario": "mixed",
+    "submitted_records": 22,
+    "convergence_seconds": 47.562,
+    "checkpoint_counts": {
+      "bbef5461afc709d21bafb76810fa24ec": {
+        "restored": 1,
+        "total": 6,
+        "in_progress": 0,
+        "completed": 6,
+        "failed": 0
+      },
+      "c04282955e4c50593fc99cc0677b3588": {
+        "restored": 1,
+        "total": 7,
+        "in_progress": 0,
+        "completed": 7,
+        "failed": 0
+      }
+    },
+    "archive_complete": true,
+    "sink_complete": true,
+    "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f"
+  },
+  "to_flink": "1.20.5",
+  "to_clickhouse": "26.3.32.14",
+  "completed_at_epoch": 1788741831.7877858
+}

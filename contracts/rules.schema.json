@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["rule_version", "policy_version", "schema_versions", "effective_from", "rollback_version", "attribution_window_ms", "join_wait_ms", "out_of_order_ms", "dedup_ms", "state_retention_ms", "window_ms", "emit_interval_ms", "idle_timeout_ms", "field_mappings", "filter_regions", "thresholds"],
+  "properties": {
+    "rule_version": {"type": "string", "pattern": "^[a-zA-Z0-9_-]+$"},
+    "policy_version": {"type": "string", "minLength": 1},
+    "schema_versions": {"type": "array", "items": {"type": "integer"}, "minItems": 1},
+    "effective_from": {"type": "integer", "minimum": 0},
+    "rollback_version": {"type": ["string", "null"]},
+    "attribution_window_ms": {"type": "integer", "minimum": 1},
+    "join_wait_ms": {"type": "integer", "minimum": 1},
+    "out_of_order_ms": {"type": "integer", "minimum": 0},
+    "dedup_ms": {"type": "integer", "minimum": 1},
+    "state_retention_ms": {"type": "integer", "minimum": 1},
+    "window_ms": {"type": "integer", "minimum": 1},
+    "emit_interval_ms": {"type": "integer", "minimum": 1},
+    "idle_timeout_ms": {"type": "integer", "minimum": 1},
+    "field_mappings": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}},
+    "filter_regions": {"type": "array", "items": {"type": "string"}},
+    "thresholds": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_error_rate", "duplicate_rate", "freshness_seconds"],
+      "properties": {
+        "schema_error_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "duplicate_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "freshness_seconds": {"type": "number", "minimum": 1}
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "scenario": "rule-rollback",
+  "mode": "docker-real-components",
+  "passed": true,
+  "activation": {
+    "previous": "live-v1",
+    "active": "replay-bad-1788736103566",
+    "changed": true
+  },
+  "rollback": {
+    "previous": "replay-bad-1788736103566",
+    "active": "live-v1",
+    "changed": true
+  },
+  "detected_impression_delta": -545,
+  "elapsed_seconds": 149.95
+}

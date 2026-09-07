@@ -1,0 +1,23 @@
+{
+  "environment": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "method": "real HTTP requests to deployed local API; existing replay input",
+  "api": {
+    "status": "ready"
+  },
+  "collector": {
+    "status": "ready",
+    "boundary": "kafka-transaction-commit"
+  },
+  "grafana": {
+    "database": "ok",
+    "version": "11.6.1",
+    "commit": "ae23ead4d959aa73a5a0ffada60e4147d679523c"
+  },
+  "openapi_version": "0.2.0",
+  "concurrent_identical_cursor_requests": 24,
+  "all_equal": true,
+  "oversized_limit_status": 422,
+  "query_metrics_exported": true,
+  "grafana_panels": 18,
+  "passed": true
+}

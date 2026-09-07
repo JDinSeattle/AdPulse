@@ -1,0 +1,98 @@
+{
+  "checked_at_ms": 1788738513920,
+  "api": {
+    "status": "ready"
+  },
+  "collector": {
+    "status": "ready",
+    "boundary": "kafka-transaction-commit"
+  },
+  "grafana": {
+    "database": "ok",
+    "version": "11.6.1",
+    "commit": "ae23ead4d959aa73a5a0ffada60e4147d679523c"
+  },
+  "active_release": "live-v1",
+  "running_jobs": [
+    {
+      "jid": "112522b9b1edc21d761a1bdda07f9b22",
+      "name": "AdPulse · cleaning and quality · rules-v1",
+      "state": "RUNNING"
+    },
+    {
+      "jid": "aa86d9c67e1ab3727eea3efd1c9da1f1",
+      "name": "AdPulse · attribution and metrics · explicit-click-v1",
+      "state": "RUNNING"
+    }
+  ],
+  "checkpoints": {
+    "112522b9b1edc21d761a1bdda07f9b22": {
+      "restored": 1,
+      "total": 49,
+      "in_progress": 0,
+      "completed": 49,
+      "failed": 0
+    },
+    "aa86d9c67e1ab3727eea3efd1c9da1f1": {
+      "restored": 1,
+      "total": 114,
+      "in_progress": 0,
+      "completed": 114,
+      "failed": 0
+    }
+  },
+  "prometheus_targets": [
+    {
+      "job": "collector",
+      "health": "up"
+    },
+    {
+      "job": "flink",
+      "health": "up"
+    },
+    {
+      "job": "flink",
+      "health": "up"
+    },
+    {
+      "job": "flink",
+      "health": "up"
+    },
+    {
+      "job": "governance",
+      "health": "up"
+    },
+    {
+      "job": "workers",
+      "health": "up"
+    },
+    {
+      "job": "workers",
+      "health": "up"
+    }
+  ],
+  "flink_running_jobs_gauge": 2.0,
+  "archive_lineage": {
+    "release_id": "replay-audit-20260906",
+    "input_manifest_sha256": "800c0c2cfdc21cfc4ec41339b5c81df118d4ef852a0f5cf7be565ee1a24a1f9e",
+    "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f",
+    "acknowledged": 128139,
+    "archived": 128139,
+    "archive_missing": [],
+    "classified": 128139,
+    "processing_pending": [],
+    "archive_complete": true,
+    "lineage_complete": true
+  },
+  "live_comparison": {
+    "passed": true,
+    "differences": []
+  },
+  "published_replay_comparison": {
+    "passed": true,
+    "differences": []
+  },
+  "metric_keys": 1154,
+  "association_keys": 21667,
+  "passed": true
+}

@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "previous_job": "4dfabf69513ee226292605091b94b282",
+  "restored_job": "84f861c11417a99940ddd7041b796d47",
+  "restored_from": "file:/opt/flink/state/checkpoints/attribution-live-v1/4dfabf69513ee226292605091b94b282/chk-49",
+  "restored_checkpoint": {
+    "id": 49,
+    "restore_timestamp": 1788736389026,
+    "is_savepoint": true,
+    "external_path": "file:/opt/flink/state/checkpoints/attribution-live-v1/4dfabf69513ee226292605091b94b282/chk-49"
+  },
+  "counts": {
+    "restored": 1,
+    "total": 1,
+    "in_progress": 0,
+    "completed": 1,
+    "failed": 0
+  },
+  "recovery_seconds": 8.32,
+  "allow_non_restored_state": false
+}

@@ -1,0 +1,17 @@
+{
+  "scenario": "cdc-recovery",
+  "mode": "docker-real-components",
+  "passed": true,
+  "slot": {
+    "slot_name": "adpulse_campaigns",
+    "active": true,
+    "retained_bytes": 313952
+  },
+  "observed_operations": [
+    "c",
+    "d",
+    "u"
+  ],
+  "explicit_effective_from": 1789341335909,
+  "elapsed_seconds": 6.55
+}

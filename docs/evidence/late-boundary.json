@@ -1,0 +1,9 @@
+{
+  "scenario": "late-boundary",
+  "mode": "real-flink-operator-harness-event-time",
+  "passed": true,
+  "actual_business_window_ms": 86400000,
+  "actual_wait_ms": 7200000,
+  "processing_time_accelerated": false,
+  "elapsed_seconds": 1.6
+}

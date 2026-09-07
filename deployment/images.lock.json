@@ -1,0 +1,86 @@
+{
+  "apache/kafka:3.9.0": {
+    "id": "sha256:fbc7d7c428e3755cf36518d4976596002477e4c052d1f80b5b9eafd06d0fff2f",
+    "repo_digests": [
+      "apache/kafka@sha256:fbc7d7c428e3755cf36518d4976596002477e4c052d1f80b5b9eafd06d0fff2f"
+    ],
+    "architecture": "amd64"
+  },
+  "clickhouse/clickhouse-server:24.8.14.39": {
+    "id": "sha256:1ffa82edee000a42c09313bd9f1293d94c570aee74babc1b3ca9983a35fa597b",
+    "repo_digests": [
+      "clickhouse/clickhouse-server@sha256:1ffa82edee000a42c09313bd9f1293d94c570aee74babc1b3ca9983a35fa597b"
+    ],
+    "architecture": "amd64"
+  },
+  "flink:1.20.3-scala_2.12-java17": {
+    "id": "sha256:6a2b771c073b523e43d72b46e338ce6cef25e969965444f6afe1b0bb15fa9772",
+    "repo_digests": [
+      "flink@sha256:6a2b771c073b523e43d72b46e338ce6cef25e969965444f6afe1b0bb15fa9772"
+    ],
+    "architecture": "amd64"
+  },
+  "grafana/grafana:11.6.1": {
+    "id": "sha256:52c3e20686b860c6dc1f623811565773cf51eefa378817a4896dfc863c3c82c8",
+    "repo_digests": [
+      "grafana/grafana@sha256:52c3e20686b860c6dc1f623811565773cf51eefa378817a4896dfc863c3c82c8"
+    ],
+    "architecture": "amd64"
+  },
+  "minio/minio:RELEASE.2025-04-22T22-12-26Z": {
+    "id": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+    "repo_digests": [
+      "minio/minio@sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e"
+    ],
+    "architecture": "amd64"
+  },
+  "postgres:16.8": {
+    "id": "sha256:301bcb60b8a3ee4ab7e147932723e3abd1cef53516ce5210b39fd9fe5e3602ae",
+    "repo_digests": [
+      "postgres@sha256:301bcb60b8a3ee4ab7e147932723e3abd1cef53516ce5210b39fd9fe5e3602ae"
+    ],
+    "architecture": "amd64"
+  },
+  "prom/alertmanager:v0.28.1": {
+    "id": "sha256:27c475db5fb156cab31d5c18a4251ac7ed567746a2483ff264516437a39b15ba",
+    "repo_digests": [
+      "prom/alertmanager@sha256:27c475db5fb156cab31d5c18a4251ac7ed567746a2483ff264516437a39b15ba"
+    ],
+    "architecture": "amd64"
+  },
+  "prom/prometheus:v3.3.0": {
+    "id": "sha256:339ce86a59413be18d0e445472891d022725b4803fab609069110205e79fb2f1",
+    "repo_digests": [
+      "prom/prometheus@sha256:339ce86a59413be18d0e445472891d022725b4803fab609069110205e79fb2f1"
+    ],
+    "architecture": "amd64"
+  },
+  "quay.io/debezium/connect:3.0.8.Final": {
+    "id": "sha256:15bf1198757acca522d3e498decbbf7a3a1e20cbf353750fdc28fe18fec4b39d",
+    "repo_digests": [
+      "quay.io/debezium/connect@sha256:15bf1198757acca522d3e498decbbf7a3a1e20cbf353750fdc28fe18fec4b39d"
+    ],
+    "architecture": "amd64"
+  },
+  "flink:1.20.5-scala_2.12-java17": {
+    "id": "sha256:a0fcd5400842d794f9a1b6292a148db1b3ca217bcf68741cc538e8bc9bc0b5ae",
+    "repo_digests": [
+      "flink@sha256:a0fcd5400842d794f9a1b6292a148db1b3ca217bcf68741cc538e8bc9bc0b5ae"
+    ],
+    "architecture": "amd64"
+  },
+  "clickhouse/clickhouse-server:26.3.32.14": {
+    "id": "sha256:456063a689194186633bb3db0862283068f4c2ee538852d3aaffa7eb66f1f841",
+    "repo_digests": [
+      "clickhouse/clickhouse-server@sha256:456063a689194186633bb3db0862283068f4c2ee538852d3aaffa7eb66f1f841"
+    ],
+    "architecture": "amd64"
+  },
+  "adpulse-flink:0.3.0": {
+    "id": "sha256:e39d1959b9ab9119711441d83fbea81ca911d990eee261b76b3e51acc2f0f39a",
+    "repo_digests": [
+      "adpulse-flink@sha256:e39d1959b9ab9119711441d83fbea81ca911d990eee261b76b3e51acc2f0f39a"
+    ],
+    "architecture": "amd64"
+  }
+}

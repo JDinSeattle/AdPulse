@@ -1,0 +1,14 @@
+{
+  "target_rate": 1000,
+  "duration_seconds": 60.0,
+  "accepted": 60417,
+  "observed_events_per_second": 1006.95,
+  "freshness": {
+    "visible": 24286,
+    "p95_seconds": 207.863,
+    "max_seconds": 215.302
+  },
+  "complete_visibility": false,
+  "sustained_target_duration_met": false,
+  "mode": "single-host-single-broker"
+}

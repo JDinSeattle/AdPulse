@@ -1,0 +1,48 @@
+groups:
+  - name: adpulse
+    rules:
+      - alert: AdPulseServiceDown
+        expr: up == 0
+        for: 30s
+        labels: {severity: critical}
+        annotations: {summary: "AdPulse service unavailable: {{ $labels.instance }}"}
+      - alert: AdPulseWorkerStalled
+        expr: time() - adpulse_worker_heartbeat_seconds > 90
+        for: 10s
+        labels: {severity: critical}
+        annotations: {summary: "Worker heartbeat stalled: {{ $labels.role }}"}
+      - alert: AdPulseFlinkJobStopped
+        expr: adpulse_flink_running_jobs != 2
+        for: 30s
+        labels: {severity: critical}
+        annotations: {summary: "Expected both cleaning and attribution jobs to be running"}
+      - alert: AdPulseSchemaErrors
+        expr: delta(adpulse_quality_records{error_code="SCHEMA_INVALID"}[1m]) > 0
+        for: 10s
+        labels: {severity: warning}
+        annotations: {summary: "New schema violations; inspect /v1/quality samples"}
+      - alert: AdPulseDuplicates
+        expr: sum(delta(adpulse_quality_records{disposition="duplicate"}[1m])) / clamp_min(sum(delta(adpulse_quality_records{disposition!="signal"}[1m])), 1) > 0.05
+        for: 20s
+        labels: {severity: warning}
+        annotations: {summary: "Duplicate ratio exceeds 5%"}
+      - alert: AdPulseLineageMissing
+        expr: adpulse_lineage_oldest_pending_seconds > 90
+        for: 10s
+        labels: {severity: critical}
+        annotations: {summary: "Acknowledged records remain unclassified"}
+      - alert: AdPulseFreshness
+        expr: adpulse_freshness_p95_seconds > 60
+        for: 1m
+        labels: {severity: warning}
+        annotations: {summary: "Provisional result P95 exceeds 60 seconds"}
+      - alert: AdPulseSinkLag
+        expr: sum(adpulse_consumer_offset_lag{role="sink"}) > 10000
+        for: 1m
+        labels: {severity: warning}
+        annotations: {summary: "Sink consumption offset lag is growing"}
+      - alert: AdPulseQueryFailures
+        expr: sum(rate(adpulse_query_seconds_count{outcome!="ok"}[5m])) > 0
+        for: 1m
+        labels: {severity: warning}
+        annotations: {summary: "Bounded serving queries failed; inspect query outcome metrics and narrow expensive requests"}

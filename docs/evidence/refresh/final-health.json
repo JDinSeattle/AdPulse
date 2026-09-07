@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "prometheus_targets_up": 7,
+  "running_flink_jobs": [
+    "aa86d9c67e1ab3727eea3efd1c9da1f1",
+    "112522b9b1edc21d761a1bdda07f9b22"
+  ],
+  "active_release": "live-v1"
+}

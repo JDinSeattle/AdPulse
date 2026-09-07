@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "archived": 128139,
+  "classified": 128139,
+  "release_id": "replay-verified-20260906",
+  "differences": [],
+  "acknowledged": 128139,
+  "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f",
+  "sink_complete": true,
+  "archive_missing": [],
+  "archive_complete": true,
+  "lineage_complete": true,
+  "processing_pending": [],
+  "input_manifest_sha256": "800c0c2cfdc21cfc4ec41339b5c81df118d4ef852a0f5cf7be565ee1a24a1f9e",
+  "lineage_revalidated_at": 1788738109055
+}

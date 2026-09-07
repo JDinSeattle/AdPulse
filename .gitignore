@@ -1,0 +1,17 @@
+.venv/
+.cache/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.egg-info/
+flink-jobs/target/
+artifacts/
+.env
+.idea/
+
+# Local assistant state and private career-bank maintenance artifacts
+.agents/
+.codex/
+docs/evidence/**/bank-update.json
+tools/recording/node_modules/
+*.webm

@@ -1,0 +1,18 @@
+{
+  "rule_version": "rules-v1",
+  "policy_version": "explicit-click-v1",
+  "schema_versions": [1],
+  "effective_from": 0,
+  "rollback_version": null,
+  "attribution_window_ms": 86400000,
+  "join_wait_ms": 7200000,
+  "out_of_order_ms": 120000,
+  "dedup_ms": 600000,
+  "state_retention_ms": 93600000,
+  "window_ms": 60000,
+  "emit_interval_ms": 10000,
+  "idle_timeout_ms": 30000,
+  "field_mappings": {},
+  "filter_regions": [],
+  "thresholds": {"schema_error_rate": 0.01, "duplicate_rate": 0.05, "freshness_seconds": 60}
+}

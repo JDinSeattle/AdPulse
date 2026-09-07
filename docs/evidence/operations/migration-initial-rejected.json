@@ -1,0 +1,88 @@
+{
+  "passed": false,
+  "environment": "local-docker-single-host",
+  "started_at_epoch": 1788741574.6641314,
+  "source_volume_retained": "adpulse_clickhouse-data",
+  "target_volume": "adpulse_clickhouse-data-v26",
+  "from_flink": "1.20.3",
+  "from_clickhouse": "24.8.14.39",
+  "savepoints": [
+    {
+      "job_id": "112522b9b1edc21d761a1bdda07f9b22",
+      "name": "AdPulse · cleaning and quality · rules-v1",
+      "parallelism": 2,
+      "savepoint": "file:/opt/flink/state/savepoints/savepoint-112522-c19c3c04bf5d"
+    },
+    {
+      "job_id": "aa86d9c67e1ab3727eea3efd1c9da1f1",
+      "name": "AdPulse · attribution and metrics · explicit-click-v1",
+      "parallelism": 3,
+      "savepoint": "file:/opt/flink/state/savepoints/savepoint-aa86d9-8273caabd466"
+    }
+  ],
+  "phase": "failed-inspect-before-resuming",
+  "before_reconciliation": {
+    "passed": true,
+    "differences": [],
+    "completeness": {
+      "acknowledged": 128166,
+      "archived": 128166,
+      "archive_missing": [],
+      "classified": 128166,
+      "processing_pending": [],
+      "archive_complete": true,
+      "lineage_complete": true
+    },
+    "acknowledged": 128166,
+    "expected_metrics": 1183,
+    "actual_metrics": 1183,
+    "expected_associations": 21670,
+    "actual_associations": 21670
+  },
+  "before_tables": {
+    "results": {
+      "logical_rows": 46550,
+      "sha256": "0d0a47d9ecc92b46015985f5943066a1e6f8118eec7313a81d90c0ef60d12fb4"
+    },
+    "deliveries": {
+      "logical_rows": 207458,
+      "sha256": "a44f866e05860748f68ec53f25c40689186b04add4ac83f9f646ac1aba47e5f5"
+    },
+    "quality": {
+      "logical_rows": 128186,
+      "sha256": "63d22e9b9b3eed6e45785ff8d790eb2372581dfb9570bc1ef99c90d9737a4c7c"
+    },
+    "receipts": {
+      "logical_rows": 1415,
+      "sha256": "a7ebfc08f6a73132c4f2d12cc7a1d420819c1508485b5a37adff63a1b14ca133"
+    },
+    "visibility": {
+      "logical_rows": 321285,
+      "sha256": "a2d9ddb8ad2516425414610cd6b08d6df2f0407ea49989e471ac22838e75a769"
+    }
+  },
+  "after_tables": {
+    "results": {
+      "logical_rows": 46550,
+      "sha256": "85085c19fd9a9d2b5a003d165c35738e5e35b961862494953ee4fdd9ed5f3c43"
+    },
+    "deliveries": {
+      "logical_rows": 207458,
+      "sha256": "2aee0bfe5dc67b227455ab96d405a957fdf20c8c68ff1ab2de5252307693633e"
+    },
+    "quality": {
+      "logical_rows": 128186,
+      "sha256": "6440bcafbf55e8705d5bb967282e909cb6b06726e6975a707c59fb1a2d3661af"
+    },
+    "receipts": {
+      "logical_rows": 1415,
+      "sha256": "54c57f2e1a5a2e3c22c04c5089c0bf1b456cdfd72613b3d9f0a7fd3bb3e88f45"
+    },
+    "visibility": {
+      "logical_rows": 321285,
+      "sha256": "29a8c25e4736fc918d4a7ac9ed1ffa61497dad1c8ed5ad055e6f93d84d8b3ec0"
+    }
+  },
+  "table_fingerprints_equal": false,
+  "error": "AssertionError: Historical table fingerprints changed"
+}

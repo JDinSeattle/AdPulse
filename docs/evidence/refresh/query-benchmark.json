@@ -1,0 +1,139 @@
+{
+  "passed": true,
+  "release": "replay-verified-20260906",
+  "measurements": {
+    "legacy_full": [
+      {
+        "seconds": 0.5545280450023711,
+        "peak_python_bytes": 71272954,
+        "response_bytes": 12717463,
+        "rows": 21667
+      },
+      {
+        "seconds": 0.5130279309996695,
+        "peak_python_bytes": 71271266,
+        "response_bytes": 12717463,
+        "rows": 21667
+      },
+      {
+        "seconds": 0.5988152880017878,
+        "peak_python_bytes": 71271122,
+        "response_bytes": 12717463,
+        "rows": 21667
+      },
+      {
+        "seconds": 0.501322292999248,
+        "peak_python_bytes": 71270786,
+        "response_bytes": 12717463,
+        "rows": 21667
+      },
+      {
+        "seconds": 0.625229085002502,
+        "peak_python_bytes": 71270914,
+        "response_bytes": 12717463,
+        "rows": 21667
+      }
+    ],
+    "legacy_first_100": [
+      {
+        "seconds": 0.6925216389972775,
+        "peak_python_bytes": 71272610,
+        "response_bytes": 58464,
+        "rows": 100
+      },
+      {
+        "seconds": 0.5954218400001992,
+        "peak_python_bytes": 71271546,
+        "response_bytes": 58464,
+        "rows": 100
+      },
+      {
+        "seconds": 0.6216828910000913,
+        "peak_python_bytes": 71271154,
+        "response_bytes": 58464,
+        "rows": 100
+      },
+      {
+        "seconds": 0.5803618280006049,
+        "peak_python_bytes": 71270906,
+        "response_bytes": 58464,
+        "rows": 100
+      },
+      {
+        "seconds": 0.6399143729977368,
+        "peak_python_bytes": 71270714,
+        "response_bytes": 58464,
+        "rows": 100
+      }
+    ],
+    "paged_first_100": [
+      {
+        "seconds": 0.04614844699972309,
+        "peak_python_bytes": 444343,
+        "response_bytes": 58889,
+        "rows": 100
+      },
+      {
+        "seconds": 0.03814866500033531,
+        "peak_python_bytes": 443887,
+        "response_bytes": 58889,
+        "rows": 100
+      },
+      {
+        "seconds": 0.036627648001740454,
+        "peak_python_bytes": 442671,
+        "response_bytes": 58889,
+        "rows": 100
+      },
+      {
+        "seconds": 0.03428589300165186,
+        "peak_python_bytes": 442695,
+        "response_bytes": 58889,
+        "rows": 100
+      },
+      {
+        "seconds": 0.03190009899844881,
+        "peak_python_bytes": 442295,
+        "response_bytes": 58889,
+        "rows": 100
+      }
+    ]
+  },
+  "medians": {
+    "legacy_full": {
+      "seconds": 0.5545280450023711,
+      "peak_python_bytes": 71271122,
+      "response_bytes": 12717463,
+      "rows": 21667
+    },
+    "legacy_first_100": {
+      "seconds": 0.6216828910000913,
+      "peak_python_bytes": 71271154,
+      "response_bytes": 58464,
+      "rows": 100
+    },
+    "paged_first_100": {
+      "seconds": 0.036627648001740454,
+      "peak_python_bytes": 442695,
+      "response_bytes": 58889,
+      "rows": 100
+    }
+  },
+  "environment": {
+    "platform": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+    "python": "3.12.13",
+    "clickhouse": "24.8.14.39",
+    "packages": {
+      "fastapi": "0.141.1",
+      "starlette": "1.6.0",
+      "requests": "2.32.3"
+    }
+  },
+  "method": "One warmup per variant, alternating order, five repeats by default; real local ClickHouse; tracemalloc enabled; in-process endpoint calls excluding ASGI wire overhead and response serialization from latency/peak measurements",
+  "scope": "Same immutable release; first-page efficiency and transfer bounds, not total-export throughput, streaming ingestion speed, production latency or steady-state capacity",
+  "source_sha256": {
+    "scripts/query_benchmark.py": "37ddb14d16e9e3c71dcb1b562ee36888a42a1bdd277f72bb2e66a992f306b9cf",
+    "adpulse/api.py": "487ce75314a42351da73f86ac2a048b25dd7d5bf0f10e638e7e4585c0add24f1",
+    "adpulse/storage.py": "4bba06efa2a924d120bb7a5da13b77093151a4085396259b3d13f31318ff0fe5"
+  }
+}

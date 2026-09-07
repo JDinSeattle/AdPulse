@@ -1,0 +1,149 @@
+{
+  "accessed_on": "2026-09-06",
+  "sources": {
+    "fastapi": {
+      "api_url": "https://api.github.com/repos/fastapi/fastapi/releases/latest",
+      "http_status": 200,
+      "tag_name": "0.141.1",
+      "published_at": "2026-07-29T17:17:26Z",
+      "html_url": "https://github.com/fastapi/fastapi/releases/tag/0.141.1"
+    },
+    "starlette": {
+      "api_url": "https://api.github.com/repos/Kludex/starlette/releases/latest",
+      "http_status": 200,
+      "tag_name": "1.6.0",
+      "published_at": "2026-08-08T18:27:12Z",
+      "html_url": "https://github.com/Kludex/starlette/releases/tag/1.6.0"
+    },
+    "clickhouse": {
+      "api_url": "https://api.github.com/repos/ClickHouse/ClickHouse/releases/latest",
+      "http_status": 200,
+      "tag_name": "v26.3.32.14-lts",
+      "published_at": "2026-09-06T12:19:28Z",
+      "html_url": "https://github.com/ClickHouse/ClickHouse/releases/tag/v26.3.32.14-lts"
+    },
+    "flink": {
+      "api_url": "https://api.github.com/repos/apache/flink",
+      "http_status": 200,
+      "html_url": "https://github.com/apache/flink",
+      "archived": false,
+      "pushed_at": "2026-09-06T09:09:39Z"
+    },
+    "flink_kafka": {
+      "api_url": "https://api.github.com/repos/apache/flink-connector-kafka",
+      "http_status": 200,
+      "html_url": "https://github.com/apache/flink-connector-kafka",
+      "archived": false,
+      "pushed_at": "2026-09-03T09:48:26Z"
+    },
+    "debezium": {
+      "api_url": "https://api.github.com/repos/debezium/debezium/releases/latest",
+      "http_status": 404,
+      "message": "Not Found"
+    },
+    "kafka": {
+      "api_url": "https://api.github.com/repos/apache/kafka",
+      "http_status": 200,
+      "html_url": "https://github.com/apache/kafka",
+      "archived": false,
+      "pushed_at": "2026-09-06T17:39:52Z"
+    },
+    "fastapi_security": {
+      "api_url": "https://api.github.com/repos/fastapi/fastapi/security-advisories",
+      "http_status": 200,
+      "advisories": [
+        {
+          "ghsa_id": "GHSA-8h2j-cgx8-6xv7",
+          "summary": "Cross-Site Request Forgery (CSRF) in FastAPI",
+          "published_at": "2021-06-09T08:23:55Z",
+          "html_url": "https://github.com/fastapi/fastapi/security/advisories/GHSA-8h2j-cgx8-6xv7",
+          "vulnerabilities": [
+            {
+              "package": {
+                "ecosystem": "pip",
+                "name": "fastapi"
+              },
+              "vulnerable_version_range": "<0.65.2",
+              "patched_versions": "0.65.2",
+              "vulnerable_functions": []
+            }
+          ]
+        }
+      ]
+    },
+    "starlette_security": {
+      "api_url": "https://api.github.com/repos/Kludex/starlette/security-advisories",
+      "http_status": 200,
+      "advisories": [
+        {
+          "ghsa_id": "GHSA-jp82-jpqv-5vv3",
+          "summary": "Unvalidated request path concatenated into authority poisons request.url.hostname",
+          "published_at": "2026-06-11T06:21:48Z",
+          "html_url": "https://github.com/Kludex/starlette/security/advisories/GHSA-jp82-jpqv-5vv3",
+          "vulnerabilities": [
+            {
+              "package": {
+                "ecosystem": "pip",
+                "name": "Starlette"
+              },
+              "vulnerable_version_range": "< 1.3.0",
+              "patched_versions": "1.3.0",
+              "vulnerable_functions": []
+            }
+          ]
+        },
+        {
+          "ghsa_id": "GHSA-x746-7m8f-x49c",
+          "summary": "Arbitrary HTTP method dispatched to `HTTPEndpoint` attributes via `getattr`",
+          "published_at": "2026-05-23T16:57:17Z",
+          "html_url": "https://github.com/Kludex/starlette/security/advisories/GHSA-x746-7m8f-x49c",
+          "vulnerabilities": [
+            {
+              "package": {
+                "ecosystem": "pip",
+                "name": "starlette"
+              },
+              "vulnerable_version_range": "< 1.1.0",
+              "patched_versions": "1.1.0",
+              "vulnerable_functions": []
+            }
+          ]
+        },
+        {
+          "ghsa_id": "GHSA-82w8-qh3p-5jfq",
+          "summary": "request.form() limits silently ignored for application/x-www-form-urlencoded enable DoS",
+          "published_at": "2026-06-12T09:24:32Z",
+          "html_url": "https://github.com/Kludex/starlette/security/advisories/GHSA-82w8-qh3p-5jfq",
+          "vulnerabilities": [
+            {
+              "package": {
+                "ecosystem": "pip",
+                "name": "starlette"
+              },
+              "vulnerable_version_range": ">= 0.4.1, <1.3.1",
+              "patched_versions": "1.3.1",
+              "vulnerable_functions": []
+            }
+          ]
+        },
+        {
+          "ghsa_id": "GHSA-86qp-5c8j-p5mr",
+          "summary": "Missing Host header validation poisons request.url.path, bypassing path-based security checks",
+          "published_at": "2026-05-21T23:28:32Z",
+          "html_url": "https://github.com/Kludex/starlette/security/advisories/GHSA-86qp-5c8j-p5mr",
+          "vulnerabilities": [
+            {
+              "package": {
+                "ecosystem": "pip",
+                "name": "starlette"
+              },
+              "vulnerable_version_range": "<=1.0.0",
+              "patched_versions": "1.0.1",
+              "vulnerable_functions": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

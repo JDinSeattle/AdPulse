@@ -1,0 +1,32 @@
+{
+  "started_at_ms": 1788741941922,
+  "environment": "real local ClickHouse and PostgreSQL, synthetic query fixtures; ASGI TestClient",
+  "reference_release": "replay-verified-20260906",
+  "fixture_releases": [
+    "query-test-b4e9321995cb-a",
+    "query-test-b4e9321995cb-b"
+  ],
+  "passed": true,
+  "concurrent_pointer_switches": 21,
+  "latest_filter_no_resurrection": true,
+  "retry_stable": true,
+  "fixture_distinct_rows": 37,
+  "real_budget_rejections": [
+    "scan_rows",
+    "response_bytes"
+  ],
+  "full_traversal": {
+    "associations": {
+      "rows": 21667,
+      "pages": 44,
+      "equal_to_full_snapshot": true
+    },
+    "metrics": {
+      "rows": 1154,
+      "pages": 3,
+      "equal_to_full_snapshot": true
+    }
+  },
+  "original_active_preserved": true,
+  "finished_at_ms": 1788741944821
+}
