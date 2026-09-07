@@ -77,9 +77,9 @@
     "architecture": "amd64"
   },
   "adpulse-flink:0.3.0": {
-    "id": "sha256:e39d1959b9ab9119711441d83fbea81ca911d990eee261b76b3e51acc2f0f39a",
+    "id": "sha256:129af2d6317a7bd7515f6af5b6b8fc9f54a105590aae2e8f70fd257e24f60d85",
     "repo_digests": [
-      "adpulse-flink@sha256:e39d1959b9ab9119711441d83fbea81ca911d990eee261b76b3e51acc2f0f39a"
+      "adpulse-flink@sha256:129af2d6317a7bd7515f6af5b6b8fc9f54a105590aae2e8f70fd257e24f60d85"
     ],
     "architecture": "amd64"
   }

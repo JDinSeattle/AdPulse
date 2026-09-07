@@ -12,12 +12,12 @@ import matplotlib.pyplot as plt
 
 
 def memory_gib(text):
-    match = re.match(r'([0-9.]+)([KMGT]?i?B)', text.split('/')[0].strip())
+    match = re.match(r'([0-9.]+)([kKMGT]?i?B)', text.split('/')[0].strip())
     if not match:
         raise ValueError('Unknown Docker memory unit: ' + text)
     value, unit = match.groups()
     factors = {'B':1, 'KiB':1024, 'MiB':1024**2, 'GiB':1024**3, 'TiB':1024**4,
-               'kB':1000, 'MB':1000**2, 'GB':1000**3, 'TB':1000**4}
+               'kB':1000, 'KB':1000, 'MB':1000**2, 'GB':1000**3, 'TB':1000**4}
     return float(value) * factors[unit] / 1024**3
 
 

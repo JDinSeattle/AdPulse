@@ -1,0 +1,180 @@
+{
+  "sink_offset_lag": {
+    "status": "success",
+    "data": {
+      "resultType": "vector",
+      "result": [
+        {
+          "metric": {
+            "role": "sink",
+            "topic": "adpulse.quality"
+          },
+          "value": [
+            1788745445.546,
+            "40744"
+          ]
+        },
+        {
+          "metric": {
+            "role": "sink",
+            "topic": "adpulse.receipts"
+          },
+          "value": [
+            1788745445.546,
+            "773"
+          ]
+        },
+        {
+          "metric": {
+            "role": "archive",
+            "topic": "adpulse.raw"
+          },
+          "value": [
+            1788745445.546,
+            "314"
+          ]
+        },
+        {
+          "metric": {
+            "role": "archive",
+            "topic": "adpulse.receipts"
+          },
+          "value": [
+            1788745445.546,
+            "11"
+          ]
+        },
+        {
+          "metric": {
+            "role": "sink",
+            "topic": "adpulse.results.live-v1"
+          },
+          "value": [
+            1788745445.546,
+            "14582"
+          ]
+        },
+        {
+          "metric": {
+            "role": "archive",
+            "topic": "adpulse.quality"
+          },
+          "value": [
+            1788745445.546,
+            "447"
+          ]
+        },
+        {
+          "metric": {
+            "role": "archive",
+            "topic": "adpulse.quarantine"
+          },
+          "value": [
+            1788745445.546,
+            "1"
+          ]
+        }
+      ]
+    }
+  },
+  "task_busy_ms_per_second": {
+    "status": "success",
+    "data": {
+      "resultType": "vector",
+      "result": [
+        {
+          "metric": {
+            "task_name": "KeyedProcess"
+          },
+          "value": [
+            1788745445.549,
+            "29"
+          ]
+        },
+        {
+          "metric": {
+            "task_name": "Sink:_Writer____Sink:_Committer"
+          },
+          "value": [
+            1788745445.549,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "task_name": "Source:_raw_kafka_v1____contract_validation____Sink:_Writer____Sink:_Committer"
+          },
+          "value": [
+            1788745445.549,
+            "16"
+          ]
+        },
+        {
+          "metric": {
+            "task_name": "KeyedProcess_____anonymous_datastream_source_3__4_____Calc_5_____TableToDataSteam____Map____Sink:_Writer____Sink:_Committer"
+          },
+          "value": [
+            1788745445.549,
+            "45"
+          ]
+        },
+        {
+          "metric": {
+            "task_name": "conversion_association"
+          },
+          "value": [
+            1788745445.549,
+            "42"
+          ]
+        },
+        {
+          "metric": {
+            "task_name": "Source:_clean_kafka_v1_____Filter__Filter_"
+          },
+          "value": [
+            1788745445.549,
+            "6"
+          ]
+        },
+        {
+          "metric": {
+            "task_name": "full_metric_aggregate"
+          },
+          "value": [
+            1788745445.549,
+            "181"
+          ]
+        },
+        {
+          "metric": {
+            "task_name": "historical_dimensions"
+          },
+          "value": [
+            1788745445.549,
+            "19"
+          ]
+        },
+        {
+          "metric": {
+            "task_name": "exposure_association"
+          },
+          "value": [
+            1788745445.549,
+            "34"
+          ]
+        },
+        {
+          "metric": {
+            "task_name": "Source:_dimension_cdc_v1"
+          },
+          "value": [
+            1788745445.549,
+            "1"
+          ]
+        }
+      ]
+    }
+  },
+  "captured_at_epoch": 1788745445.5508149,
+  "decision": "Stop current input, retain failed evidence, increase bounded sink batch from 200 to 2000 after complete drain; no mid-run configuration change."
+}

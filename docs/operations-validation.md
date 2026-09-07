@@ -50,7 +50,9 @@ Flink **1.20.3 → 1.20.5**；ClickHouse **24.8.14.39 → 26.3.32.14 LTS**。两
 
 [实际线程及 Prometheus 采样](evidence/operations/rocksdb-diagnosis.json)显示聚合任务 busy 998 ms/s，两条采样线程在 RocksDB MapState 点查询中。基于这一诊断推断，启用 10-bit whole-key full Bloom filter 并缓存每事件重复读取的 aggregate 值。遵循 [RocksDB 官方点查询调优说明](https://github.com/facebook/rocksdb/wiki/RocksDB-Tuning-Guide)，接受 filter 的内存/空间成本。新增原生刷盘、重开、命中/未命中与遍历回归，两作业通过 [strict canonical savepoint 恢复](evidence/operations/bloom-restore.json)，全历史 **617,840** 条输入与独立 oracle [再次匹配](evidence/operations/after-bloom-reconciliation.json)。
 
-修改后的 1,000 events/s 完整长测正在执行。前后状态规模和宿主机负载不同，不能据此计算受控性能提升百分比。每分钟记录实际接收、可见积压、P95、Docker CPU/内存、checkpoint 大小/时长/计数。报告中 `passed` 与 `sustained_target_duration_met` 分开；只有时长与所有验收条件同时满足才能称本地 30 分钟验证通过。
+Bloom 修改后的第二次输入仍出现下游积压，572.695 秒时停止；572,779 条全部可见，最终 P95 54.065 秒、最大 64.385 秒。P95 未越过 60 秒，但没有完成目标时长，因此 [本次报告](evidence/operations/steady-1000-bloom-only.json)仍不具备 30 分钟容量资格。[第二次诊断](evidence/operations/sink-diagnosis.json)显示 Flink aggregate 已非持续满忙，而 sink 的 quality/results 消费积压增加。将 sink 最大批次从 200 调为 2,000 条 Kafka 消息，保留一秒 poll 返回部分批次、同步写入及写入后提交位点。此处消息数不是单张表行数；依据 [ClickHouse 同步批量写入指南](https://clickhouse.com/docs/concepts/best-practices/selecting-an-insert-strategy)摊薄查询/写入固定开销，代价是单批内存和重放范围增加。没有启用不等待落盘的异步确认。
+
+[全历史 1,190,619 条输入](evidence/operations/after-bloom-only-reconciliation.json)对账通过后，部署批次调整并重新开始 1,000 events/s 完整长测。100 档使用 Bloom 前 / batch=200 配置；最终 1,000 档使用 Bloom / batch=2000，具体 [环境与配置](evidence/operations/environment.json)单列。前后状态规模、配置和宿主机负载不同，不能据此计算受控性能提升百分比。每分钟记录实际接收、可见积压、P95、Docker CPU/内存、checkpoint 大小/时长/计数。报告中 `passed` 与 `sustained_target_duration_met` 分开；只有时长与所有验收条件同时满足才能称本地 30 分钟验证通过。
 
 ## 云端边界
 

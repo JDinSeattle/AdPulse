@@ -184,7 +184,11 @@ services:
   sink:
     <<: *python
     command: python -m adpulse.worker sink
-    environment: *environment
+    environment:
+      <<: *environment
+      # Amortize per-batch conflict checks and synchronous inserts at measured load.
+      # consume() still returns partial batches after its one-second poll timeout.
+      BATCH_SIZE: "2000"
     depends_on:
       bootstrap: {condition: service_completed_successfully}
     restart: unless-stopped

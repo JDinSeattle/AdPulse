@@ -66,8 +66,8 @@ def main():
     if min(args.rate, args.seconds, args.sample_seconds, args.catchup_seconds) < 1:
         parser.error("rate and durations must be positive")
     output = Path(args.output)
-    if output.exists():
-        parser.error("output already exists; preserve historical measurements")
+    if output.exists() or output.with_suffix(".samples.jsonl").exists():
+        parser.error("report or samples already exist; preserve historical measurements")
     output.parent.mkdir(parents=True, exist_ok=True)
     started_at = datetime.now(timezone.utc).isoformat()
     seed, accepted, sequence = now_ms() % 1_000_000_000, 0, 0

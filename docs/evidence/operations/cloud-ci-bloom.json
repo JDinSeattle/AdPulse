@@ -1,0 +1,154 @@
+{
+  "passed": true,
+  "run_url": "https://github.com/JDinSeattle/AdPulse/actions/runs/34073543863",
+  "conclusion": "success",
+  "environment": {
+    "environment": "GitHub-hosted runner",
+    "run_id": "34073543863",
+    "commit": "9265083e9d2cbafbec6a95377261390f5f40d667",
+    "os": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "cpu_count": 4,
+    "cloud_service_deployment": false
+  },
+  "scope": "GitHub-hosted Docker integration, not managed cloud services or production deployment",
+  "artifacts": {
+    "integration/report.json": {
+      "sha256": "b8d66fa6e9a16dda56a58e9cbe09d141099e127ab57c6ab37cb438947af28816",
+      "report": {
+        "passed": true,
+        "differences": [],
+        "completeness": {
+          "acknowledged": 191,
+          "archived": 191,
+          "archive_missing": [],
+          "classified": 191,
+          "processing_pending": [],
+          "archive_complete": true,
+          "lineage_complete": true
+        },
+        "acknowledged": 191,
+        "expected_metrics": 87,
+        "actual_metrics": 87,
+        "expected_associations": 25,
+        "actual_associations": 25,
+        "mode": "docker-kafka-flink-clickhouse-s3",
+        "scenario": "mixed",
+        "submitted_records": 191,
+        "convergence_seconds": 26.574,
+        "checkpoint_counts": {
+          "335294d3f7ea01d3d5d7593c1e2cbd4a": {
+            "restored": 0,
+            "total": 4,
+            "in_progress": 0,
+            "completed": 4,
+            "failed": 0
+          },
+          "f3acfe47e78a3a01d37a38cf2b0c634c": {
+            "restored": 0,
+            "total": 4,
+            "in_progress": 0,
+            "completed": 4,
+            "failed": 0
+          }
+        },
+        "archive_complete": true,
+        "sink_complete": true,
+        "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f"
+      }
+    },
+    "replay/report.json": {
+      "sha256": "d9d1936f88a588cdb390ecb3d91fd8a73dd13e7dc8f94d4d0d25d41f5efee660",
+      "report": {
+        "release_id": "ci-verified",
+        "input_manifest_sha256": "30d2455061ac60072d1f0d042545e125d354f826b4131b2ac3dd9b4fb3f41c06",
+        "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f",
+        "acknowledged": 191,
+        "archived": 191,
+        "archive_missing": [],
+        "classified": 191,
+        "processing_pending": [],
+        "archive_complete": true,
+        "lineage_complete": true,
+        "passed": true,
+        "differences": [],
+        "sink_complete": true
+      }
+    },
+    "query.json": {
+      "sha256": "636de279a6f769591caa5245946f525537ddc63196385530bfe3b5ea0f0616ae",
+      "report": {
+        "started_at_ms": 1788745166465,
+        "environment": "real local ClickHouse and PostgreSQL, synthetic query fixtures; ASGI TestClient",
+        "reference_release": "ci-verified",
+        "fixture_releases": [
+          "query-test-c799f14ea0df-a",
+          "query-test-c799f14ea0df-b"
+        ],
+        "passed": true,
+        "concurrent_pointer_switches": 21,
+        "latest_filter_no_resurrection": true,
+        "retry_stable": true,
+        "fixture_distinct_rows": 37,
+        "real_budget_rejections": [
+          "scan_rows",
+          "response_bytes"
+        ],
+        "full_traversal": {
+          "associations": {
+            "rows": 25,
+            "pages": 1,
+            "equal_to_full_snapshot": true
+          },
+          "metrics": {
+            "rows": 87,
+            "pages": 1,
+            "equal_to_full_snapshot": true
+          }
+        },
+        "original_active_preserved": true,
+        "finished_at_ms": 1788745167052
+      }
+    },
+    "drills/worker-restart/report.json": {
+      "sha256": "d699a07e455ac61108feaf9da16fc90ae64b7fccce349e6e0ca288482af3493f",
+      "report": {
+        "scenario": "worker-restart",
+        "mode": "docker-real-components",
+        "passed": true,
+        "running_after_seconds": 21.357,
+        "differences": [],
+        "completeness": {
+          "acknowledged": 265,
+          "archived": 265,
+          "archive_missing": [],
+          "classified": 265,
+          "processing_pending": [],
+          "archive_complete": true,
+          "lineage_complete": true
+        },
+        "acknowledged": 265,
+        "expected_metrics": 129,
+        "actual_metrics": 129,
+        "expected_associations": 42,
+        "actual_associations": 42,
+        "checkpoint_counts": {
+          "335294d3f7ea01d3d5d7593c1e2cbd4a": {
+            "restored": 1,
+            "total": 9,
+            "in_progress": 0,
+            "completed": 7,
+            "failed": 2
+          },
+          "f3acfe47e78a3a01d37a38cf2b0c634c": {
+            "restored": 1,
+            "total": 9,
+            "in_progress": 0,
+            "completed": 7,
+            "failed": 2
+          }
+        },
+        "elapsed_seconds": 44.722
+      }
+    }
+  }
+}

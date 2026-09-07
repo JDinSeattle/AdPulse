@@ -28,5 +28,6 @@ PY
 .venv/bin/python -m adpulse.cli replay --from-s3 --release ci-verified --publish --output artifacts/ci/replay
 .venv/bin/python scripts/query_acceptance.py --release ci-verified --output artifacts/ci/query.json
 .venv/bin/python scripts/drills.py --scenario worker-restart
+.venv/bin/python scripts/drills.py --scenario sink-replay
 
 cp -a artifacts/drills artifacts/ci/drills

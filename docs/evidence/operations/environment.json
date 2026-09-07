@@ -1,0 +1,49 @@
+{
+  "checked_at_epoch": 1788745139.3642588,
+  "os": "Linux-7.0.0-29-generic-x86_64-with-glibc2.43",
+  "cpu": {
+    "Architecture": "x86_64",
+    "CPU(s)": "32",
+    "Model name": "13th Gen Intel(R) Core(TM) i9-13900K",
+    "Thread(s) per core": "2",
+    "Core(s) per socket": "24",
+    "Socket(s)": "1"
+  },
+  "memory_total_kib": 129209084,
+  "isolation": "shared developer host; no dedicated CPU affinity or disk reservation",
+  "workload": "synthetic normal complete advertising sessions; reproducible generator seeds and receipt prefixes in individual reports",
+  "containers": "deployment/compose.yaml",
+  "flink": {
+    "taskmanagers": 2,
+    "process_memory_mib_each": 2048,
+    "slots_each": 4,
+    "jobmanager_process_memory_mib": 1536,
+    "clean_parallelism": 2,
+    "attribution_parallelism": 3,
+    "checkpoint_interval_seconds": 10
+  },
+  "default_kafka_brokers": 1,
+  "scope": "Local capacity evidence; not a production deployment or cloud capacity benchmark",
+  "docker_version": "29.8.0",
+  "compose_version": "5.3.1",
+  "images_reference": "deployment/images.lock.json",
+  "experiment_configurations": {
+    "steady-100": {
+      "whole_key_bloom_filter": false,
+      "sink_max_batch_messages": 200
+    },
+    "steady-1000-rejected": {
+      "whole_key_bloom_filter": false,
+      "sink_max_batch_messages": 200
+    },
+    "steady-1000-bloom-only": {
+      "whole_key_bloom_filter": true,
+      "sink_max_batch_messages": 200
+    },
+    "steady-1000": {
+      "whole_key_bloom_filter": true,
+      "sink_max_batch_messages": 2000
+    }
+  },
+  "configuration_note": "Sequential experiments retain all prior state. The 100 and final 1000 targets use different qualified configurations; no controlled speedup comparison."
+}
