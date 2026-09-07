@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "differences": [],
+  "completeness": {
+    "acknowledged": 2033493,
+    "archived": 2033493,
+    "archive_missing": [],
+    "classified": 2033493,
+    "processing_pending": [],
+    "archive_complete": true,
+    "lineage_complete": true
+  },
+  "acknowledged": 2033493,
+  "expected_metrics": 4858,
+  "actual_metrics": 4858,
+  "expected_associations": 343039,
+  "actual_associations": 343039,
+  "environment": "local Docker Kafka/Flink/ClickHouse/MinIO/PostgreSQL; synthetic advertising events",
+  "scope": "Whole cumulative acknowledged input after all four rejected load attempts and strict restoration to the capacity profile; includes retained input from every attempt.",
+  "elapsed_seconds": 310.296,
+  "checked_at_epoch": 1788747408.6418324
+}

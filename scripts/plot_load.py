@@ -55,7 +55,7 @@ def main():
             axes[row,col].grid(alpha=0.2)
             axes[row,col].legend(loc='best',fontsize=8)
             axes[row,col].set_xlim(0,report['duration_seconds']/60)
-    fig.suptitle('AdPulse · actual local Docker load experiments\nShared physical host; synthetic sessions; one run per target; no 26-hour capacity inference',fontsize=14)
+    fig.suptitle('AdPulse · actual local Docker load experiments\nSynthetic sessions on a shared host; one completed run per target\nDifferent configurations; no 26-hour capacity inference',fontsize=13)
     fig.tight_layout(rect=(0,0,1,0.95))
     args.output.parent.mkdir(parents=True,exist_ok=True)
     fig.savefig(args.output,dpi=150)

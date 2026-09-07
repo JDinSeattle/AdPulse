@@ -17,6 +17,8 @@ x-env: &environment
   AWS_SECRET_ACCESS_KEY: adpulse-local-storage
   S3_BUCKET: adpulse-archive
   RELEASE_ID: live-v1
+  FLINK_CLEAN_PARALLELISM: ${ADPULSE_CLEAN_PARALLELISM:-2}
+  FLINK_ATTRIBUTION_PARALLELISM: ${ADPULSE_ATTRIBUTION_PARALLELISM:-2}
 
 x-flink: &flink
   image: adpulse-flink:0.3.0
@@ -28,7 +30,7 @@ x-flink: &flink
     FLINK_PROPERTIES: |
       jobmanager.rpc.address: jobmanager
       jobmanager.memory.process.size: 1536m
-      taskmanager.memory.process.size: 2048m
+      taskmanager.memory.process.size: ${ADPULSE_TM_MEMORY:-2048m}
       taskmanager.numberOfTaskSlots: 4
       parallelism.default: 2
       state.savepoints.dir: file:///opt/flink/state/savepoints

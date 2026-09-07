@@ -37,8 +37,12 @@ def runtime_sample():
         if job["state"] in {"CANCELED", "FINISHED", "FAILED"}:
             continue
         checkpoints = requests.get(f"{base}/jobs/{job['jid']}/checkpoints", timeout=10).json()
+        detail = requests.get(f"{base}/jobs/{job['jid']}", timeout=10)
+        detail.raise_for_status()
         complete = checkpoints.get("latest", {}).get("completed", {})
-        jobs[job["jid"]] = dict(state=job["state"], counts=checkpoints.get("counts", {}),
+        jobs[job["jid"]] = dict(state=job["state"], name=job["name"],
+                                 parallelism=max(v["parallelism"] for v in detail.json()["vertices"]),
+                                 counts=checkpoints.get("counts", {}),
                                  checkpoint_bytes=complete.get("state_size"),
                                  checkpoint_duration_ms=complete.get("end_to_end_duration"),
                                  checkpoint_timestamp_ms=complete.get("latest_ack_timestamp"))
@@ -49,7 +53,11 @@ def runtime_sample():
     resource = [json.loads(line) for line in raw.splitlines()]
     state = json.loads(subprocess.run(["docker", "inspect", *names], capture_output=True, text=True,
                                       check=True, timeout=10).stdout)
+    workers = requests.get(base + "/taskmanagers", timeout=10)
+    workers.raise_for_status()
     return dict(jobs=jobs, containers=resource,
+                flink_taskmanagers={w["id"]: {"process_budget_bytes": w["memoryConfiguration"]["totalProcessMemory"],
+                                             "slots": w["slotsNumber"]} for w in workers.json()["taskmanagers"]},
                 container_state={s["Name"].lstrip("/"): {"oom_killed": s["State"]["OOMKilled"],
                                  "restart_count": s["RestartCount"], "status": s["State"]["Status"],
                                  "container_id": s["Id"], "started_at": s["State"]["StartedAt"]} for s in state})
@@ -135,6 +143,7 @@ def main():
                                for field in ("completed", "failed", "restored")}
                          for jid, job in after["jobs"].items()}
     runtime_healthy = (set(before["jobs"]) == set(after["jobs"]) and len(after["jobs"]) == 2
+                       and set(before["container_state"]) == set(after["container_state"])
                        and all(j["state"] == "RUNNING" for s in [before, *samples, after] for j in s.get("jobs", {}).values())
                        and all(v["completed"] > 0 and v["failed"] == 0 and v["restored"] == 0 for v in checkpoint_deltas.values())
                        and all(not s["oom_killed"] and s["status"] == "running"

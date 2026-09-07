@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "environment": "local Docker, explicit capacity profile",
+  "started_at_epoch": 1788747013.9737985,
+  "jar_sha256": "e619bbabd8049ce55aa72e666c7b76ca26048ade7ba060b277a74740b7f3a749",
+  "savepoints": [
+    {
+      "job_id": "689dcb3e2f82e7d19b1489debefac860",
+      "name": "AdPulse · cleaning and quality · rules-v1",
+      "parallelism": 2,
+      "savepoint": "file:/opt/flink/state/savepoints/savepoint-689dcb-6e68633ccb6c"
+    },
+    {
+      "job_id": "5a33700ebca97bc547a73e33e53b6cea",
+      "name": "AdPulse · attribution and metrics · explicit-click-v1",
+      "parallelism": 3,
+      "savepoint": "file:/opt/flink/state/savepoints/savepoint-5a3370-1c543198df25"
+    }
+  ],
+  "restores": [
+    {
+      "passed": true,
+      "previous_job": "689dcb3e2f82e7d19b1489debefac860",
+      "restored_job": "521de7ccddafc8eb73ae5881fe749853",
+      "restored_from": "file:/opt/flink/state/savepoints/savepoint-689dcb-6e68633ccb6c",
+      "restored_checkpoint": {
+        "id": 1110,
+        "restore_timestamp": 1788747042292,
+        "is_savepoint": true,
+        "external_path": "file:/opt/flink/state/savepoints/savepoint-689dcb-6e68633ccb6c"
+      },
+      "counts": {
+        "restored": 1,
+        "total": 1,
+        "in_progress": 0,
+        "completed": 1,
+        "failed": 0
+      },
+      "recovery_seconds": 13.971,
+      "allow_non_restored_state": false
+    },
+    {
+      "passed": true,
+      "previous_job": "5a33700ebca97bc547a73e33e53b6cea",
+      "restored_job": "c965f4fb0c8f7d400559b8b47b5407d5",
+      "restored_from": "file:/opt/flink/state/savepoints/savepoint-5a3370-1c543198df25",
+      "restored_checkpoint": {
+        "id": 1017,
+        "restore_timestamp": 1788747054946,
+        "is_savepoint": true,
+        "external_path": "file:/opt/flink/state/savepoints/savepoint-5a3370-1c543198df25"
+      },
+      "counts": {
+        "restored": 1,
+        "total": 2,
+        "in_progress": 0,
+        "completed": 1,
+        "failed": 1
+      },
+      "recovery_seconds": 24.481,
+      "allow_non_restored_state": false
+    }
+  ],
+  "phase": "capacity-profile-restored",
+  "taskmanager_process_memory_mib_each": 8192,
+  "taskmanagers": 2,
+  "clean_parallelism": 2,
+  "attribution_parallelism": 6,
+  "completed_at_epoch": 1788747079.4101715
+}

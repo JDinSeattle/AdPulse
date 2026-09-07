@@ -88,3 +88,20 @@ docker compose -f deployment/compose.yaml build jobmanager
 ## 隔离 quorum 实验
 
 `.venv/bin/python scripts/quorum_drill.py` 只操作 `adpulse-quorum` Compose 项目，collector 在 28088；broker 在 29092–29094。实验包含有意 SIGKILL，结束会启动实验服务，随后可 `docker compose -f deployment/compose.quorum.yaml stop` 停止，保留数据。不要用 `down -v` 删除证据卷。该实验不会将默认业务管道迁移为 RF=3。
+
+
+## 独立容量配置
+
+默认 Compose 使用每 TaskManager 2 GiB 的 Flink 进程预算、两作业并行度各 2，供初始启动和托管 CI。`deployment/capacity.env` 明确选择每 TaskManager **8 GiB**、清洗并行度 2、归因并行度 6，两个 worker 共 8 个 slot。它是有额外资源成本的本地容量配置；Docker 容器没有因此获得独立物理机或生产 SLA。
+
+对已有 RUNNING 作业切换时使用保留状态的操作：
+
+```bash
+.venv/bin/python scripts/capacity_restore.py --output artifacts/capacity-restore
+# 此后对该运行环境执行 Compose up/config 时显式使用同一配置：
+docker compose --env-file deployment/capacity.env -f deployment/compose.yaml config
+```
+
+脚本暂停接入、保存并取消两项作业、重建 Flink 容器、严格恢复 2/6 并行度并等待新 checkpoint。失败保留 journal 和保存点，不回落为空状态。恢复后必须执行完整业务对账，再开始新测量。已有输出的环境不要直接运行不带容量配置的 `make up`，它会改变进程配置；后续需要重新建容器时先保存状态。新空白环境可用 `docker compose --env-file deployment/capacity.env -f deployment/compose.yaml up -d --build --wait`，但已有 release 仍受禁止空状态提交的保护。
+
+sink 最大批次为 2,000 条 Kafka 消息，poll 最多等待一秒后也会返回部分批次。身份/路由查询按 JSON 转义后 UTF-8 大小拆为最多 64 KiB 参数；完整批次的 offset/hash 与 key/partition 冲突检查保留，只有全部同步写入成功后才提交位点。`scripts/sink_acceptance.py` 验证真实数据库的大参数、重试与冲突边界；`scripts/drills.py --scenario sink-replay` 验证实际 Kafka 位点边界。worker 故障目标由当前 RUNNING 子任务分配决定，不能假定某个固定容器必然承载任务。

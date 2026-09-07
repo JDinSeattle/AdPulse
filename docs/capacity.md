@@ -33,10 +33,17 @@
 `loadtest.py` 现在拒绝覆盖报告，并写相邻的 `.samples.jsonl`。采样间隔按实际耗时记录，包含 collector 接收速率、累计已可见子集的逐 receipt P95、尚不可见数、Docker memory/CPU 与 checkpoint bytes/duration/count。最终 P95 必须等到该实验所有接收 receipt 可见；不能使用中间已可见子集代表全体。
 
 ```bash
-uv run --no-project --python 3.12 --with matplotlib==3.10.8 \
+MPLCONFIGDIR=.cache/matplotlib uv run --no-project --python 3.12 --with matplotlib==3.10.8 \
   python scripts/plot_load.py \
   docs/evidence/operations/steady-100.json \
   docs/evidence/operations/steady-1000.json
 ```
 
 绘图依赖独立于服务锁文件。输出 PNG/PDF，可直接追溯每个点到采样 JSONL。Docker memory、checkpoint state_size 与前轮 `tracemalloc` Python 分配峰值是不同指标，不能互相替代。该主机还运行其他项目；没有 CPU affinity、独占磁盘或云资源费用隔离。30 分钟输入过程仍在累积 26 小时保留的键，不能因吞吐稳定声称状态内存已达到长期平台值。
+
+
+## 资源边界
+
+已保留的 100 档使用 2×2 GiB Flink 进程预算及归因并行度 3。累积状态增长后，该配置在 1,000 档仍发生 RocksDB 点读饱和；单独使用 `deployment/capacity.env` 的 2×8 GiB / 归因并行度 6 重新验收。CPU/内存预算、并行度和初始状态均不同，不能用二者声称相同资源上的代码提速比例。托管 CI 使用默认 2 GiB / 并行度 2 配置，只证明集成与故障语义。
+
+最终容量采样直接读取 TaskManager REST 的 `totalProcessMemory` 和作业实际并行度；这属于 Flink 配置预算，区别于 Docker 采样用量和宿主机物理内存。完整环境记录见 `docs/evidence/operations/environment.json`。所有早停与不满足 SLO 的尝试保留为失败报告。

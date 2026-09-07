@@ -13,6 +13,10 @@ from adpulse.storage import ClickHouse
 
 
 def main():
+    parallelism = {"io.adpulse.CleanJob": int(os.getenv("FLINK_CLEAN_PARALLELISM", "2")),
+                   "io.adpulse.AttributionJob": int(os.getenv("FLINK_ATTRIBUTION_PARALLELISM", "2"))}
+    if any(p < 1 or p > 128 for p in parallelism.values()):
+        raise ValueError("Job parallelism must be within 1..128")
     admin = AdminClient({"bootstrap.servers": os.environ["KAFKA_BOOTSTRAP_SERVERS"]})
     topics = ["adpulse.raw", "adpulse.clean", "adpulse.quality", "adpulse.quarantine", "adpulse.receipts",
               "adpulse.results.live-v1", "adpulse.cdc.public.campaign_versions", "__debezium-heartbeat.adpulse.cdc"]
@@ -48,7 +52,7 @@ def main():
         raise RuntimeError(f"CDC connector failed: {status}")
     for _ in range(60):
         overview = requests.get("http://jobmanager:8081/overview", timeout=10).json()
-        if overview.get("slots-total", 0) >= 4:
+        if overview.get("slots-total", 0) >= sum(parallelism.values()):
             break
         time.sleep(2)
     else:
@@ -64,7 +68,7 @@ def main():
         restore = os.getenv("CLEAN_SAVEPOINT" if entry.endswith("CleanJob") else "ATTRIBUTION_SAVEPOINT")
         if present and present["status"] != "building" and not restore:
             raise RuntimeError(f"Refusing empty-state restart of {entry} in an existing validated release. Supply its savepoint path.")
-        submission = {"entryClass": entry, "parallelism": 2, "allowNonRestoredState": False}
+        submission = {"entryClass": entry, "parallelism": parallelism[entry], "allowNonRestoredState": False}
         if restore:
             submission["savepointPath"] = restore
         result = requests.post(f"http://jobmanager:8081/jars/{jar_id}/run", json=submission, timeout=120)

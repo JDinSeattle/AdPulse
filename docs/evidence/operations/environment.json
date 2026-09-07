@@ -20,7 +20,8 @@
     "jobmanager_process_memory_mib": 1536,
     "clean_parallelism": 2,
     "attribution_parallelism": 3,
-    "checkpoint_interval_seconds": 10
+    "checkpoint_interval_seconds": 10,
+    "default_profile_note": "Original 100 target: 2048m per TaskManager, clean 2 / attribution 3; fresh CI default attribution 2."
   },
   "default_kafka_brokers": 1,
   "scope": "Local capacity evidence; not a production deployment or cloud capacity benchmark",
@@ -43,14 +44,32 @@
     "steady-1000": {
       "whole_key_bloom_filter": true,
       "sink_max_batch_messages": 2000,
-      "max_lookup_parameter_bytes": 65536
+      "max_lookup_parameter_bytes": 65536,
+      "taskmanager_process_mib_each": 8192,
+      "attribution_parallelism": 6
     },
     "steady-1000-large-parameter": {
       "whole_key_bloom_filter": true,
       "sink_max_batch_messages": 2000,
       "lookup_parameter_chunking": false,
       "sink_fixed_during_failed_run_catchup": true
+    },
+    "steady-1000-small-state-budget": {
+      "whole_key_bloom_filter": true,
+      "sink_max_batch_messages": 2000,
+      "max_lookup_parameter_bytes": 65536,
+      "taskmanager_process_mib_each": 2048,
+      "attribution_parallelism": 3,
+      "capacity_restore_during_failed_catchup": true
     }
   },
-  "configuration_note": "Sequential experiments retain all prior state. The 100 and final 1000 targets use different qualified configurations; no controlled speedup comparison."
+  "configuration_note": "Sequential experiments retain all prior state. The 100 and final 1000 targets use different qualified configurations; no controlled speedup comparison.",
+  "capacity_profile": {
+    "taskmanagers": 2,
+    "process_memory_mib_each": 8192,
+    "clean_parallelism": 2,
+    "attribution_parallelism": 6,
+    "source": "deployment/capacity.env",
+    "claim_boundary": "configured Flink process budgets, not measured container RSS or exclusive host allocation"
+  }
 }
