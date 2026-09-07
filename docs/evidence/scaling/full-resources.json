@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "checked_at_epoch": 1788755780.8688917,
+  "container": "/adpulse-disk-reconcile-v5",
+  "image": "sha256:5db874984ff741ed4fcc3a92d162ce324109999349128f3eb0296a80ae107ffe",
+  "state": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-09-07T04:19:42.097061682Z",
+    "FinishedAt": "2026-09-07T04:35:59.643636752Z"
+  },
+  "resource_limits": {
+    "Memory": 4294967296,
+    "MemorySwap": 4294967296,
+    "NanoCpus": 2000000000,
+    "CpusetCpus": ""
+  },
+  "files": {
+    "archive.sqlite": 10169950208,
+    "full-reconciliation-v5.sqlite": 7370182656
+  },
+  "log_sha256": "6c79efc08c456b42a5ccafe968087b6664dab376d12307a229d97a491be0892e",
+  "boundary": "Fresh oracle scratch and complete comparison; reused previously verified immutable archive index. Wall time excludes original cold indexing. Cgroup peak includes page cache and differs from RSS; no affinity in this full-data run."
+}

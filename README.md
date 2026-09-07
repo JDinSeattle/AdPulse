@@ -6,7 +6,7 @@
 
 真实链路：**Python generator → HTTP collector → Kafka → Flink SQL / Java → Kafka 完整值结果 → ClickHouse**。另有 PostgreSQL / Debezium 历史维度、S3 兼容归档、独立 Python oracle、发布版本校正、Prometheus / Grafana。
 
-**0.3.0 更新**：新增磁盘对账、归档 receipt 索引、带过期检查的后台检查快照及每进程查询并发限制。固定 2 CPU / 4 GiB、20 万条输入的 3 组对照中，oracle 进程峰值 RSS 中位数降低 86.3%，代价为 2.29 倍耗时与约 605 MiB 临时磁盘。trace / 监控服务成本与预计算成本分开记录，见 [本轮实现与实测](docs/scaling-validation.md)。原有 [分页接口契约](docs/query-api.md) 和 [岗位 / 技术依据](docs/market-and-technology-2026-09-06.md)保留。
+**0.3.0 更新**：新增磁盘对账、归档 receipt 索引、带过期检查的后台检查快照及每进程查询并发限制。固定 2 CPU / 4 GiB、20 万条输入的 3 组对照中，oracle 进程峰值 RSS 中位数降低 86.3%，代价为 2.29 倍耗时与约 605 MiB 临时磁盘。trace / 监控服务成本与预计算成本分开记录，见 [本轮实现与实测](docs/scaling-validation.md)。完整历史 **3,833,704** 条输入在 4 GiB 容器中全量核对通过，91 项回归和最新托管 Docker CI 通过。原有 [分页接口契约](docs/query-api.md) 和 [岗位 / 技术依据](docs/market-and-technology-2026-09-06.md)保留。
 
 ## 快速启动
 

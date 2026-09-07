@@ -5,5 +5,6 @@
   "log_sha256": "689f6777effff2b6fc20d0428b07869fedee1b2c8189c56228183b4476ed927c",
   "error": "ClickHouse HTTP 500 at configured 512 MiB query budget; full argMax payload state too large",
   "fix": "Project only compared JSON values before latest-offset reduction; spill aggregation above 64 MiB with 4 GiB temporary disk cap; drain HTTP before SQLite comparison.",
-  "boundary": "Reference scratch retained, but this run did not complete comparison and is not a passed reconciliation."
+  "boundary": "Reference scratch retained, but this run did not complete comparison and is not a passed reconciliation.",
+  "reproduced_error_report": "docs/evidence/scaling/reference-query-rejections.json"
 }

@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "checked_at_epoch": 1788755669.1114116,
+  "rule": {
+    "state": "inactive",
+    "name": "AdPulseInspectionUnavailable",
+    "query": "adpulse_inspection_snapshot_ready == 0",
+    "duration": 30,
+    "keepFiringFor": 0,
+    "labels": {
+      "severity": "warning"
+    },
+    "annotations": {
+      "summary": "Background inspection unavailable or stale: {{ $labels.kind }}"
+    },
+    "alerts": [],
+    "health": "ok",
+    "evaluationTime": 3.477e-05,
+    "lastEvaluation": "2026-09-07T04:34:21.394511152Z",
+    "type": "alerting"
+  },
+  "readiness": [
+    {
+      "metric": {
+        "__name__": "adpulse_inspection_snapshot_ready",
+        "instance": "api:8080",
+        "job": "governance",
+        "kind": "metrics"
+      },
+      "value": [
+        1788755669.11,
+        "1"
+      ]
+    },
+    {
+      "metric": {
+        "__name__": "adpulse_inspection_snapshot_ready",
+        "instance": "api:8080",
+        "job": "governance",
+        "kind": "coverage"
+      },
+      "value": [
+        1788755669.11,
+        "1"
+      ]
+    }
+  ],
+  "dashboard_panels": 20,
+  "promtool_log_sha256": "44a2a0abcdf4161f7d7574127398e40ebe98e70cd429564141039ee6a55608a1",
+  "boundary": "Real Prometheus hot-reload and evaluated readiness; Grafana dashboard JSON parsed, no new browser recording this iteration."
+}

@@ -1,0 +1,1545 @@
+{
+  "passed": true,
+  "conclusion": "success",
+  "run_url": "https://github.com/JDinSeattle/AdPulse/actions/runs/34082912455",
+  "commit": "b184d5f435b5cec09b79dff528845fca14b04fd8",
+  "python_tests": 81,
+  "java_tests": 10,
+  "total_tests": 91,
+  "files": {
+    "environment.json": {
+      "sha256": "8422d013d3252683d782f7efc2d8a96f1afeee97a0fa3f52be74525146688464",
+      "report": {
+        "environment": "GitHub-hosted runner",
+        "run_id": "34082912455",
+        "commit": "b184d5f435b5cec09b79dff528845fca14b04fd8",
+        "os": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+        "cpu_count": 4,
+        "cloud_service_deployment": false
+      }
+    },
+    "integration/report.json": {
+      "sha256": "51c27c5632bd2a368b19bc0224393098beadab83e1fced48931671b5afa29f69",
+      "report": {
+        "passed": true,
+        "differences": [],
+        "difference_count": 0,
+        "sample_limit": 100,
+        "expected_metrics": 90,
+        "expected_associations": 24,
+        "actual_metrics": 90,
+        "actual_associations": 24,
+        "completeness": {
+          "acknowledged": 198,
+          "archived": 198,
+          "classified": 198,
+          "archive_missing_count": 0,
+          "processing_pending_count": 0,
+          "archive_missing": [],
+          "processing_pending": [],
+          "sample_limit": 100,
+          "archive_complete": true,
+          "lineage_complete": true
+        },
+        "acknowledged": 198,
+        "phase": "complete",
+        "index": {
+          "listed_manifests": 4,
+          "verified_manifests": 0,
+          "verified_rows": 0,
+          "audit": false
+        },
+        "elapsed_seconds": 0.11745168900000635,
+        "checked_at_epoch": 1788755195.5271301,
+        "mode": "docker-kafka-flink-clickhouse-s3",
+        "boundary": "Local reference snapshot across separately sampled archive/DB sources; not a distributed transaction. Rerun while ingestion is quiescent for full equality.",
+        "scenario": "mixed",
+        "submitted_records": 198,
+        "convergence_seconds": 16.878,
+        "checkpoint_counts": {
+          "8192f16e51624d7134a5d9dd8cbd586f": {
+            "restored": 0,
+            "total": 3,
+            "in_progress": 0,
+            "completed": 3,
+            "failed": 0
+          },
+          "e9245c9902ee2ab69f177709594bd6a9": {
+            "restored": 0,
+            "total": 3,
+            "in_progress": 0,
+            "completed": 3,
+            "failed": 0
+          }
+        },
+        "archive_complete": true,
+        "sink_complete": true,
+        "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f"
+      }
+    },
+    "disk-reconciliation.json": {
+      "sha256": "c664aba77f092ca062594dfa8a8988a345ed236571f03794ad2507827ee5bd2a",
+      "report": {
+        "passed": true,
+        "differences": [],
+        "difference_count": 0,
+        "sample_limit": 100,
+        "expected_metrics": 90,
+        "expected_associations": 24,
+        "actual_metrics": 90,
+        "actual_associations": 24,
+        "completeness": {
+          "acknowledged": 198,
+          "archived": 198,
+          "classified": 198,
+          "archive_missing_count": 0,
+          "processing_pending_count": 0,
+          "archive_missing": [],
+          "processing_pending": [],
+          "sample_limit": 100,
+          "archive_complete": true,
+          "lineage_complete": true
+        },
+        "acknowledged": 198,
+        "phase": "complete",
+        "index": {
+          "listed_manifests": 4,
+          "verified_manifests": 4,
+          "verified_rows": 411,
+          "audit": false
+        },
+        "elapsed_seconds": 0.2798160479999865,
+        "checked_at_epoch": 1788755196.1878977,
+        "mode": "disk-backed-independent-oracle",
+        "boundary": "Local reference snapshot across separately sampled archive/DB sources; not a distributed transaction. Rerun while ingestion is quiescent for full equality."
+      }
+    },
+    "inspection.json": {
+      "sha256": "e7e3d10469737a0354a23417a7c361852b0c7029e3c8b162ab8354fa15ecb620",
+      "report": {
+        "passed": true,
+        "mode": "actual local Docker HTTP, verified S3 archive index and ClickHouse-derived lineage",
+        "coverage": {
+          "acknowledged": 198,
+          "archive_complete": true,
+          "archive_missing": [],
+          "archive_missing_count": 0,
+          "archived": 198,
+          "classified": 198,
+          "consistency": "inspection_snapshot",
+          "index": {
+            "audit": false,
+            "listed_manifests": 4,
+            "verified_manifests": 4,
+            "verified_rows": 411
+          },
+          "lineage_complete": true,
+          "processing_pending": [],
+          "processing_pending_count": 0,
+          "quality_samples": [
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-c-755178687-71",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:96",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 65,
+                "partition": 1,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-c-755178687-62",
+              "receipt_id": "90177875-627a-450f-a261-498e9f1de04e:82",
+              "received_at": 1788755178693,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 27,
+                "partition": 1,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-c-755178687-40",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:59",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 54,
+                "partition": 0,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-i-755178687-48",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:19",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 40,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-i-755178687-28-new-id",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:27",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 44,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-i-755178687-76",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:39",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 45,
+                "partition": 1,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-i-755178687-36-new-id",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:91",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 64,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-c-755178687-19",
+              "receipt_id": "90177875-627a-450f-a261-498e9f1de04e:81",
+              "received_at": 1788755178693,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 26,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-i-755178687-48",
+              "receipt_id": "90177875-627a-450f-a261-498e9f1de04e:94",
+              "received_at": 1788755178693,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 32,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-c-755178687-6-new-id",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:8",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 38,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-i-755178687-54",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:50",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 52,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-i-755178687-36",
+              "receipt_id": "90177875-627a-450f-a261-498e9f1de04e:92",
+              "received_at": 1788755178693,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 29,
+                "partition": 1,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-i-755178687-0",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:51",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 50,
+                "partition": 1,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-i-755178687-76",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:55",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 51,
+                "partition": 1,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-i-755178687-32",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:79",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 60,
+                "partition": 1,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-c-755178687-67",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:47",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 51,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-i-755178687-25",
+              "receipt_id": "90177875-627a-450f-a261-498e9f1de04e:68",
+              "received_at": 1788755178693,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 19,
+                "partition": 1,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-c-755178687-44",
+              "receipt_id": "90177875-627a-450f-a261-498e9f1de04e:50",
+              "received_at": 1788755178693,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 18,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-v-755178687-57-0",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:12",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 39,
+                "partition": 0,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-c-755178687-6",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:43",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 49,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "detail": "$.event_time: string found, integer expected",
+              "disposition": "quarantined",
+              "error_code": "SCHEMA_INVALID",
+              "event_id": "bad-type-755178687",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:71",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 58,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-c-755178687-62-new-id",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:97",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 66,
+                "partition": 1,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-c-755178687-40-new-id",
+              "receipt_id": "90177875-627a-450f-a261-498e9f1de04e:29",
+              "received_at": 1788755178693,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 9,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-i-755178687-0-new-id",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:88",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 63,
+                "partition": 1,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-c-755178687-71-new-id",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:58",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 54,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-i-755178687-54",
+              "receipt_id": "90177875-627a-450f-a261-498e9f1de04e:34",
+              "received_at": 1788755178693,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 11,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-c-755178687-67",
+              "receipt_id": "90177875-627a-450f-a261-498e9f1de04e:43",
+              "received_at": 1788755178693,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 14,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-v-755178687-57-0-new-id",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:44",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 50,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-i-755178687-25-new-id",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:22",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 43,
+                "partition": 0,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-i-755178687-14",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:34",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 46,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-i-755178687-28",
+              "receipt_id": "90177875-627a-450f-a261-498e9f1de04e:85",
+              "received_at": 1788755178693,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 29,
+                "partition": 0,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-i-755178687-10",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:73",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 59,
+                "partition": 0,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "event_id": "ev-c-755178687-19",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:20",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 41,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-i-755178687-10-new-id",
+              "receipt_id": "90177875-627a-450f-a261-498e9f1de04e:73",
+              "received_at": 1788755178693,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 24,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-c-755178687-44-new-id",
+              "receipt_id": "93dcd60c-44b0-413b-9c18-7cbda5cab824:72",
+              "received_at": 1788755180581,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 57,
+                "partition": 1,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-i-755178687-32-new-id",
+              "receipt_id": "90177875-627a-450f-a261-498e9f1de04e:63",
+              "received_at": 1788755178693,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 22,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "raw_events",
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "event_id": "ev-i-755178687-14",
+              "receipt_id": "90177875-627a-450f-a261-498e9f1de04e:88",
+              "received_at": 1788755178693,
+              "record_type": "quality",
+              "rule_id": "event-contract-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": {
+                "offset": 29,
+                "partition": 2,
+                "topic": "adpulse.raw"
+              }
+            },
+            {
+              "dataset": "attribution",
+              "disposition": "signal",
+              "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+              "event_id": "",
+              "receipt_id": "",
+              "received_at": 0,
+              "record_type": "quality",
+              "rule_id": "attribution-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": null
+            },
+            {
+              "dataset": "attribution",
+              "disposition": "signal",
+              "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+              "event_id": "",
+              "receipt_id": "",
+              "received_at": 0,
+              "record_type": "quality",
+              "rule_id": "attribution-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": null
+            },
+            {
+              "dataset": "attribution",
+              "disposition": "signal",
+              "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+              "event_id": "",
+              "receipt_id": "",
+              "received_at": 0,
+              "record_type": "quality",
+              "rule_id": "attribution-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": null
+            },
+            {
+              "dataset": "attribution",
+              "disposition": "signal",
+              "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+              "event_id": "",
+              "receipt_id": "",
+              "received_at": 0,
+              "record_type": "quality",
+              "rule_id": "attribution-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": null
+            },
+            {
+              "dataset": "attribution",
+              "disposition": "signal",
+              "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+              "event_id": "",
+              "receipt_id": "",
+              "received_at": 0,
+              "record_type": "quality",
+              "rule_id": "attribution-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": null
+            },
+            {
+              "dataset": "attribution",
+              "disposition": "signal",
+              "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+              "event_id": "",
+              "receipt_id": "",
+              "received_at": 0,
+              "record_type": "quality",
+              "rule_id": "attribution-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": null
+            },
+            {
+              "dataset": "attribution",
+              "disposition": "signal",
+              "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+              "event_id": "",
+              "receipt_id": "",
+              "received_at": 0,
+              "record_type": "quality",
+              "rule_id": "attribution-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": null
+            },
+            {
+              "dataset": "attribution",
+              "disposition": "signal",
+              "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+              "event_id": "",
+              "receipt_id": "",
+              "received_at": 0,
+              "record_type": "quality",
+              "rule_id": "attribution-v1",
+              "rule_version": "rules-v1",
+              "sample_ref": null
+            }
+          ],
+          "quality_summary": [
+            {
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_BUSINESS_KEY",
+              "records": 18,
+              "rule_version": "rules-v1"
+            },
+            {
+              "disposition": "quarantined",
+              "error_code": "SCHEMA_INVALID",
+              "records": 1,
+              "rule_version": "rules-v1"
+            },
+            {
+              "disposition": "duplicate",
+              "error_code": "DUPLICATE_EVENT_ID",
+              "records": 18,
+              "rule_version": "rules-v1"
+            },
+            {
+              "disposition": "cleaned",
+              "error_code": "OK",
+              "records": 161,
+              "rule_version": "rules-v1"
+            },
+            {
+              "disposition": "signal",
+              "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+              "records": 8,
+              "rule_version": "rules-v1"
+            }
+          ],
+          "sample_limit": 100,
+          "checked_at_epoch": 1788755196.9784827,
+          "check_started_at_epoch": 1788755196.6920583
+        },
+        "concurrent_requests": 48,
+        "client_workers": 16,
+        "observations": [
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.012359639999999672,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.010600441000008232,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.018022171000041,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.02337066100000129,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.01788829400004488,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.02358323900000414,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.020426266000015403,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.027684781999994357,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.024884072000020296,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.025389594999978726,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.021032453000032092,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.025600050000036845,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.029729794000047605,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.023955526999998256,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.03649000899997645,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.03218725900001118,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.0208397359999708,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.030021626999996442,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.030053720000012163,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.0228773320000073,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.0349448700000039,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.02457957600000782,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.029025348999994094,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.03179540400003589,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.03632965399998511,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.030118340999990778,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.03274990799997113,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.033279440999990584,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.02852927699996144,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.031149576000018442,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.028784594000001107,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.027083226000002014,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.02926260000003822,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.035611133000031714,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.03307674800004179,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.03416016500000296,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.03499082399997633,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.024248876000001474,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.02755052100002331,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.027095799999983683,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.02389712500001906,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.02287895399996387,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.032259984000006625,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.02833641800003761,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.02828380399995467,
+            "bytes": 54165
+          },
+          {
+            "path": "/v1/trace/90177875-627a-450f-a261-498e9f1de04e:4",
+            "seconds": 0.02851506599995446,
+            "bytes": 1081
+          },
+          {
+            "path": "/v1/reconcile",
+            "seconds": 0.02573746600000959,
+            "bytes": 15731
+          },
+          {
+            "path": "/metrics",
+            "seconds": 0.02354606299996931,
+            "bytes": 54165
+          }
+        ],
+        "median_seconds": 0.027984292999974514,
+        "max_seconds": 0.03649000899997645,
+        "snapshot_boundary": "Responses expose check timestamps; no distributed MVCC or per-request re-audit claim"
+      }
+    },
+    "inspection-failure.json": {
+      "sha256": "2662d22c88638da47dfe59085ad31b724b9f005de44927a08855da620b596356",
+      "report": {
+        "passed": true,
+        "observations": [
+          {
+            "case": "fresh-coverage",
+            "status": 200,
+            "retry_after": null
+          },
+          {
+            "case": "closed-writer-index-readable",
+            "status": 404,
+            "retry_after": null
+          },
+          {
+            "case": "fresh-metrics",
+            "status": 200,
+            "retry_after": null
+          },
+          {
+            "case": "expired/v1/reconcile",
+            "status": 503,
+            "retry_after": "30"
+          },
+          {
+            "case": "expired/v1/quality",
+            "status": 503,
+            "retry_after": "30"
+          },
+          {
+            "case": "expired/v1/trace/absent",
+            "status": 503,
+            "retry_after": "30"
+          },
+          {
+            "case": "expired-metrics",
+            "status": 200,
+            "retry_after": null
+          },
+          {
+            "case": "error/v1/reconcile",
+            "status": 503,
+            "retry_after": "30"
+          },
+          {
+            "case": "error/v1/quality",
+            "status": 503,
+            "retry_after": "30"
+          },
+          {
+            "case": "error/v1/trace/absent",
+            "status": 503,
+            "retry_after": "30"
+          },
+          {
+            "case": "error-metrics",
+            "status": 200,
+            "retry_after": null
+          },
+          {
+            "case": "injected-permit-exhaustion",
+            "status": 503,
+            "retry_after": "1"
+          },
+          {
+            "case": "recovered-coverage",
+            "status": 200,
+            "retry_after": null
+          },
+          {
+            "case": "recovered-metrics",
+            "status": 200,
+            "retry_after": null
+          }
+        ],
+        "environment": "Actual Uvicorn loopback HTTP; synthetic inspection snapshots and in-process permit exhaustion; no business dependency failure injected",
+        "boundary": "Verifies HTTP failure/expiry/recovery contract and permit rejection, not real database saturation or production failure recovery."
+      }
+    },
+    "reference-query.json": {
+      "sha256": "b3c71c31c9ef2886c73f37f6e6cfe1189031ff25aa179b97edf6f9e81fde5162",
+      "report": {
+        "passed": true,
+        "release": "ci-verified",
+        "comparison": {
+          "passed": true,
+          "differences": [],
+          "difference_count": 0,
+          "sample_limit": 100,
+          "expected_metrics": 90,
+          "expected_associations": 24,
+          "actual_metrics": 90,
+          "actual_associations": 24
+        },
+        "live_counts": {
+          "metrics": 90,
+          "associations": 24
+        },
+        "live_read_seconds": 0.009615488999997979,
+        "elapsed_seconds": 0.03663843200001793,
+        "environment": "Real local or hosted-runner ClickHouse; 512 MiB / 120 s query limits, 64 MiB external aggregation threshold, 4 GiB query spill and 8 GiB HTTP spool caps",
+        "boundary": "Equality against full payloads applies to the named immutable release; live counts verify bounded result reading only, not business equality."
+      }
+    },
+    "replay/report.json": {
+      "sha256": "5d4eba73cdf2124a05f03794beb88956dcafa86041f8da4006f663e214bd8299",
+      "report": {
+        "release_id": "ci-verified",
+        "input_manifest_sha256": "0a8db4eb4fa483a87c34cc00c40179a15c780608ab7532d723ddecc2eb14582f",
+        "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f",
+        "acknowledged": 198,
+        "archived": 198,
+        "archive_missing": [],
+        "classified": 198,
+        "processing_pending": [],
+        "archive_complete": true,
+        "lineage_complete": true,
+        "passed": true,
+        "differences": [],
+        "sink_complete": true
+      }
+    },
+    "query.json": {
+      "sha256": "7dd09debc20768753ed3dfa1a8076011b80d95f21e986647dc326555da1fc57f",
+      "report": {
+        "started_at_ms": 1788755211232,
+        "environment": "real local ClickHouse and PostgreSQL, synthetic query fixtures; ASGI TestClient",
+        "reference_release": "ci-verified",
+        "fixture_releases": [
+          "query-test-b9abc1aa5da4-a",
+          "query-test-b9abc1aa5da4-b"
+        ],
+        "passed": true,
+        "concurrent_pointer_switches": 21,
+        "latest_filter_no_resurrection": true,
+        "retry_stable": true,
+        "fixture_distinct_rows": 37,
+        "real_budget_rejections": [
+          "scan_rows",
+          "response_bytes"
+        ],
+        "full_traversal": {
+          "associations": {
+            "rows": 24,
+            "pages": 1,
+            "equal_to_full_snapshot": true
+          },
+          "metrics": {
+            "rows": 90,
+            "pages": 1,
+            "equal_to_full_snapshot": true
+          }
+        },
+        "original_active_preserved": true,
+        "finished_at_ms": 1788755211883
+      }
+    },
+    "sink-acceptance.json": {
+      "sha256": "8d8e198a58de624234f681ca56544739bcd7868f275a33eaf1f47c1966767c71",
+      "report": {
+        "passed": true,
+        "started_at_epoch": 1788755212.1282783,
+        "release": "sink-batch-test-6be7b6e67bf8",
+        "batch_messages": 2000,
+        "environment": "real ClickHouse; synthetic Kafka message metadata, no broker involved in this helper",
+        "unbounded_parameter_bytes": 384001,
+        "lookup_chunks": 6,
+        "max_lookup_parameter_bytes": 65473,
+        "unbounded_parameter_rejected": true,
+        "baseline_error": "HTML Form Exception: Field value too long",
+        "exact_logical_results": 2000,
+        "exact_deliveries": 2000,
+        "identical_retry_verified": true,
+        "conflicting_offset_rejected": true,
+        "partition_change_rejected": true,
+        "fixture_rows_removed": true,
+        "elapsed_seconds": 1.138
+      }
+    },
+    "drills/worker-restart/report.json": {
+      "sha256": "32de57690d3b2def5b82547818893cf61cdd34b933d1fcca3a3e4db347113497",
+      "report": {
+        "scenario": "worker-restart",
+        "mode": "disk-backed-independent-oracle",
+        "passed": true,
+        "fault_target": {
+          "service": "taskmanager-1",
+          "taskmanager_id": "172.18.0.12:42431-dbcee1",
+          "running_subtasks": 24
+        },
+        "running_after_seconds": 19.685,
+        "differences": [],
+        "difference_count": 0,
+        "sample_limit": 100,
+        "expected_metrics": 94,
+        "expected_associations": 30,
+        "actual_metrics": 94,
+        "actual_associations": 30,
+        "completeness": {
+          "acknowledged": 260,
+          "archived": 260,
+          "classified": 260,
+          "archive_missing_count": 0,
+          "processing_pending_count": 0,
+          "archive_missing": [],
+          "processing_pending": [],
+          "sample_limit": 100,
+          "archive_complete": true,
+          "lineage_complete": true
+        },
+        "acknowledged": 260,
+        "phase": "complete",
+        "index": {
+          "listed_manifests": 6,
+          "verified_manifests": 0,
+          "verified_rows": 0,
+          "audit": false
+        },
+        "elapsed_seconds": 44.938,
+        "checked_at_epoch": 1788755258.4427218,
+        "boundary": "Local reference snapshot across separately sampled archive/DB sources; not a distributed transaction. Rerun while ingestion is quiescent for full equality.",
+        "checkpoint_counts": {
+          "8192f16e51624d7134a5d9dd8cbd586f": {
+            "restored": 1,
+            "total": 9,
+            "in_progress": 0,
+            "completed": 8,
+            "failed": 1
+          },
+          "e9245c9902ee2ab69f177709594bd6a9": {
+            "restored": 1,
+            "total": 9,
+            "in_progress": 0,
+            "completed": 7,
+            "failed": 2
+          }
+        }
+      }
+    },
+    "drills/sink-replay/report.json": {
+      "sha256": "bca4a3d66230ec9b267551f298c35a9e7758639669f79f3334c76f791c53146c",
+      "report": {
+        "scenario": "sink-replay",
+        "mode": "disk-backed-independent-oracle",
+        "passed": true,
+        "injected_exit_code": 77,
+        "write_before_crash": {
+          "fault": "after_result_write_before_commit",
+          "result_records": 12,
+          "offsets": [
+            [
+              "adpulse.results.live-v1",
+              0,
+              67
+            ],
+            [
+              "adpulse.results.live-v1",
+              0,
+              68
+            ],
+            [
+              "adpulse.results.live-v1",
+              0,
+              69
+            ],
+            [
+              "adpulse.results.live-v1",
+              0,
+              70
+            ],
+            [
+              "adpulse.results.live-v1",
+              2,
+              80
+            ],
+            [
+              "adpulse.results.live-v1",
+              2,
+              81
+            ],
+            [
+              "adpulse.results.live-v1",
+              2,
+              82
+            ],
+            [
+              "adpulse.results.live-v1",
+              2,
+              83
+            ],
+            [
+              "adpulse.results.live-v1",
+              2,
+              84
+            ],
+            [
+              "adpulse.results.live-v1",
+              2,
+              85
+            ],
+            [
+              "adpulse.results.live-v1",
+              2,
+              86
+            ],
+            [
+              "adpulse.results.live-v1",
+              2,
+              87
+            ]
+          ]
+        },
+        "differences": [],
+        "difference_count": 0,
+        "sample_limit": 100,
+        "expected_metrics": 135,
+        "expected_associations": 36,
+        "actual_metrics": 135,
+        "actual_associations": 36,
+        "completeness": {
+          "acknowledged": 321,
+          "archived": 321,
+          "classified": 321,
+          "archive_missing_count": 0,
+          "processing_pending_count": 0,
+          "archive_missing": [],
+          "processing_pending": [],
+          "sample_limit": 100,
+          "archive_complete": true,
+          "lineage_complete": true
+        },
+        "acknowledged": 321,
+        "phase": "complete",
+        "index": {
+          "listed_manifests": 8,
+          "verified_manifests": 0,
+          "verified_rows": 0,
+          "audit": false
+        },
+        "elapsed_seconds": 60.767,
+        "checked_at_epoch": 1788755319.5395205,
+        "boundary": "Local reference snapshot across separately sampled archive/DB sources; not a distributed transaction. Rerun while ingestion is quiescent for full equality."
+      }
+    }
+  },
+  "verified_source_files": {
+    "adpulse/__init__.py": "130e708ae90f1ef42a025025066d157a11ebbce1b270b2961baf5f029e9d1217",
+    "adpulse/archive.py": "b4337d7c2bdf7234f17ea25b3cd7fb44c74d387bd9080edf7f45f9c43d088b08",
+    "adpulse/collector.py": "b702627286688ec1de0e89ec84b038bcbcc43a7aaf4dd57b1aab52c53a0865f3",
+    "adpulse/cli.py": "e8af85ce22615a240fdc2ad65e5dc67005d0a925ae480013422b9f8c60af39ef",
+    "adpulse/api.py": "00a76344c16c62ef3785680ff558473f564599f47643a7e0c2c7587108c2c22d",
+    "adpulse/pagination.py": "86624504a16125142a07ae6e72d1608a036ee6c4fad03fcdd9735a782b500f3b",
+    "adpulse/releases.py": "6876e09021a04efb1c097d7528982e578c31ac1edf6df389a093ac45510815eb",
+    "adpulse/generator.py": "f48b0f349cb13af6622f89a8f33e275d10e700cca2f11229d51958489ef2d096",
+    "adpulse/storage.py": "0053148c6b959886df60c29be05650fee81635e47514e4a69e36df068d78e287",
+    "adpulse/disk.py": "570f6972dcd28667cf7c75b94b0f46ee6e069b898a3e06335c9e9bdc03a04b3e",
+    "adpulse/reconciliation.py": "df3bae4a8fa0ccfd0bde80381a96b8bc0a99159954185cf55714a4357ea51fd3",
+    "adpulse/inspection.py": "ff15270f071a657dfd24633e5488c97e1ed72661f493f55b207fb5fbe06b638f",
+    "adpulse/worker.py": "096820b0bd7182a70292c39c64461a77ad3fbcb98b12686fc5208ac2ca36bbc8",
+    "adpulse/archive_index.py": "eeb443660f9beec295db83045322c5bd310125e337a5bf3ff5195b2dcc87c71d",
+    "adpulse/oracle.py": "67136d2534322bcd77c87c166855d6663662dae6d657c0770789c184f96412bc",
+    "adpulse/common.py": "5b71c44a884237a6af15f3dc329db7bbcfc505f0693bcf4af31dd0df2674d8eb",
+    "contracts/event.schema.json": "5c48b04689f71d1e844b2674678ef82478a5911f95db4b240025a33baa9b6cec",
+    "contracts/rules-v1.json": "7584bbfec23f392a1bb1f5f9a26d4e6f27f614c188cabfce99caf8e5ee6d0b15",
+    "contracts/rules.schema.json": "4801289be54f46ccfeeee9d577c35f34ebda5516b389ce20412d2e13e4a621ea",
+    "deployment/images.lock.json": "c0806d0554d08f54f060f956f738cd9fa7724160999d7a15d54e152ff4927e02",
+    "deployment/compose.quorum.yaml": "90a563444f50e125169d01879a4d14b55ee4af91111ca705157d5c37fd7000fb",
+    "deployment/capacity.env": "59e4e59d3eeb9fbb9595a46f4612e3cccf7ccc6608910a7893f15063969a138a",
+    "deployment/Dockerfile.flink": "43f061d9586cbdf403187b6f2286a996bac5ca58ecb5e9ead844f67dfb9d7e79",
+    "deployment/bootstrap.py": "4553989abd7c59927a0fe16a30706f375ab3ca671e09325c3aafc860e4e8a6be",
+    "deployment/compose.yaml": "33098d8c9cff4dcfd44df3a6f1d6446bbbb0d41b34aef0f30f8910c190f93cf6",
+    "deployment/Dockerfile.python": "4924958d2534cdb92dd14f7e8a306aef28b1776db9d68e765e3631c157b3b67d",
+    "deployment/postgres/init.sql": "fb7a8eac5e12edab4af84c67aae286bf87678450377e64cc5c3b617fbd3b8a75",
+    "deployment/debezium/connector.json": "bcf86e453bc1f1a93eed91183ce5ec86d9da384c8552e5ea88d2114beddb44a0",
+    "deployment/clickhouse/init.sql": "ac9ff9a485d9408dbe07c576d84b5117311112ccacc16bd82757a8afd39ee3ec",
+    "scripts/sink_acceptance.py": "5231d5b87ebc7ef761519d05b917d8853a845f5d59648c342cd9255166a4bc47",
+    "scripts/scaling_benchmark.py": "d9980d3e0f326c5cc846b45d226b2514faf604b869fb79763491f0486d83d09c",
+    "scripts/query_acceptance.py": "e666bf87103a19a77b49eae296946dabeaea9bac2d343680988c03491e41ae6a",
+    "scripts/integration.py": "900f925bddbcaaf7e6abd1db1b7ed2e43e7c1ea90f030d205f27f02c7645e99a",
+    "scripts/quorum_drill.py": "11b7dc59c36b69165e26dd5fdea169ae57df97da1ba817abad696af2c35bdf5e",
+    "scripts/plot_load.py": "dd92f74c3dd8512bc57598c24d6896c3d4dbcf67e6611dd043073acd8d9efa15",
+    "scripts/monitoring_query_acceptance.py": "1ddc4e28f1cd83173244353b3ffe4a454ddd47902ecaa73ad3776f2b8a6a14ee",
+    "scripts/scaling_worker.py": "ff7ed66792d3f0fa4783406656e697954240f13fb9ac0d284415bddfa8478774",
+    "scripts/ci_smoke.sh": "e858498176e3310b0f623fc8c341a2f99bf4a2d066b768dc94155b094f30830c",
+    "scripts/capacity_restore.py": "6bda424b38659fd009cfe36a32015b51b196a7a103b36e395e05d90ee09d329f",
+    "scripts/inspection_failure_acceptance.py": "6507e8646be4f8c4ff0f0bda98a49917665d31888f0f03ac173e8309e1eace7c",
+    "scripts/update_experience_bank.py": "dc5849b4ffa82cb8efe650d85f2e14c489d67e0bc3fc2ab2b2e45c5dd91f64d7",
+    "scripts/restore_job.py": "880a8ef20e71a58b11ca82924792a30b0786a81a1926e7aefc0cb4ae5e27d654",
+    "scripts/query_benchmark.py": "37ddb14d16e9e3c71dcb1b562ee36888a42a1bdd277f72bb2e66a992f306b9cf",
+    "scripts/disk_reconcile.py": "9af9746e036b674b4ca83588b1f162fe95401606cbce3ac2c0dfbd46c8b2f0c8",
+    "scripts/loadtest.py": "4216ed48262ab0cdbf87834013fc4c592a6c7ce59e1541d1830903808c98baa5",
+    "scripts/profile_reconcile.py": "d56ee2b3c7dd821fb69e0250f4bea3522effb3ce09a8e9677b04d3cc98343539",
+    "scripts/reconciliation_query_acceptance.py": "0bd513865a51139793b3ef497dcc384fd6d286d31b87c11b2d31def527363437",
+    "scripts/inspection_acceptance.py": "656d76165ee912cdd240f7bd716f0ec2864de9ac4853c11db90ddca680fe7dec",
+    "scripts/migrate_runtime.py": "60cc3c04325e4355b4cf56868c766b22b96e62e0bc80be6ba06346a9f85adfd3",
+    "scripts/daily_replay.py": "beec5369ba8b801a5e7c9569ff3cd4f47f0a56c14db345dfc2292bf55d84acfd",
+    "scripts/prepare_scaling_fixture.py": "b73b9cb1a2e43f0da9f7df7fbb84f8f286fa35a58ebde85839aee774a6687b30",
+    "scripts/create_fixtures.py": "19fb366d9f2aaec7492a14ff6b5b7732b5db722c33dc4f13eb7b0a7ed1d827be",
+    "scripts/serving_worker.py": "29630fdee167bad5c039b254a4e0cda88e1ff85ffd5791e2d0602e048282ca8e",
+    "scripts/drills.py": "5b63af217eafb483357c03034ea4cd3435206e87119924ce9fdb369419048f6e",
+    "tests/test_query_api.py": "478a771057dd8c554724b3e6d738adddea0c6ad465dbf96d47686d76a17421af",
+    "tests/test_correctness.py": "e8ecd8c51673557d1ebf88889dec2d546a49ceef709049460249abf9b98d853e",
+    "tests/test_delivery.py": "5b1de836a552aea0177342e397691e9e129b1e809ce4b565805fe6f90ceec6c8",
+    "tests/test_bank_update.py": "9415c47e267592a0da52d74e5c44e8352e9eabcfdb910b51a88594ca240f856c",
+    "tests/test_disk_inspection.py": "71e3ce7c064ebd345b57d411120c91f5d4cfbe74f59c48bf99550e768fa553d0",
+    "tests/test_sink_lookup.py": "5c3dd6538747326835d31134d253b4938b2929136577cde61c182b049f1222cf",
+    "tests/fixtures/oracle-baseline.json": "11038fc4af23ca6e2f3cf94123e309f9a456182bd0b0dc12daf5f9c507bfbd18",
+    "flink-jobs/src/test/java/io/adpulse/LocalRocksOptionsTest.java": "1204c47b946f12b1e9243d572251a490227e83bdc40b7ba14d712234d147d8f1",
+    "flink-jobs/src/test/java/io/adpulse/OperatorsTest.java": "d54c84596b1b7b7985d0451280173eb10704ac75bbe319f234798ddaaaf0511c",
+    "flink-jobs/src/main/java/io/adpulse/Json.java": "2c330e41e2ab5d55653e012d1ea02d96ea829ea9a561876e8b4f89acfd650e75",
+    "flink-jobs/src/main/java/io/adpulse/LocalRocksOptions.java": "a94f7f3c54a259487511dac53a8c6ef1b181002a0c733c14f96a27f74c4544a1",
+    "flink-jobs/src/main/java/io/adpulse/RuntimeConfig.java": "371af454de6c25de519ab42308e68bce820135edcfed166177aae400230f1a59",
+    "flink-jobs/src/main/java/io/adpulse/CleanJob.java": "35b5b7d5098619ceb0c79088484e89c457de529b14c41599a781be3768038204",
+    "flink-jobs/src/main/java/io/adpulse/Rules.java": "27b939273611bb93c9ff9a1ea7aaa7e68d4d57cecb081db96bbc9b538b5b6604",
+    "flink-jobs/src/main/java/io/adpulse/Measurement.java": "0d60690a6c95d8dc28c810745db6fd6732c8b40fbc0a466b681a030dcc1149f0",
+    "flink-jobs/src/main/java/io/adpulse/AttributionJob.java": "9bbc894460ddace63db14a2aaedc75f39b562cdee820e64eca9427e92290fa10",
+    ".github/workflows/ci.yml": "7dc192069ca9083e0f9f618afc5afb7cf5148ac893aff2d63d498ffcd1ff0dbb",
+    "Makefile": "bad1357eecc3385803103612d9e08a333979e6c3a09db7992af35820788303e6",
+    "pyproject.toml": "6efafe31a2893bcea4dac77ffb39c6305743b2b40dfd26c8270ab9833f22c27b",
+    "requirements.lock": "655a85c762476216f2e1e0ed8ca267b747882104f0a343b3165458db71030fa8",
+    "monitoring/alertmanager.yml": "3b5b861e9f0eacbd5ec25d3cf2314bdfa08611c458501ecd4648e9be9fbb2f0e",
+    "monitoring/prometheus.yml": "b9ca90e563ebb5f984e2f347acad392e9f05747be67f8a0249a3cda3fe668a50",
+    "monitoring/alerts.yml": "53f379073db56033ac2caf5d580823de98d29cd474e9aac2f94558e247be6fc7",
+    "monitoring/grafana/dashboards/adpulse.json": "87621b472d7568e5a07b835dd1c7956b8c53dd201ad1eda81f219e3779eb366f",
+    "monitoring/grafana/provisioning/dashboards/adpulse.yml": "a98e744993c0ad737c64802bca98c084ec2232e6315acd7d2f4f69d123789f47",
+    "monitoring/grafana/provisioning/datasources/prometheus.yml": "19d98cca02290926efd3e8b622d97213f3c19ed9b561898225d8e149ff48d9d6"
+  },
+  "log_sha256": "50a1969aefb25762cf88711fe0685a493eee8c18bb501844eae2bb7c2783b5d2",
+  "boundary": "GitHub-hosted Linux Docker runner, real ephemeral services and synthetic data; not managed cloud service deployment, long-duration cloud load or production."
+}

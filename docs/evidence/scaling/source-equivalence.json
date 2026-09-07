@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "paired": [
+    {
+      "workload": "oracle",
+      "byte_identical_files": [
+        "adpulse/__init__.py",
+        "adpulse/archive.py",
+        "adpulse/collector.py",
+        "adpulse/cli.py",
+        "adpulse/pagination.py",
+        "adpulse/releases.py",
+        "adpulse/generator.py",
+        "adpulse/disk.py",
+        "adpulse/worker.py",
+        "adpulse/oracle.py",
+        "adpulse/common.py"
+      ],
+      "other_changed_files": [
+        "adpulse/api.py",
+        "adpulse/storage.py",
+        "adpulse/reconciliation.py",
+        "adpulse/inspection.py",
+        "adpulse/archive_index.py"
+      ],
+      "ast_identical_executed_functions": {
+        "adpulse/archive_index.py": [
+          "ArchiveIndex.__init__",
+          "ArchiveIndex.refresh",
+          "ArchiveIndex.coverage",
+          "ArchiveIndex.trace",
+          "ArchiveIndex.quality",
+          "ArchiveIndex.packets",
+          "chunks"
+        ]
+      },
+      "boundary": "Changed dimensions() is not used by the paired fixture worker; background HTTP spool and full database reconciliation changes are not executed by paired workers. API and oracle/disk core files remain byte-identical."
+    },
+    {
+      "workload": "serving",
+      "byte_identical_files": [
+        "adpulse/__init__.py",
+        "adpulse/archive.py",
+        "adpulse/collector.py",
+        "adpulse/cli.py",
+        "adpulse/api.py",
+        "adpulse/pagination.py",
+        "adpulse/releases.py",
+        "adpulse/generator.py",
+        "adpulse/disk.py",
+        "adpulse/worker.py",
+        "adpulse/oracle.py",
+        "adpulse/common.py"
+      ],
+      "other_changed_files": [
+        "adpulse/storage.py",
+        "adpulse/reconciliation.py",
+        "adpulse/inspection.py",
+        "adpulse/archive_index.py"
+      ],
+      "ast_identical_executed_functions": {
+        "adpulse/archive_index.py": [
+          "ArchiveIndex.__init__",
+          "ArchiveIndex.refresh",
+          "ArchiveIndex.coverage",
+          "ArchiveIndex.trace",
+          "ArchiveIndex.quality",
+          "ArchiveIndex.packets",
+          "chunks"
+        ],
+        "adpulse/inspection.py": [
+          "directory",
+          "read_snapshot",
+          "publish",
+          "operational_metrics"
+        ]
+      },
+      "boundary": "Changed dimensions() is not used by the paired fixture worker; background HTTP spool and full database reconciliation changes are not executed by paired workers. API and oracle/disk core files remain byte-identical."
+    }
+  ],
+  "full_reference": [
+    "adpulse/__init__.py",
+    "adpulse/api.py",
+    "adpulse/archive.py",
+    "adpulse/archive_index.py",
+    "adpulse/cli.py",
+    "adpulse/collector.py",
+    "adpulse/common.py",
+    "adpulse/disk.py",
+    "adpulse/generator.py",
+    "adpulse/inspection.py",
+    "adpulse/oracle.py",
+    "adpulse/pagination.py",
+    "adpulse/reconciliation.py",
+    "adpulse/releases.py",
+    "adpulse/storage.py",
+    "adpulse/worker.py",
+    "contracts/event.schema.json",
+    "contracts/rules-v1.json",
+    "contracts/rules.schema.json",
+    "scripts/profile_reconcile.py"
+  ],
+  "scope": "Exact frozen benchmark sources and full reference v5 linked to current files; not a claim that later changed unexecuted functions were timed in earlier experiments."
+}

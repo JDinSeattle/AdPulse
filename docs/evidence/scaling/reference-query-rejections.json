@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "reproduction": true,
+  "http_status": 500,
+  "error_prefix": "Code: 241. DB::Exception: Query memory limit exceeded: would use 560.77 MiB (attempt to allocate chunk of 128.36 MiB), maximum: 512.00 MiB: While executing AggregatingTransform. (MEMORY_LIMIT_EXCEEDED) (version 26.3.32.14 (official build))\n",
+  "seconds": 0.07274638600210892,
+  "query_memory_budget_bytes": 536870912,
+  "scope": "Reproduction of full latest association payload aggregation; response prefix only, no partial successful result"
+}
