@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "captured_at_epoch": 1788745948.1535637,
+  "environment": "local ClickHouse 26.3.32.14, sink max batch 2000",
+  "server_error": "Poco::Exception. Code: 1000, e.code() = 0, HTML Form Exception: Field value too long",
+  "observed_behavior": "Sink holds and retries batch without committing consumption offsets; new load stopped.",
+  "decision": "Bound and deduplicate lookup key arrays to at most 64 KiB UTF-8 per parameter; retain 2000-message write batches.",
+  "resume_eligible": false
+}

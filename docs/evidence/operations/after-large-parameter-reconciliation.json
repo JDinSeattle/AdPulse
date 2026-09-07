@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "differences": [],
+  "completeness": {
+    "acknowledged": 1462441,
+    "archived": 1462441,
+    "archive_missing": [],
+    "classified": 1462441,
+    "processing_pending": [],
+    "archive_complete": true,
+    "lineage_complete": true
+  },
+  "acknowledged": 1462441,
+  "expected_metrics": 4148,
+  "actual_metrics": 4148,
+  "expected_associations": 246566,
+  "actual_associations": 246566,
+  "environment": "local Docker Kafka/Flink/ClickHouse/MinIO/PostgreSQL; synthetic advertising events",
+  "scope": "whole cumulative acknowledged input after runtime migration, worker interruption, both rejected input attempts, strict Bloom restore, sink batch tuning and completed 1800-second target runs",
+  "elapsed_seconds": 221.658,
+  "checked_at_epoch": 1788746375.5634253
+}

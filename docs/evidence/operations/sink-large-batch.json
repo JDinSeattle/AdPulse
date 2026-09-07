@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "started_at_epoch": 1788746056.4252026,
+  "release": "sink-batch-test-6e1a17cba8d3",
+  "batch_messages": 2000,
+  "environment": "real ClickHouse; synthetic Kafka message metadata, no broker involved in this helper",
+  "unbounded_parameter_bytes": 384001,
+  "lookup_chunks": 6,
+  "max_lookup_parameter_bytes": 65473,
+  "unbounded_parameter_rejected": true,
+  "baseline_error": "HTML Form Exception: Field value too long",
+  "exact_logical_results": 2000,
+  "exact_deliveries": 2000,
+  "identical_retry_verified": true,
+  "conflicting_offset_rejected": true,
+  "partition_change_rejected": true,
+  "fixture_rows_removed": true,
+  "elapsed_seconds": 0.689
+}

@@ -25,6 +25,35 @@ def compose(*args, check=True, timeout=180):
     return subprocess.run([*COMPOSE, *args], text=True, capture_output=True, check=check, timeout=timeout)
 
 
+def worker_with_tasks():
+    """Choose a real failure target; fixed worker names can be idle on small CI jobs."""
+    assigned = {}
+    for job in jobs():
+        detail = requests.get(f"http://localhost:18081/jobs/{job['jid']}", timeout=10)
+        detail.raise_for_status()
+        for vertex in detail.json()["vertices"]:
+            response = requests.get(f"http://localhost:18081/jobs/{job['jid']}/vertices/{vertex['id']}", timeout=10)
+            response.raise_for_status()
+            for subtask in response.json()["subtasks"]:
+                if subtask["status"] == "RUNNING":
+                    worker = subtask["taskmanager-id"]
+                    assigned[worker] = assigned.get(worker, 0) + 1
+    candidates = []
+    for service in ("taskmanager-1", "taskmanager-2"):
+        container = compose("ps", "-q", service).stdout.strip()
+        if not container:
+            continue
+        metadata = json.loads(subprocess.run(["docker", "inspect", container], check=True, capture_output=True,
+                                              text=True, timeout=10).stdout)[0]
+        addresses = [n["IPAddress"] for n in metadata["NetworkSettings"]["Networks"].values() if n["IPAddress"]]
+        for worker, count in assigned.items():
+            if any(worker.startswith(address + ":") for address in addresses):
+                candidates.append(dict(service=service, taskmanager_id=worker, running_subtasks=count))
+    if not candidates:
+        raise ValueError("No Compose worker with observed RUNNING subtasks; refusing an ineffective fault")
+    return max(candidates, key=lambda worker: worker["running_subtasks"])
+
+
 def submit():
     seed = now_ms() % 1_000_000_000
     dataset = generate(users=35, seed=seed, start_ms=now_ms() - 35000, scenario="normal")
@@ -59,11 +88,13 @@ def drill(scenario):
             before = checkpoints()
             if not before or not all(c.get("counts", {}).get("completed", 0) for c in before.values()):
                 raise ValueError("A completed checkpoint is required before the worker drill")
-            compose("kill", "-s", "SIGKILL", "taskmanager-1")
+            target = worker_with_tasks()
+            report["fault_target"] = target
+            compose("kill", "-s", "SIGKILL", target["service"])
             try:
                 receipts = submit()
             finally:
-                compose("start", "taskmanager-1")
+                compose("start", target["service"])
             def restored_and_running():
                 current = checkpoints()
                 return len(jobs()) == 2 and all(j["state"] == "RUNNING" for j in jobs()) and any(

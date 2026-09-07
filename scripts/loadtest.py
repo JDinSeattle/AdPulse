@@ -51,7 +51,8 @@ def runtime_sample():
                                       check=True, timeout=10).stdout)
     return dict(jobs=jobs, containers=resource,
                 container_state={s["Name"].lstrip("/"): {"oom_killed": s["State"]["OOMKilled"],
-                                 "restart_count": s["RestartCount"], "status": s["State"]["Status"]} for s in state})
+                                 "restart_count": s["RestartCount"], "status": s["State"]["Status"],
+                                 "container_id": s["Id"], "started_at": s["State"]["StartedAt"]} for s in state})
 
 
 def main():
@@ -137,7 +138,9 @@ def main():
                        and all(j["state"] == "RUNNING" for s in [before, *samples, after] for j in s.get("jobs", {}).values())
                        and all(v["completed"] > 0 and v["failed"] == 0 and v["restored"] == 0 for v in checkpoint_deltas.values())
                        and all(not s["oom_killed"] and s["status"] == "running"
-                               and s["restart_count"] == before["container_state"][name]["restart_count"]
+                               and name in before["container_state"]
+                               and all(s[field] == before["container_state"][name][field]
+                                       for field in ("restart_count", "container_id", "started_at"))
                                for name, s in after["container_state"].items()))
     report = dict(started_at=started_at, target_rate=args.rate, requested_duration_seconds=args.seconds,
                   duration_seconds=round(elapsed, 3), accepted=accepted, client_batch_prefix=prefix,
@@ -147,7 +150,8 @@ def main():
                   sustained_target_duration_met=elapsed >= 1800 and not failure,
                   target_rate_met=accepted / elapsed >= args.rate * 0.95,
                   freshness_slo_seconds=args.freshness_slo_seconds,
-                  freshness_slo_met=observed.get("visible") == accepted and observed["p95_seconds"] <= args.freshness_slo_seconds,
+                  freshness_slo_met=observed.get("visible") == accepted and observed.get("p95_seconds") is not None
+                                    and observed["p95_seconds"] <= args.freshness_slo_seconds,
                   runtime_healthy=runtime_healthy, checkpoint_deltas=checkpoint_deltas,
                   sample_count=len(samples), sampling_errors=errors, failure=failure,
                   environment=dict(os=platform.platform(), python=platform.python_version(),

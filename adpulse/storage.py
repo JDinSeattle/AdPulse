@@ -26,6 +26,27 @@ class PageQueryError(RuntimeError):
         super().__init__(reason)
 
 
+def lookup_parameters(keys, max_bytes=64 * 1024):
+    """Bound decoded HTTP field bytes, including JSON escaping and separators.
+
+    Deduplicate lookup identities only; every delivery is still validated/written.
+    Larger synchronous write batches must not create unbounded form parameters.
+    """
+    encoded, size = [], 2
+    for key in dict.fromkeys(tuple(key) for key in keys):
+        value = canonical(list(key))
+        length = len(value.encode("utf-8"))
+        if length + 2 > max_bytes:
+            raise ValueError("Single lookup identity exceeds parameter byte budget")
+        if size + length + bool(encoded) > max_bytes:
+            yield "[" + ",".join(encoded) + "]"
+            encoded, size = [], 2
+        size += length + bool(encoded)
+        encoded.append(value)
+    if encoded:
+        yield "[" + ",".join(encoded) + "]"
+
+
 class LocalSnapshotStore:
     """Durable local harness for replay/crash invariant tests; not a Flink substitute."""
     def __init__(self, path=":memory:"):
@@ -152,18 +173,22 @@ class ClickHouse:
         deliveries, batch_offsets, routes = [], {}, {}
         parsed = [(m, json.loads(m.value())) for m in messages]
         identities = [[m.topic(), m.partition(), m.offset()] for m, _ in parsed]
-        old_deliveries = self.query("""SELECT topic,partition_id,offset_id,hash FROM adpulse.deliveries
+        old_deliveries = []
+        for parameter in lookup_parameters(identities):
+            old_deliveries.extend(self.query("""SELECT topic,partition_id,offset_id,hash FROM adpulse.deliveries
             WHERE (topic,partition_id,offset_id) IN
               (SELECT JSONExtractString(x,1),JSONExtractUInt(x,2),JSONExtractUInt(x,3)
                FROM (SELECT arrayJoin(JSONExtractArrayRaw({keys:String})) AS x)) FORMAT JSONEachRow""",
-            {"keys": canonical(identities)})
+                {"keys": parameter}))
         old_hashes = {(r["topic"], r["partition_id"], r["offset_id"]): r["hash"] for r in old_deliveries}
         requested_routes = [[p["release_id"], p["output_key"]] for _, p in parsed if p.get("record_type") in {"metric", "association"}]
-        old_routes = self.query("""SELECT release_id,output_key,any(output_topic) AS topic,any(output_partition) AS partition
+        old_routes = []
+        for parameter in lookup_parameters(requested_routes):
+            old_routes.extend(self.query("""SELECT release_id,output_key,any(output_topic) AS topic,any(output_partition) AS partition
             FROM adpulse.results WHERE (release_id,output_key) IN
               (SELECT JSONExtractString(x,1),JSONExtractString(x,2)
                FROM (SELECT arrayJoin(JSONExtractArrayRaw({keys:String})) AS x))
-            GROUP BY release_id,output_key FORMAT JSONEachRow""", {"keys": canonical(requested_routes)}) if requested_routes else []
+            GROUP BY release_id,output_key FORMAT JSONEachRow""", {"keys": parameter}))
         previous_routes = {(r["release_id"], r["output_key"]): (r["topic"], r["partition"]) for r in old_routes}
         for message, payload in parsed:
             topic, partition, offset = message.topic(), message.partition(), message.offset()

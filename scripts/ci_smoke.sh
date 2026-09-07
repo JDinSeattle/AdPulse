@@ -8,6 +8,8 @@ finish() {
   "${compose[@]}" ps -a > artifacts/ci/compose-status.txt 2>&1 || true
   "${compose[@]}" logs --no-color --tail 300 > artifacts/ci/compose.log 2>&1 || true
   curl --fail --silent http://localhost:18081/jobs/overview > artifacts/ci/jobs.json || true
+  curl --fail --silent http://localhost:18081/taskmanagers > artifacts/ci/taskmanagers.json || true
+  if [[ -d artifacts/drills ]]; then cp -a artifacts/drills artifacts/ci/drills; fi
   "${compose[@]}" down --timeout 20 >> artifacts/ci/cleanup.log 2>&1 || true
   exit "$status"
 }
@@ -27,7 +29,6 @@ PY
 .venv/bin/python scripts/integration.py --users 80 --output artifacts/ci/integration
 .venv/bin/python -m adpulse.cli replay --from-s3 --release ci-verified --publish --output artifacts/ci/replay
 .venv/bin/python scripts/query_acceptance.py --release ci-verified --output artifacts/ci/query.json
+.venv/bin/python scripts/sink_acceptance.py --output artifacts/ci/sink-acceptance.json
 .venv/bin/python scripts/drills.py --scenario worker-restart
 .venv/bin/python scripts/drills.py --scenario sink-replay
-
-cp -a artifacts/drills artifacts/ci/drills

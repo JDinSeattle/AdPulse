@@ -42,7 +42,14 @@
     },
     "steady-1000": {
       "whole_key_bloom_filter": true,
-      "sink_max_batch_messages": 2000
+      "sink_max_batch_messages": 2000,
+      "max_lookup_parameter_bytes": 65536
+    },
+    "steady-1000-large-parameter": {
+      "whole_key_bloom_filter": true,
+      "sink_max_batch_messages": 2000,
+      "lookup_parameter_chunking": false,
+      "sink_fixed_during_failed_run_catchup": true
     }
   },
   "configuration_note": "Sequential experiments retain all prior state. The 100 and final 1000 targets use different qualified configurations; no controlled speedup comparison."

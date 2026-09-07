@@ -1,0 +1,65 @@
+{
+  "passed": false,
+  "run_url": "https://github.com/JDinSeattle/AdPulse/actions/runs/34074282535",
+  "conclusion": "failure",
+  "environment": {
+    "environment": "GitHub-hosted runner",
+    "run_id": "34074282535",
+    "commit": "0c99192bed87070a223405cbfa7dd210ac642361",
+    "os": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "cpu_count": 4,
+    "cloud_service_deployment": false
+  },
+  "failed_step": "worker-restart drill: waited 182.805 seconds without a restored-checkpoint count increase",
+  "final_jobs": {
+    "jobs": [
+      {
+        "jid": "2c731bf86365846abe07d8d6ef7089c4",
+        "name": "AdPulse \u00b7 attribution and metrics \u00b7 explicit-click-v1",
+        "start-time": 1788745951103,
+        "end-time": -1,
+        "duration": 229757,
+        "state": "RUNNING",
+        "last-modification": 1788745954695,
+        "tasks": {
+          "running": 16,
+          "canceling": 0,
+          "canceled": 0,
+          "total": 16,
+          "created": 0,
+          "scheduled": 0,
+          "deploying": 0,
+          "reconciling": 0,
+          "finished": 0,
+          "initializing": 0,
+          "failed": 0
+        }
+      },
+      {
+        "jid": "5a5cb863a715d839d4bc78ff75ac3744",
+        "name": "AdPulse \u00b7 cleaning and quality \u00b7 rules-v1",
+        "start-time": 1788745950048,
+        "end-time": -1,
+        "duration": 230812,
+        "state": "RUNNING",
+        "last-modification": 1788745954883,
+        "tasks": {
+          "running": 8,
+          "canceling": 0,
+          "canceled": 0,
+          "total": 8,
+          "created": 0,
+          "scheduled": 0,
+          "deploying": 0,
+          "reconciling": 0,
+          "finished": 0,
+          "initializing": 0,
+          "failed": 0
+        }
+      }
+    ]
+  },
+  "diagnosis": "Both jobs remained RUNNING with unchanged job last-modification timestamps across the hard-coded taskmanager-1 kill. This is consistent with an idle fault target; the old artifact did not capture assignment metadata, so idle placement is an inference.",
+  "change": "Select the Compose worker by actual RUNNING subtask taskmanager IDs, record the target, reject an empty target; always retain drill reports on CI failure.",
+  "resume_eligible": false
+}
