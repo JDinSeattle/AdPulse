@@ -27,3 +27,16 @@
 5. 每百万输入事件 CPU 秒、存储写入、对象存储 API 请求数与云账单分别计算；没有云账单就不虚构成本结论。
 
 实测报告 `sustained_target_duration_met` 只有运行至少 1800 秒才为 true。短测只能作为冒烟 / 性能趋势，不能写成 30–60 分钟稳态验收。
+
+## 本轮长测与图表复现
+
+`loadtest.py` 现在拒绝覆盖报告，并写相邻的 `.samples.jsonl`。采样间隔按实际耗时记录，包含 collector 接收速率、累计已可见子集的逐 receipt P95、尚不可见数、Docker memory/CPU 与 checkpoint bytes/duration/count。最终 P95 必须等到该实验所有接收 receipt 可见；不能使用中间已可见子集代表全体。
+
+```bash
+uv run --no-project --python 3.12 --with matplotlib==3.10.8 \
+  python scripts/plot_load.py \
+  docs/evidence/operations/steady-100.json \
+  docs/evidence/operations/steady-1000.json
+```
+
+绘图依赖独立于服务锁文件。输出 PNG/PDF，可直接追溯每个点到采样 JSONL。Docker memory、checkpoint state_size 与前轮 `tracemalloc` Python 分配峰值是不同指标，不能互相替代。该主机还运行其他项目；没有 CPU affinity、独占磁盘或云资源费用隔离。30 分钟输入过程仍在累积 26 小时保留的键，不能因吞吐稳定声称状态内存已达到长期平台值。

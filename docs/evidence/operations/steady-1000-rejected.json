@@ -1,0 +1,25 @@
+{
+  "passed": false,
+  "terminated_early": true,
+  "reason": "Growing downstream backlog and visible-subset P95 > 60 seconds; operator profiling before an intended 1800-second run continued. Input generator stopped with SIGTERM; no final client-ack count claimed.",
+  "planned_duration_seconds": 1800,
+  "observed_sample_duration_seconds": 246.616,
+  "last_sample_client_acknowledged_lower_bound": 246682,
+  "last_sample_freshness_visible_subset": {
+    "max_seconds": 141.751,
+    "p95_seconds": 127.896,
+    "visible": 105072
+  },
+  "last_sample_pending_visibility": 141610,
+  "client_batch_prefix": "load-743840675-",
+  "environment": "local Docker, Flink 1.20.5, restored native RocksDB state; two 2048m TaskManagers",
+  "resume_eligible": false,
+  "remaining_data": "All committed input retained in Kafka/S3 and included in final whole-input reconciliation.",
+  "server_committed_after_drain": 309585,
+  "eventual_freshness": {
+    "visible": 309585,
+    "p95_seconds": 474.016,
+    "max_seconds": 514.867
+  },
+  "committed_count_note": "Server committed manifest records after input stop and complete reconciliation; not a reconstructed client acknowledgement total."
+}

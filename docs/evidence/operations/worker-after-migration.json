@@ -1,0 +1,38 @@
+{
+  "scenario": "worker-restart",
+  "mode": "docker-real-components",
+  "passed": true,
+  "running_after_seconds": 15.262,
+  "differences": [],
+  "completeness": {
+    "acknowledged": 308255,
+    "archived": 308255,
+    "archive_missing": [],
+    "classified": 308255,
+    "processing_pending": [],
+    "archive_complete": true,
+    "lineage_complete": true
+  },
+  "acknowledged": 308255,
+  "expected_metrics": 2746,
+  "actual_metrics": 2746,
+  "expected_associations": 52354,
+  "actual_associations": 52354,
+  "checkpoint_counts": {
+    "c04282955e4c50593fc99cc0677b3588": {
+      "restored": 1,
+      "total": 208,
+      "in_progress": 0,
+      "completed": 208,
+      "failed": 0
+    },
+    "bbef5461afc709d21bafb76810fa24ec": {
+      "restored": 4,
+      "total": 205,
+      "in_progress": 0,
+      "completed": 205,
+      "failed": 0
+    }
+  },
+  "elapsed_seconds": 59.927
+}

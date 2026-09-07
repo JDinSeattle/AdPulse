@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "differences": [],
+  "completeness": {
+    "acknowledged": 617840,
+    "archived": 617840,
+    "archive_missing": [],
+    "classified": 617840,
+    "processing_pending": [],
+    "archive_complete": true,
+    "lineage_complete": true
+  },
+  "acknowledged": 617840,
+  "expected_metrics": 3044,
+  "actual_metrics": 3044,
+  "expected_associations": 104451,
+  "actual_associations": 104451
+}

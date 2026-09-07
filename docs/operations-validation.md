@@ -44,10 +44,18 @@ Flink **1.20.3 → 1.20.5**；ClickHouse **24.8.14.39 → 26.3.32.14 LTS**。两
 
 [真实浏览器录屏](demo/adpulse-local-demo.mp4)已完成：60.24 秒，1440×1000，含 Grafana、作业拓扑和 checkpoint；附 [文件 hash 与章节](evidence/operations/recording.json)。录屏检查发现的未初始化 watermark 无效日期已修正，过滤哨兵值并改用有效 watermark。视频展示 UI；定量结论以独立报告为准。
 
-两档各 1,800 秒的实验正在执行，最终报告完成后在此列出。每分钟记录实际接收、可见积压、P95、Docker CPU/内存、checkpoint 大小/时长/计数。报告中 `passed` 与 `sustained_target_duration_met` 分开；只有时长与所有验收条件同时满足才能称本地 30 分钟验证通过。
+100 events/s 档已完成 1,800 秒：180,002 条确认输入全部可见，实测速率 100.0 events/s，逐 receipt P95 27.517 秒，两作业各新增 183 次成功 checkpoint，期间无 checkpoint 失败、作业恢复、容器 OOM 或重启。见 [完整报告](evidence/operations/steady-100.json)。
+
+首次 1,000 events/s 在约四分钟采样时积压达到 141,610，已可见子集 P95 127.896 秒，因此停止输入并保留 [失败报告](evidence/operations/steady-1000-rejected.json)。最终 309,585 条已提交输入全部处理；失败期间的最终 P95 为 474.016 秒，不能写成通过或稳态能力。
+
+[实际线程及 Prometheus 采样](evidence/operations/rocksdb-diagnosis.json)显示聚合任务 busy 998 ms/s，两条采样线程在 RocksDB MapState 点查询中。基于这一诊断推断，启用 10-bit whole-key full Bloom filter 并缓存每事件重复读取的 aggregate 值。遵循 [RocksDB 官方点查询调优说明](https://github.com/facebook/rocksdb/wiki/RocksDB-Tuning-Guide)，接受 filter 的内存/空间成本。新增原生刷盘、重开、命中/未命中与遍历回归，两作业通过 [strict canonical savepoint 恢复](evidence/operations/bloom-restore.json)，全历史 **617,840** 条输入与独立 oracle [再次匹配](evidence/operations/after-bloom-reconciliation.json)。
+
+修改后的 1,000 events/s 完整长测正在执行。前后状态规模和宿主机负载不同，不能据此计算受控性能提升百分比。每分钟记录实际接收、可见积压、P95、Docker CPU/内存、checkpoint 大小/时长/计数。报告中 `passed` 与 `sustained_target_duration_met` 分开；只有时长与所有验收条件同时满足才能称本地 30 分钟验证通过。
 
 ## 云端边界
 
-已实现 `.github/workflows/ci.yml`：固定 actions SHA、Python 3.12 / Java 17、锁定依赖、完整 Docker 链路、独立回放、真实查询预算、worker 故障和 artifact。没有成功的 GitHub Actions run URL 之前，云端验证状态保持未验证。即使托管 runner 执行成功，也只属于云端 CI 上的容器集成测试，不是 AWS/GCP/Azure 托管服务或生产部署。
+公共仓库 [JDinSeattle/AdPulse](https://github.com/JDinSeattle/AdPulse) 已建立；[首次 GitHub Actions](https://github.com/JDinSeattle/AdPulse/actions/runs/34072376249) 成功，运行于 GitHub 托管的 4-CPU Linux runner。固定 actions SHA、Python 3.12 / Java 17，执行锁定依赖、完整 Docker 链路、独立回放、真实查询预算、worker 故障并上传 artifact。[下载核验后的证据](evidence/operations/cloud-ci-initial.json)包含 198 条初始对账及故障后累计 278 条对账；worker 19.347 秒回到 RUNNING、42.982 秒完成业务对账。启动和故障期间确有失败 checkpoint，报告保留原计数。该 run 对应初始公开 commit；后续修改需要其自己的 CI 结果。
+
+云端结果仅属于托管 CI 上的容器集成测试，不是 AWS/GCP/Azure 托管服务或生产部署。
 
 30 分钟输入不能证明 26 小时状态保留周期的容量稳态；本地副本不能证明跨主机可靠性；无账单就不报告云成本。上述边界应在经历库和英文简历中保留。

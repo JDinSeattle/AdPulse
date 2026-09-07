@@ -194,8 +194,9 @@ public class AttributionJob {
         @Override public void processElement(String value, Context ctx, Collector<String> out) throws Exception {
             ObjectNode input = (ObjectNode) Json.read(value); long cleanup = input.path("window_start").asLong() + rules.window + rules.retention;
             if (ctx.timerService().currentWatermark() >= cleanup) { ctx.output(SIGNALS, signal(input, "METRIC_FROZEN_REPLAY_REQUIRED", rules)); return; }
-            ObjectNode total = aggregate.value() == null ? input.deepCopy() : (ObjectNode) Json.read(aggregate.value());
-            ObjectNode values = aggregate.value() == null ? Measurement.zeros() : (ObjectNode) total.path("values");
+            String storedAggregate = aggregate.value();
+            ObjectNode total = storedAggregate == null ? input.deepCopy() : (ObjectNode) Json.read(storedAggregate);
+            ObjectNode values = storedAggregate == null ? Measurement.zeros() : (ObjectNode) total.path("values");
             String id = input.path("contribution_id").asText(); String previous = contributions.get(id);
             JsonNode priorValues = previous == null ? Measurement.zeros() : Json.read(previous);
             for (String field : Measurement.COUNTERS)

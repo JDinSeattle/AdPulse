@@ -5,6 +5,7 @@ import argparse
 import json
 import math
 import platform
+import signal
 import subprocess
 import threading
 import time
@@ -99,6 +100,12 @@ def main():
     thread = threading.Thread(target=monitor, daemon=True)
     thread.start()
     failure = None
+
+    def interrupted(signum, frame):
+        raise RuntimeError(f"Interrupted by signal {signum}; accepted count covers completed client sends only")
+
+    signal.signal(signal.SIGTERM, interrupted)
+    signal.signal(signal.SIGINT, interrupted)
     try:
         while time.monotonic() - start < args.seconds:
             users = max(1, min(250, math.ceil(args.rate / 2)))
@@ -128,7 +135,7 @@ def main():
                          for jid, job in after["jobs"].items()}
     runtime_healthy = (set(before["jobs"]) == set(after["jobs"]) and len(after["jobs"]) == 2
                        and all(j["state"] == "RUNNING" for s in [before, *samples, after] for j in s.get("jobs", {}).values())
-                       and all(v["completed"] > 0 and v["failed"] == 0 for v in checkpoint_deltas.values())
+                       and all(v["completed"] > 0 and v["failed"] == 0 and v["restored"] == 0 for v in checkpoint_deltas.values())
                        and all(not s["oom_killed"] and s["status"] == "running"
                                and s["restart_count"] == before["container_state"][name]["restart_count"]
                                for name, s in after["container_state"].items()))

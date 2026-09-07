@@ -1,0 +1,257 @@
+{
+  "environment": "local Docker, two 2048m TaskManagers, Flink 1.20.5 before Bloom configuration",
+  "observed": {
+    "prometheus": {
+      "busy": {
+        "status": "success",
+        "data": {
+          "resultType": "vector",
+          "result": [
+            {
+              "metric": {
+                "task_name": "Sink:_Writer____Sink:_Committer"
+              },
+              "value": [
+                1788744191.677,
+                "2"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "KeyedProcess"
+              },
+              "value": [
+                1788744191.677,
+                "26"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "Source:_raw_kafka_v1____contract_validation____Sink:_Writer____Sink:_Committer"
+              },
+              "value": [
+                1788744191.677,
+                "7"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "KeyedProcess_____anonymous_datastream_source_1__1_____Calc_2_____TableToDataSteam____Map____Sink:_Writer____Sink:_Committer"
+              },
+              "value": [
+                1788744191.677,
+                "37"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "Source:_dimension_cdc_v1"
+              },
+              "value": [
+                1788744191.677,
+                "1"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "Source:_clean_kafka_v1_____Filter__Filter_"
+              },
+              "value": [
+                1788744191.677,
+                "2"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "historical_dimensions"
+              },
+              "value": [
+                1788744191.677,
+                "8"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "full_metric_aggregate"
+              },
+              "value": [
+                1788744191.677,
+                "998"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "exposure_association"
+              },
+              "value": [
+                1788744191.677,
+                "12"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "conversion_association"
+              },
+              "value": [
+                1788744191.677,
+                "14"
+              ]
+            }
+          ]
+        }
+      },
+      "backpressure": {
+        "status": "success",
+        "data": {
+          "resultType": "vector",
+          "result": [
+            {
+              "metric": {
+                "task_name": "Sink:_Writer____Sink:_Committer"
+              },
+              "value": [
+                1788744191.68,
+                "0"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "KeyedProcess"
+              },
+              "value": [
+                1788744191.68,
+                "0"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "Source:_raw_kafka_v1____contract_validation____Sink:_Writer____Sink:_Committer"
+              },
+              "value": [
+                1788744191.68,
+                "0"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "KeyedProcess_____anonymous_datastream_source_1__1_____Calc_2_____TableToDataSteam____Map____Sink:_Writer____Sink:_Committer"
+              },
+              "value": [
+                1788744191.68,
+                "0"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "Source:_dimension_cdc_v1"
+              },
+              "value": [
+                1788744191.68,
+                "0"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "Source:_clean_kafka_v1_____Filter__Filter_"
+              },
+              "value": [
+                1788744191.68,
+                "998"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "historical_dimensions"
+              },
+              "value": [
+                1788744191.68,
+                "992"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "full_metric_aggregate"
+              },
+              "value": [
+                1788744191.68,
+                "0"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "exposure_association"
+              },
+              "value": [
+                1788744191.68,
+                "989"
+              ]
+            },
+            {
+              "metric": {
+                "task_name": "conversion_association"
+              },
+              "value": [
+                1788744191.68,
+                "988"
+              ]
+            }
+          ]
+        }
+      },
+      "gc": {
+        "status": "success",
+        "data": {
+          "resultType": "vector",
+          "result": [
+            {
+              "metric": {
+                "__name__": "flink_taskmanager_Status_JVM_GarbageCollector_G1_Young_Generation_Time",
+                "host": "172_23_0_10",
+                "instance": "taskmanager-2:9249",
+                "job": "flink",
+                "tm_id": "172_23_0_10:43099_37963b"
+              },
+              "value": [
+                1788744191.681,
+                "583"
+              ]
+            },
+            {
+              "metric": {
+                "__name__": "flink_taskmanager_Status_JVM_GarbageCollector_G1_Young_Generation_Time",
+                "host": "172_23_0_4",
+                "instance": "taskmanager-1:9249",
+                "job": "flink",
+                "tm_id": "172_23_0_4:42919_8ab279"
+              },
+              "value": [
+                1788744191.681,
+                "106"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "jvm_thread_samples": [
+      "\"full-metric-aggregate (1/3)#3\" #677 prio=5 os_prio=0 cpu=332617.97ms elapsed=395.58s tid=0x00007bf33526f800 nid=0xbef runnable  [0x00007bf2fade0000]\n   java.lang.Thread.State: RUNNABLE\n\tat org.rocksdb.RocksDB.get(Native Method)\n\tat org.rocksdb.RocksDB.get(RocksDB.java:2084)\n\tat org.apache.flink.contrib.streaming.state.RocksDBMapState.get(RocksDBMapState.java:125)\n\tat org.apache.flink.runtime.state.UserFacingMapState.get(UserFacingMapState.java:47)\n\tat io.adpulse.AttributionJob$Aggregate.processElement(AttributionJob.java:199)\n\tat io.adpulse.AttributionJob$Aggregate.processElement(AttributionJob.java:181)\n\tat org.apache.flink.streaming.api.operators.KeyedProcessOperator.processElement(KeyedProcessOperator.java:83)",
+      "\"full-metric-aggregate (3/3)#3\" #681 prio=5 os_prio=0 cpu=218333.04ms elapsed=395.58s tid=0x00007bf33526fe00 nid=0xc4e runnable  [0x00007bf30287c000]\n   java.lang.Thread.State: RUNNABLE\n\tat org.rocksdb.RocksDB.get(Native Method)\n\tat org.rocksdb.RocksDB.get(RocksDB.java:2084)\n\tat org.apache.flink.contrib.streaming.state.RocksDBMapState.get(RocksDBMapState.java:125)\n\tat org.apache.flink.runtime.state.UserFacingMapState.get(UserFacingMapState.java:47)\n\tat io.adpulse.AttributionJob$Aggregate.processElement(AttributionJob.java:199)\n\tat io.adpulse.AttributionJob$Aggregate.processElement(AttributionJob.java:181)\n\tat org.apache.flink.streaming.api.operators.KeyedProcessOperator.processElement(KeyedProcessOperator.java:83)"
+    ]
+  },
+  "raw_thread_dump_sha256": "0ee98fda96ef8e707c6e4879f72878b81a5b21d6c30b052296aec48090e2dd23",
+  "inference": "A sample of both busy aggregate subtasks was inside RocksDB MapState point reads. Negative contribution-ID lookups motivated full whole-key Bloom filters; this is a diagnostic inference, not an isolated causal benchmark.",
+  "changes": [
+    "10-bit whole-key full Bloom filters; native lifecycle registered with Flink",
+    "Cache the existing aggregate value once per event",
+    "Strict canonical savepoint restoration rebuilds state with current options"
+  ],
+  "baseline_report": "docs/evidence/operations/steady-1000-rejected.json",
+  "validation": [
+    "docs/evidence/operations/verification.json",
+    "docs/evidence/operations/bloom-restore.json"
+  ],
+  "limitations": [
+    "Shared host; successive workloads have different accumulated state. No controlled percentage speedup claim."
+  ],
+  "reference": "https://github.com/facebook/rocksdb/wiki/RocksDB-Tuning-Guide"
+}

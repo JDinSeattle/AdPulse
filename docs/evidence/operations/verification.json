@@ -7,12 +7,12 @@
     "skipped": 0
   },
   "java": {
-    "tests": 9,
+    "tests": 10,
     "failures": 0,
     "errors": 0,
     "skipped": 0
   },
-  "total_tests": 66,
+  "total_tests": 67,
   "checked_at": "2026-09-07T01:03:04.107640+00:00",
   "lint": "ruff passed",
   "python_runtime": "3.12.13",
@@ -22,5 +22,7 @@
   "warnings": [
     "Starlette httpx TestClient and anyio BlockingPortal deprecations"
   ],
-  "execution_note": "Initial restricted-sandbox ASGI run stopped progressing and was interrupted; final complete suite executed with local communication permitted."
+  "execution_note": "Initial restricted-sandbox ASGI run stopped progressing and was interrupted; final complete suite executed with local communication permitted.",
+  "java_checked_at": "2026-09-07T01:33:26.890998+00:00",
+  "java_native_coverage": "RocksDB flush/reopen, point reads/misses and iteration with native options/resource lifecycle"
 }

@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "scope": "local Docker strict canonical savepoint restoration with Bloom filters; no state discarded",
+  "restores": [
+    {
+      "passed": true,
+      "previous_job": "c04282955e4c50593fc99cc0677b3588",
+      "restored_job": "689dcb3e2f82e7d19b1489debefac860",
+      "restored_from": "file:/opt/flink/state/savepoints/savepoint-c04282-aa4e9f5619b0",
+      "restored_checkpoint": {
+        "id": 876,
+        "restore_timestamp": 1788744685849,
+        "is_savepoint": true,
+        "external_path": "file:/opt/flink/state/savepoints/savepoint-c04282-aa4e9f5619b0"
+      },
+      "counts": {
+        "restored": 1,
+        "total": 1,
+        "in_progress": 0,
+        "completed": 1,
+        "failed": 0
+      },
+      "recovery_seconds": 14.401,
+      "allow_non_restored_state": false
+    },
+    {
+      "passed": true,
+      "previous_job": "bbef5461afc709d21bafb76810fa24ec",
+      "restored_job": "5a33700ebca97bc547a73e33e53b6cea",
+      "restored_from": "file:/opt/flink/state/savepoints/savepoint-bbef54-fd0fdb6a4df8",
+      "restored_checkpoint": {
+        "id": 795,
+        "restore_timestamp": 1788744702316,
+        "is_savepoint": true,
+        "external_path": "file:/opt/flink/state/savepoints/savepoint-bbef54-fd0fdb6a4df8"
+      },
+      "counts": {
+        "restored": 1,
+        "total": 2,
+        "in_progress": 0,
+        "completed": 1,
+        "failed": 1
+      },
+      "recovery_seconds": 18.306,
+      "allow_non_restored_state": false
+    }
+  ],
+  "completed_at_epoch": 1788744720.6405659
+}

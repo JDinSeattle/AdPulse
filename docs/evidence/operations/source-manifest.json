@@ -1,0 +1,24 @@
+{
+  "captured_at": "2026-09-07T01:35:42.980582+00:00",
+  "boundary": "source snapshot for operations work; reports recorded separately",
+  "files": {
+    ".github/workflows/ci.yml": "7dc192069ca9083e0f9f618afc5afb7cf5148ac893aff2d63d498ffcd1ff0dbb",
+    "deployment/Dockerfile.flink": "43f061d9586cbdf403187b6f2286a996bac5ca58ecb5e9ead844f67dfb9d7e79",
+    "deployment/compose.quorum.yaml": "90a563444f50e125169d01879a4d14b55ee4af91111ca705157d5c37fd7000fb",
+    "deployment/compose.yaml": "da145215ed683cb17f3118d0344d59d4df6a86d7113dbb8c0e40dbed15385bac",
+    "flink-jobs/pom.xml": "37f62a2afc531c9668441bd1ea8eb3072fd3f24b7bcf6ab5754d4e3f6b094a1a",
+    "flink-jobs/src/main/java/io/adpulse/AttributionJob.java": "9bbc894460ddace63db14a2aaedc75f39b562cdee820e64eca9427e92290fa10",
+    "flink-jobs/src/main/java/io/adpulse/LocalRocksOptions.java": "a94f7f3c54a259487511dac53a8c6ef1b181002a0c733c14f96a27f74c4544a1",
+    "flink-jobs/src/test/java/io/adpulse/LocalRocksOptionsTest.java": "1204c47b946f12b1e9243d572251a490227e83bdc40b7ba14d712234d147d8f1",
+    "monitoring/grafana/dashboards/adpulse.json": "02dee036e2e3786e24231c339c6c704a8cae606034cc9b02f65918268157123d",
+    "scripts/ci_smoke.sh": "e6913d8786dedfa96f83332802d19bef791d7a25f4d63b69431705852ec0150b",
+    "scripts/loadtest.py": "2e48eaee381a2001dfc9bc0db54faa0745faefb0c1ecb3a64b07481f03439b68",
+    "scripts/migrate_runtime.py": "60cc3c04325e4355b4cf56868c766b22b96e62e0bc80be6ba06346a9f85adfd3",
+    "scripts/plot_load.py": "21b80b6b6ed23ae9b89ef0304c2d9afbaee4b51cae801968d5ed3c3234b53918",
+    "scripts/quorum_drill.py": "11b7dc59c36b69165e26dd5fdea169ae57df97da1ba817abad696af2c35bdf5e",
+    "scripts/restore_job.py": "880a8ef20e71a58b11ca82924792a30b0786a81a1926e7aefc0cb4ae5e27d654",
+    "scripts/update_experience_bank.py": "dc5849b4ffa82cb8efe650d85f2e14c489d67e0bc3fc2ab2b2e45c5dd91f64d7",
+    "tests/test_bank_update.py": "9415c47e267592a0da52d74e5c44e8352e9eabcfdb910b51a88594ca240f856c",
+    "tools/recording/record.mjs": "2e737bc01fe609c5e5186a1396423e097968c6f4110563fe4ffc1fb79ed3035b"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "repository": "JDinSeattle/AdPulse",
+  "url": "https://github.com/JDinSeattle/AdPulse",
+  "visibility": "PUBLIC",
+  "initial_commit": "a1b564a91cb5210ad2db53106285770fba1d73f6",
+  "initial_commit_url": "https://github.com/JDinSeattle/AdPulse/commit/a1b564a91cb5210ad2db53106285770fba1d73f6",
+  "private_banks_published": false,
+  "source_workspace_git": "original root .git is an empty read-only placeholder; publication uses an isolated checkout",
+  "ci_initial_run": "https://github.com/JDinSeattle/AdPulse/actions/runs/34072376249",
+  "ci_initial_status": "completed",
+  "initial_public_files": 121,
+  "ci_initial_conclusion": "success"
+}
