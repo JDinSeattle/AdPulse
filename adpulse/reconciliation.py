@@ -54,6 +54,26 @@ def coverage(index, db, expected_receipts=()):
     return index.coverage(accepted(), db.iter_query("SELECT receipt_id,disposition FROM adpulse.quality FINAL WHERE disposition!='signal' FORMAT JSONEachRow"))
 
 
+def actual_results(db, kind, release, directory):
+    # Reduce the same latest offset as the original full-payload query. Only
+    # comparison fields enter aggregate state; spill before the query RAM cap.
+    if kind == "metrics":
+        fields = ("metric_key", "values")
+    elif kind == "associations":
+        fields = ("association_key", "status", "reason", "experiment_id", "variant")
+    else:
+        raise ValueError("Unknown result kind")
+    projection = "tuple(" + ",".join("JSONExtractRaw(payload,'" + f + "')" for f in fields) + ")"
+    query = f"""SELECT output_key,argMax({projection},output_offset) AS latest
+        FROM adpulse.results WHERE release_id={{release:String}} AND record_type={{kind:String}}
+        GROUP BY output_key
+        SETTINGS max_bytes_before_external_group_by=67108864,
+                 max_temporary_data_on_disk_size_for_query=4294967296
+        FORMAT JSONEachRow"""
+    for row in db.spooled_query(query, {"release": release, "kind": kind[:-1]}, directory=directory):
+        yield dict(zip(fields, (json.loads(value) for value in row["latest"])))
+
+
 def run(index_path, workspace_path, *, db=None, objects=None, release="live-v1", expected_receipts=(), audit=False):
     started = time.monotonic()
     db, objects = db or ClickHouse(), objects or S3Objects()
@@ -66,12 +86,9 @@ def run(index_path, workspace_path, *, db=None, objects=None, release="live-v1",
         with closing(DiskWorkspace(workspace_path)) as workspace:
             expected = calculate(index.packets(), load_rules(), release, index.dimensions(), storage=workspace)
 
-            def actual(kind):
-                for row in db.iter_query("""SELECT output_key,argMax(payload,output_offset) AS payload
-                    FROM adpulse.results WHERE release_id={release:String} AND record_type={kind:String}
-                    GROUP BY output_key FORMAT JSONEachRow""", {"release": release, "kind": kind}):
-                    yield json.loads(row["payload"])
-            comparison = compare_streams(workspace, expected, {"metrics": actual("metric"), "associations": actual("association")})
+            comparison = compare_streams(workspace, expected, {
+                kind: actual_results(db, kind, release, workspace.path.parent)
+                for kind in ("metrics", "associations")})
         return dict(**comparison, completeness=completeness, acknowledged=completeness["acknowledged"],
                     phase="complete", index=index_report, elapsed_seconds=time.monotonic()-started,
                     checked_at_epoch=time.time(), mode="disk-backed-independent-oracle",

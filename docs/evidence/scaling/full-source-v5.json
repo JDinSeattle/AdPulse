@@ -1,0 +1,25 @@
+{
+  "files": {
+    "adpulse/__init__.py": "130e708ae90f1ef42a025025066d157a11ebbce1b270b2961baf5f029e9d1217",
+    "adpulse/api.py": "00a76344c16c62ef3785680ff558473f564599f47643a7e0c2c7587108c2c22d",
+    "adpulse/archive.py": "b4337d7c2bdf7234f17ea25b3cd7fb44c74d387bd9080edf7f45f9c43d088b08",
+    "adpulse/archive_index.py": "eeb443660f9beec295db83045322c5bd310125e337a5bf3ff5195b2dcc87c71d",
+    "adpulse/cli.py": "e8af85ce22615a240fdc2ad65e5dc67005d0a925ae480013422b9f8c60af39ef",
+    "adpulse/collector.py": "b702627286688ec1de0e89ec84b038bcbcc43a7aaf4dd57b1aab52c53a0865f3",
+    "adpulse/common.py": "5b71c44a884237a6af15f3dc329db7bbcfc505f0693bcf4af31dd0df2674d8eb",
+    "adpulse/disk.py": "570f6972dcd28667cf7c75b94b0f46ee6e069b898a3e06335c9e9bdc03a04b3e",
+    "adpulse/generator.py": "f48b0f349cb13af6622f89a8f33e275d10e700cca2f11229d51958489ef2d096",
+    "adpulse/inspection.py": "ff15270f071a657dfd24633e5488c97e1ed72661f493f55b207fb5fbe06b638f",
+    "adpulse/oracle.py": "67136d2534322bcd77c87c166855d6663662dae6d657c0770789c184f96412bc",
+    "adpulse/pagination.py": "86624504a16125142a07ae6e72d1608a036ee6c4fad03fcdd9735a782b500f3b",
+    "adpulse/reconciliation.py": "df3bae4a8fa0ccfd0bde80381a96b8bc0a99159954185cf55714a4357ea51fd3",
+    "adpulse/releases.py": "6876e09021a04efb1c097d7528982e578c31ac1edf6df389a093ac45510815eb",
+    "adpulse/storage.py": "0053148c6b959886df60c29be05650fee81635e47514e4a69e36df068d78e287",
+    "adpulse/worker.py": "096820b0bd7182a70292c39c64461a77ad3fbcb98b12686fc5208ac2ca36bbc8",
+    "contracts/event.schema.json": "5c48b04689f71d1e844b2674678ef82478a5911f95db4b240025a33baa9b6cec",
+    "contracts/rules-v1.json": "7584bbfec23f392a1bb1f5f9a26d4e6f27f614c188cabfce99caf8e5ee6d0b15",
+    "contracts/rules.schema.json": "4801289be54f46ccfeeee9d577c35f34ebda5516b389ce20412d2e13e4a621ea",
+    "scripts/profile_reconcile.py": "d56ee2b3c7dd821fb69e0250f4bea3522effb3ce09a8e9677b04d3cc98343539"
+  },
+  "scope": "Frozen full-reference v5 source; fresh oracle scratch with reused verified archive index"
+}

@@ -1,0 +1,1062 @@
+{
+  "passed": true,
+  "mode": "actual local Docker HTTP, verified S3 archive index and ClickHouse-derived lineage",
+  "coverage": {
+    "acknowledged": 3833704,
+    "archive_complete": true,
+    "archive_missing": [],
+    "archive_missing_count": 0,
+    "archived": 3833704,
+    "classified": 3833704,
+    "consistency": "inspection_snapshot",
+    "index": {
+      "audit": false,
+      "listed_manifests": 9610,
+      "verified_manifests": 0,
+      "verified_rows": 0
+    },
+    "lineage_complete": true,
+    "processing_pending": [],
+    "processing_pending_count": 0,
+    "quality_samples": [
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-v-741784213-5-0",
+        "receipt_id": "c76eb78d-ab71-4889-a63e-3f3ff69661c3:19",
+        "received_at": 1788741784216,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44154,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-i-741784213-0",
+        "receipt_id": "c76eb78d-ab71-4889-a63e-3f3ff69661c3:13",
+        "received_at": 1788741784216,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 43959,
+          "partition": 1,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "detail": "$.event_time: string found, integer expected",
+        "disposition": "quarantined",
+        "error_code": "SCHEMA_INVALID",
+        "event_id": "bad-type-741784213",
+        "receipt_id": "c76eb78d-ab71-4889-a63e-3f3ff69661c3:18",
+        "received_at": 1788741784216,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 43960,
+          "partition": 1,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "event_id": "ev-v-741784213-5-0",
+        "receipt_id": "c76eb78d-ab71-4889-a63e-3f3ff69661c3:12",
+        "received_at": 1788741784216,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44152,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "event_id": "ev-i-741784213-0",
+        "receipt_id": "c76eb78d-ab71-4889-a63e-3f3ff69661c3:3",
+        "received_at": 1788741784216,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 43956,
+          "partition": 1,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "event_id": "ev-c-740031340-8",
+        "receipt_id": "fd127125-74e7-4c56-8116-f4fa54b7727f:7",
+        "received_at": 1788740031342,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 43945,
+          "partition": 1,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-i-740031340-0",
+        "receipt_id": "fd127125-74e7-4c56-8116-f4fa54b7727f:8",
+        "received_at": 1788740031342,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44235,
+          "partition": 2,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "event_id": "ev-i-740031340-0",
+        "receipt_id": "fd127125-74e7-4c56-8116-f4fa54b7727f:4",
+        "received_at": 1788740031342,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44233,
+          "partition": 2,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "event_id": "ev-i-740031340-4-new-id",
+        "receipt_id": "fd127125-74e7-4c56-8116-f4fa54b7727f:10",
+        "received_at": 1788740031342,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44236,
+          "partition": 2,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-c-740031340-8",
+        "receipt_id": "fd127125-74e7-4c56-8116-f4fa54b7727f:20",
+        "received_at": 1788740031342,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 43950,
+          "partition": 1,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-i-740031340-4",
+        "receipt_id": "fd127125-74e7-4c56-8116-f4fa54b7727f:5",
+        "received_at": 1788740031342,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44234,
+          "partition": 2,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "detail": "$.event_time: string found, integer expected",
+        "disposition": "quarantined",
+        "error_code": "SCHEMA_INVALID",
+        "event_id": "bad-type-740031340",
+        "receipt_id": "fd127125-74e7-4c56-8116-f4fa54b7727f:25",
+        "received_at": 1788740031342,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44144,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "event_id": "ev-i-737706770-10-new-id",
+        "receipt_id": "e06c3645-a6f2-496f-b913-d0e7b93e7870:7",
+        "received_at": 1788737706772,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44116,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-i-737706770-0",
+        "receipt_id": "e06c3645-a6f2-496f-b913-d0e7b93e7870:29",
+        "received_at": 1788737706772,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44129,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-i-737706770-10",
+        "receipt_id": "e06c3645-a6f2-496f-b913-d0e7b93e7870:34",
+        "received_at": 1788737706772,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44133,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-c-737706770-4",
+        "receipt_id": "e06c3645-a6f2-496f-b913-d0e7b93e7870:40",
+        "received_at": 1788737706772,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 43942,
+          "partition": 1,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "event_id": "ev-i-737706770-0-new-id",
+        "receipt_id": "e06c3645-a6f2-496f-b913-d0e7b93e7870:41",
+        "received_at": 1788737706772,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44136,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "event_id": "ev-c-737706770-16-new-id",
+        "receipt_id": "e06c3645-a6f2-496f-b913-d0e7b93e7870:38",
+        "received_at": 1788737706772,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44135,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "detail": "$.event_time: string found, integer expected",
+        "disposition": "quarantined",
+        "error_code": "SCHEMA_INVALID",
+        "event_id": "bad-type-737706770",
+        "receipt_id": "e06c3645-a6f2-496f-b913-d0e7b93e7870:30",
+        "received_at": 1788737706772,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44130,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-c-737706770-16",
+        "receipt_id": "e06c3645-a6f2-496f-b913-d0e7b93e7870:25",
+        "received_at": 1788737706772,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44125,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "event_id": "ev-c-737706770-4-new-id",
+        "receipt_id": "e06c3645-a6f2-496f-b913-d0e7b93e7870:32",
+        "received_at": 1788737706772,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 44131,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "attribution",
+        "disposition": "signal",
+        "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+        "event_id": "",
+        "receipt_id": "",
+        "received_at": 0,
+        "record_type": "quality",
+        "rule_id": "attribution-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": null
+      },
+      {
+        "dataset": "attribution",
+        "disposition": "signal",
+        "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+        "event_id": "",
+        "receipt_id": "",
+        "received_at": 0,
+        "record_type": "quality",
+        "rule_id": "attribution-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": null
+      },
+      {
+        "dataset": "attribution",
+        "disposition": "signal",
+        "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+        "event_id": "",
+        "receipt_id": "",
+        "received_at": 0,
+        "record_type": "quality",
+        "rule_id": "attribution-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": null
+      },
+      {
+        "dataset": "attribution",
+        "disposition": "signal",
+        "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+        "event_id": "",
+        "receipt_id": "",
+        "received_at": 0,
+        "record_type": "quality",
+        "rule_id": "attribution-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": null
+      },
+      {
+        "dataset": "attribution",
+        "disposition": "signal",
+        "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+        "event_id": "",
+        "receipt_id": "",
+        "received_at": 0,
+        "record_type": "quality",
+        "rule_id": "attribution-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": null
+      },
+      {
+        "dataset": "attribution",
+        "disposition": "signal",
+        "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+        "event_id": "",
+        "receipt_id": "",
+        "received_at": 0,
+        "record_type": "quality",
+        "rule_id": "attribution-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": null
+      },
+      {
+        "dataset": "attribution",
+        "disposition": "signal",
+        "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+        "event_id": "",
+        "receipt_id": "",
+        "received_at": 0,
+        "record_type": "quality",
+        "rule_id": "attribution-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": null
+      },
+      {
+        "dataset": "attribution",
+        "disposition": "signal",
+        "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+        "event_id": "",
+        "receipt_id": "",
+        "received_at": 0,
+        "record_type": "quality",
+        "rule_id": "attribution-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": null
+      },
+      {
+        "dataset": "attribution",
+        "disposition": "signal",
+        "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+        "event_id": "",
+        "receipt_id": "",
+        "received_at": 0,
+        "record_type": "quality",
+        "rule_id": "attribution-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": null
+      },
+      {
+        "dataset": "attribution",
+        "disposition": "signal",
+        "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+        "event_id": "",
+        "receipt_id": "",
+        "received_at": 0,
+        "record_type": "quality",
+        "rule_id": "attribution-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": null
+      },
+      {
+        "dataset": "attribution",
+        "disposition": "signal",
+        "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+        "event_id": "",
+        "receipt_id": "",
+        "received_at": 0,
+        "record_type": "quality",
+        "rule_id": "attribution-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": null
+      },
+      {
+        "dataset": "attribution",
+        "disposition": "signal",
+        "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+        "event_id": "",
+        "receipt_id": "",
+        "received_at": 0,
+        "record_type": "quality",
+        "rule_id": "attribution-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": null
+      },
+      {
+        "dataset": "raw_events",
+        "detail": "$.event_time: string found, integer expected",
+        "disposition": "quarantined",
+        "error_code": "SCHEMA_INVALID",
+        "event_id": "bad-type-735915533",
+        "receipt_id": "0aa4d3ec-4721-4798-8850-5be67270e765:61",
+        "received_at": 1788735915548,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 285,
+          "partition": 2,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "event_id": "ev-i-735881562-16-new-id",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:57",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 221,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "event_id": "ev-i-735881562-35-new-id",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:65",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 235,
+          "partition": 1,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-v-735881562-77-0",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:82",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 240,
+          "partition": 1,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-v-735881562-38-0",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:66",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 236,
+          "partition": 1,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-i-735881562-54",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:72",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 228,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-c-735881562-19",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:58",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 222,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-c-735881562-24",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:60",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 233,
+          "partition": 1,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-i-735881562-0",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:50",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 219,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-v-735881562-48-0",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:70",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 227,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-v-735881562-42-1",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:68",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 225,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-i-735881562-67",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:78",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 230,
+          "partition": 0,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-i-735881562-10",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:54",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 230,
+          "partition": 1,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "event_id": "ev-i-735881562-16",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:56",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 231,
+          "partition": 1,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "event_id": "ev-v-735881562-58-0-new-id",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:75",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 224,
+          "partition": 2,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "event_id": "ev-i-735881562-10",
+        "receipt_id": "c9ba02fd-5380-479e-a37f-34c11e3457ce:18",
+        "received_at": 1788735881566,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 185,
+          "partition": 1,
+          "topic": "adpulse.raw"
+        }
+      },
+      {
+        "dataset": "raw_events",
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "event_id": "ev-i-735881562-54-new-id",
+        "receipt_id": "0d945355-870d-4cfb-a139-7a8202c56031:73",
+        "received_at": 1788735881575,
+        "record_type": "quality",
+        "rule_id": "event-contract-v1",
+        "rule_version": "rules-v1",
+        "sample_ref": {
+          "offset": 223,
+          "partition": 2,
+          "topic": "adpulse.raw"
+        }
+      }
+    ],
+    "quality_summary": [
+      {
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_BUSINESS_KEY",
+        "records": 72,
+        "rule_version": "rules-v1"
+      },
+      {
+        "disposition": "quarantined",
+        "error_code": "SCHEMA_INVALID",
+        "records": 5,
+        "rule_version": "rules-v1"
+      },
+      {
+        "disposition": "duplicate",
+        "error_code": "DUPLICATE_EVENT_ID",
+        "records": 72,
+        "rule_version": "rules-v1"
+      },
+      {
+        "disposition": "cleaned",
+        "error_code": "OK",
+        "records": 3833555,
+        "rule_version": "rules-v1"
+      },
+      {
+        "disposition": "signal",
+        "error_code": "DIMENSION_CHANGE_REPLAY_REQUIRED",
+        "records": 20,
+        "rule_version": "rules-v1"
+      }
+    ],
+    "sample_limit": 100,
+    "checked_at_epoch": 1788754485.941195,
+    "check_started_at_epoch": 1788754184.1291568
+  },
+  "concurrent_requests": 48,
+  "client_workers": 16,
+  "observations": [
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.013360529999772552,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.0071181759994942695,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.008735605995752849,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.010315496998373419,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.008110763003060129,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.010461842000950128,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.01117221699678339,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.007657977002963889,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.009723210998345166,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.012565777004056145,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.010744293002062477,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.017251892997592222,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.017287586997554172,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.014833382003416773,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.016684196998539846,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.01920591799716931,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.01833929100394016,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.016251433997240383,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.018616948000271805,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.01379799500136869,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.0161629969952628,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.019953530994825996,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.017300031999184284,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.019590968993725255,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.020808930006751325,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.016327092998835724,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.020454564997635316,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.01973758399981307,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.019748427002923563,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.015937741001835093,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.018450677001965232,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.015599662001477554,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.01619872500305064,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.01752180900075473,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.01169311400008155,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.01588250300119398,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.015251179996994324,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.012972277996595949,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.015196861000731587,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.015461518996744417,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.013297990000864957,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.013680674994247966,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.015001742001913954,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.011668373001157306,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.013024646003032103,
+      "bytes": 54594
+    },
+    {
+      "path": "/v1/trace/1d824ebe-617e-456c-bb05-6fe5a2fdb930:90",
+      "seconds": 0.011354498004948255,
+      "bytes": 1152
+    },
+    {
+      "path": "/v1/reconcile",
+      "seconds": 0.008472781999444123,
+      "bytes": 17245
+    },
+    {
+      "path": "/metrics",
+      "seconds": 0.010246189995086752,
+      "bytes": 54594
+    }
+  ],
+  "median_seconds": 0.015224020498862956,
+  "max_seconds": 0.020808930006751325,
+  "snapshot_boundary": "Responses expose check timestamps; no distributed MVCC or per-request re-audit claim"
+}

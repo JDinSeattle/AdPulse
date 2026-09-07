@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "container": "adpulse-disk-reconcile-v4",
+  "stage": "Stopped early after parallel equivalence acceptance rejected output_key as business key",
+  "fix": "Project metric_key / association_key from the same latest payload tuple; preserve JSON value types.",
+  "verification": "Corrected projection fully matches prior full-payload queries on the immutable release; see reference-query.json."
+}

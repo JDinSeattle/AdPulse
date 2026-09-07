@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "release": "replay-verified-20260906",
+  "comparison": {
+    "passed": true,
+    "differences": [],
+    "difference_count": 0,
+    "sample_limit": 100,
+    "expected_metrics": 1154,
+    "expected_associations": 21667,
+    "actual_metrics": 1154,
+    "actual_associations": 21667
+  },
+  "live_counts": {
+    "metrics": 6538,
+    "associations": 646242
+  },
+  "live_read_seconds": 4.011922426005185,
+  "elapsed_seconds": 4.81462465000368,
+  "environment": "Real local or hosted-runner ClickHouse; 512 MiB / 120 s query limits, 64 MiB external aggregation threshold, 4 GiB query spill and 8 GiB HTTP spool caps",
+  "boundary": "Equality against full payloads applies to the named immutable release; live counts verify bounded result reading only, not business equality."
+}

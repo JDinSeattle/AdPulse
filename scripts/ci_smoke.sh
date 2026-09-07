@@ -32,6 +32,7 @@ PY
 "${compose[@]}" exec -T inspection-metrics python -m adpulse.inspection metrics --once --wait-lock
 .venv/bin/python scripts/inspection_acceptance.py --output artifacts/ci/inspection.json --timeout 180
 .venv/bin/python -m adpulse.cli replay --from-s3 --release ci-verified --publish --output artifacts/ci/replay
+.venv/bin/python scripts/reconciliation_query_acceptance.py --release ci-verified --output artifacts/ci/reference-query.json
 .venv/bin/python scripts/query_acceptance.py --release ci-verified --output artifacts/ci/query.json
 .venv/bin/python scripts/sink_acceptance.py --output artifacts/ci/sink-acceptance.json
 .venv/bin/python scripts/drills.py --scenario worker-restart

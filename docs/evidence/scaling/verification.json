@@ -4,10 +4,11 @@
   "java_tests": 10,
   "total_tests": 91,
   "command": "make verify",
-  "log_sha256": "fb0e663c1cee2179063d63119ac51cbeb69744562ae5a7004bc878886bca8b39",
+  "log_sha256": "339accfa57c9ecd43619b0273e949f4a91fdaca3895590762b8294ebb326f319",
   "environment": "Local Python 3.12, Java 17 target; native RocksDB JUnit tests included; Docker integrations separate",
   "warnings": [
     "Starlette httpx TestClient deprecation",
     "Maven shaded dependency overlap warnings; build and tests passed"
-  ]
+  ],
+  "execution_note": "Final make verify passed with local-connection permission. One sandbox-restricted attempt stalled in ASGI TestClient and was interrupted; it is not counted as a successful run."
 }
