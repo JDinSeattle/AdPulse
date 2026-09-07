@@ -1,4 +1,4 @@
-"""Independent, bounded batch oracle. Never imports the streaming implementation.
+"""Independent batch oracle with an optional disk-backed execution workspace. Never imports the streaming implementation.
 
 Dedup is persistent over the supplied replay scope. The streaming promise is only
 10 minutes; discrepancies outside that bound are repaired in a new release.
@@ -13,10 +13,15 @@ COUNTERS = ("impressions", "clicks", "matched_conversions", "unmatched_conversio
 DIMENSIONS = ("advertiser_id", "app_id", "campaign_id", "region", "app_version", "experiment_id", "variant", "currency", "channel")
 
 
-def normalize(records, rules):
+def normalize(records, rules, storage=None):
     validate = validator()
-    events, quality, seen_ids, seen_keys = [], [], set(), set()
+    events = storage.sequence("events") if storage else []
+    quality = storage.sequence("quality") if storage else []
+    seen_ids = storage.mapping("seen_ids") if storage else set()
+    seen_keys = storage.mapping("seen_keys") if storage else set()
     for ordinal, raw in enumerate(records):
+        if storage:
+            storage.input_records = ordinal + 1
         packet = raw if "event" in raw else {"event": raw, "receipt_id": f"oracle:{ordinal}", "received_at": ordinal}
         event = deepcopy(packet["event"])
         quality_row = {"receipt_id": packet["receipt_id"], "event_id": event.get("event_id") if isinstance(event, dict) else None,
@@ -75,13 +80,16 @@ def key_for(event, impression, timestamp, cohort, currency, rules, dimensions):
     return key, dict(dims, window_start=window, cohort_basis=cohort)
 
 
-def calculate(records, rules=None, release_id="replay-v1", dimensions=()):
+def calculate(records, rules=None, release_id="replay-v1", dimensions=(), *, storage=None):
     rules = rules or load_rules()
-    events, quality = normalize(records, rules)
-    impressions = {business_key(e)[:2] + (e["impression_id"],): e for e in events if e["event_type"] == "impression"}
-    clicks = {business_key(e)[:2] + (e["click_id"],): e for e in events if e["event_type"] == "click"}
-    joined = {}
-    metrics = {}
+    events, quality = normalize(records, rules, storage)
+    def mapping(name, pairs=()):
+        return storage.mapping(name, pairs) if storage else dict(pairs)
+
+    impressions = mapping("impressions", ((business_key(e)[:2] + (e["impression_id"],), e) for e in events if e["event_type"] == "impression"))
+    clicks = mapping("clicks", ((business_key(e)[:2] + (e["click_id"],), e) for e in events if e["event_type"] == "click"))
+    joined = mapping("joined")
+    metrics = mapping("metrics")
 
     def add(event, impression, timestamp, cohort, currency="ALL", **values):
         key, dims = key_for(event, impression, timestamp, cohort, currency, rules, dimensions)
@@ -90,6 +98,8 @@ def calculate(records, rules=None, release_id="replay-v1", dimensions=()):
                                            values=dict.fromkeys(COUNTERS, 0)))
         for name, value in values.items():
             row["values"][name] += value
+        if storage:
+            metrics[key] = row
 
     for impression in impressions.values():
         add(impression, impression, impression["event_time"], "occurrence", impressions=1)
@@ -116,7 +126,8 @@ def calculate(records, rules=None, release_id="replay-v1", dimensions=()):
         add(click, impression, click["event_time"], "click", clicks=1)
         if impression:
             add(click, impression, impression["event_time"], "impression", clicks=1)
-    associations, converted = [], set()
+    associations = storage.sequence("associations") if storage else []
+    converted = storage.mapping("converted") if storage else set()
     for conversion in (e for e in events if e["event_type"] == "conversion"):
         key = business_key(conversion)[:2] + (conversion["click_id"],)
         click = clicks.get(key)
@@ -151,9 +162,9 @@ def calculate(records, rules=None, release_id="replay-v1", dimensions=()):
             add(conversion, impression, click["event_time"], "conversion_value", conversion["currency"],
                 value_minor=conversion["value_minor"], matched_conversions=1)
     return dict(release_id=release_id, rule_version=rules["rule_version"], rules_sha256=digest(rules),
-                input_records=len(records), clean_events=len(events), quality=quality,
-                associations=sorted(associations, key=lambda a: a["association_key"]),
-                metrics=sorted(metrics.values(), key=lambda m: m["metric_key"]))
+                input_records=storage.input_records if storage else len(records), clean_events=len(events), quality=quality,
+                associations=associations.ordered("association_key") if storage else sorted(associations, key=lambda a: a["association_key"]),
+                metrics=metrics.ordered() if storage else sorted(metrics.values(), key=lambda m: m["metric_key"]))
 
 
 def compare(expected, actual):

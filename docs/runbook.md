@@ -105,3 +105,28 @@ docker compose --env-file deployment/capacity.env -f deployment/compose.yaml con
 脚本暂停接入、保存并取消两项作业、重建 Flink 容器、严格恢复 2/6 并行度并等待新 checkpoint。失败保留 journal 和保存点，不回落为空状态。恢复后必须执行完整业务对账，再开始新测量。已有输出的环境不要直接运行不带容量配置的 `make up`，它会改变进程配置；后续需要重新建容器时先保存状态。新空白环境可用 `docker compose --env-file deployment/capacity.env -f deployment/compose.yaml up -d --build --wait`，但已有 release 仍受禁止空状态提交的保护。
 
 sink 最大批次为 2,000 条 Kafka 消息，poll 最多等待一秒后也会返回部分批次。身份/路由查询按 JSON 转义后 UTF-8 大小拆为最多 64 KiB 参数；完整批次的 offset/hash 与 key/partition 冲突检查保留，只有全部同步写入成功后才提交位点。`scripts/sink_acceptance.py` 验证真实数据库的大参数、重试与冲突边界；`scripts/drills.py --scenario sink-replay` 验证实际 Kafka 位点边界。worker 故障目标由当前 RUNNING 子任务分配决定，不能假定某个固定容器必然承载任务。
+
+
+## 磁盘对账和后台检查（0.3.0）
+
+```bash
+# 新输出名；不会覆盖已有测量，索引可增量复用。
+make reconcile OUTPUT=artifacts/reconcile/new-run.json
+# 若需重新核验已索引的不可变对象，而非信任已有校验缓存：
+.venv/bin/python scripts/disk_reconcile.py --audit --output artifacts/reconcile/audit-run.json
+```
+
+`make smoke` 的全量参考路径默认使用磁盘实现；设置 `ADPULSE_REFERENCE_BACKEND=memory` 可运行旧小样本参考。现有 `adpulse replay --publish` 的快照发布仍是批量内存工具，本轮没有把它宣称为无界流式发布。
+
+`inspection-coverage` 和 `inspection-metrics` 分别维护归档/来源检查与监控快照，单写者文件锁防止手动刷新与后台循环重叠；API 只读共享 `inspection-data` 卷。两个服务分别限制 1 GiB / 512 MiB、各 1 CPU。SQL 查询通常 512 MiB / 120 秒预算；缺失 lineage 的 grace-hash anti-join 另限制 64 MiB join table 和 4 GiB 临时外排空间。超限保留失败状态并告警。
+
+首次建立大归档索引需要时间。在快照未建立、失败或过期时，trace/reconcile/quality 返回 503，`/metrics` 仍输出快照健康状态和 API 查询指标，省略旧业务值。检查日志、磁盘、`adpulse_inspection_snapshot_ready` 及快照时间，不能只看 API `/health`。主动刷新可执行：
+
+```bash
+docker compose --env-file deployment/capacity.env -f deployment/compose.yaml exec -T inspection-coverage \
+  python -m adpulse.inspection coverage --once --wait-lock
+docker compose --env-file deployment/capacity.env -f deployment/compose.yaml exec -T inspection-metrics \
+  python -m adpulse.inspection metrics --once --wait-lock
+```
+
+更新现有环境时先构建 Python 镜像并启动两个检查服务，待快照就绪后再以 `--no-deps` 更新 API；遵循现有容量配置，避免重建 Flink。索引是派生缓存，不删除原始归档、数据库或旧迁移卷来回收实验空间。

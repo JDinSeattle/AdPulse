@@ -6,11 +6,11 @@
 
 真实链路：**Python generator → HTTP collector → Kafka → Flink SQL / Java → Kafka 完整值结果 → ClickHouse**。另有 PostgreSQL / Debezium 历史维度、S3 兼容归档、独立 Python oracle、发布版本校正、Prometheus / Grafana。
 
-**0.2.0 更新**：结果 API 改为有界游标分页，保留最新 offset 语义，翻页固定 release；增加数据库查询预算、查询观测及 HTTP 依赖维护。见 [接口迁移说明](docs/query-api.md)、[本次验收](docs/refresh-validation.md) 和 [岗位 / 技术依据](docs/market-and-technology-2026-09-06.md)。
+**0.3.0 更新**：新增磁盘对账、归档 receipt 索引、带过期检查的后台检查快照及每进程查询并发限制。固定 2 CPU / 4 GiB、20 万条输入的 3 组对照中，oracle 进程峰值 RSS 中位数降低 86.3%，代价为 2.29 倍耗时与约 605 MiB 临时磁盘。trace / 监控服务成本与预计算成本分开记录，见 [本轮实现与实测](docs/scaling-validation.md)。原有 [分页接口契约](docs/query-api.md) 和 [岗位 / 技术依据](docs/market-and-technology-2026-09-06.md)保留。
 
 ## 快速启动
 
-需要 Python 3.12、Java 17 或可编译 Java 17 的 JDK、Maven 3.9、uv、Docker Engine / Compose。建议为完整开发栈预留至少 10 GB 内存和 15 GB 磁盘。首次启动会下载固定版本镜像和依赖。
+需要 Python 3.12、Java 17 或可编译 Java 17 的 JDK、Maven 3.9、uv、Docker Engine / Compose。空白完整开发栈建议预留至少 12 GB 内存和 20 GB 磁盘；历史数据、索引与磁盘 oracle 另占存储，不能把此数当长期容量上限。首次启动会下载固定版本镜像和依赖。
 
 ```bash
 make setup
@@ -48,7 +48,7 @@ make demo
 .venv/bin/python -m adpulse.cli generate --users 1000 --scenario mixed \
   --output artifacts/input --send http://localhost:8088
 
-# 原始接收 → 清洗去向 → 归档完整性
+# 最近一次后台接收 / 清洗 / 归档检查；响应包含检查时间
 curl http://localhost:8080/v1/reconcile
 
 # cohort 必须明确；金额另按币种查询
@@ -92,7 +92,8 @@ curl http://localhost:8080/v1/quality
 | `contracts/` | JSON Schema、冻结规则、时间配置 |
 | `flink-jobs/` | 清洗 SQL、双键关联、有界去重、RocksDB 状态与完整值聚合 |
 | `adpulse/storage.py`, `worker.py` / `sink-writer/` | ClickHouse 批量写入、重试与归档 worker |
-| `adpulse/oracle.py` / `reference-calculation/` | 独立小样本批量对账 |
+| `adpulse/oracle.py`, `disk.py`, `reconciliation.py` | 独立内存 / 磁盘批量对账 |
+| `adpulse/archive_index.py`, `inspection.py` | 归档检索索引、后台检查和带时间戳的 HTTP 读取模型 |
 | `adpulse/releases.py`, `cli.py`, `api.py` | 修正发布、审计、原子切换和服务接口 |
 | `deployment/`, `monitoring/` | 固定版本 Compose、CDC、告警、Grafana |
 | `tests/`, `scripts/` | Python / Java 验收、集成、故障、负载脚本 |

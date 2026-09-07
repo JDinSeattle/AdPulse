@@ -1,0 +1,337 @@
+{
+  "environment": "local Docker on shared physical host",
+  "image": "sha256:be41a53a8b6b62e8a9bb443d36f22b8bf0912c3251bb0d4a8019f2be5f135a8a",
+  "baseline_commit": "c3020d6f8ee314b6d09ec326e05e30e42f869edd",
+  "fixture_manifest_sha256": "83ce137954864d15df3a7259c681936821f17db31fa0db4213d602b9c4c8c698",
+  "fixture_records": 200000,
+  "cpus": 2,
+  "cpuset": "2,4",
+  "memory_bytes": 4294967296,
+  "swap_bytes": 0,
+  "order": [
+    "memory-1",
+    "disk-1",
+    "disk-2",
+    "memory-2",
+    "memory-3",
+    "disk-3"
+  ],
+  "results": [
+    {
+      "mode": "memory",
+      "repeat": 1,
+      "exit_code": 0,
+      "oom_killed": false,
+      "measurement": {
+        "mode": "memory",
+        "elapsed_seconds": 27.43896462799603,
+        "warmup_seconds": 0.00043015200208174065,
+        "user_cpu_seconds": 27.071949,
+        "system_cpu_seconds": 0.326854,
+        "process_peak_rss_kib": 1010580,
+        "scratch_disk_bytes": 0,
+        "output_fingerprints": {
+          "quality": {
+            "count": 200146,
+            "sha256": "4ccccc91c357a2844f04781129aa7c601d47218a4f592d23fa0cd177e3c4d317"
+          },
+          "metrics": {
+            "count": 63392,
+            "sha256": "22e1035b1d0d12c9452a3421d4d52b4b84b280ec486f37aa32ccc9715fbd2854"
+          },
+          "associations": {
+            "count": 27626,
+            "sha256": "0a68b819aac623e44388fc557cbbe57eb8775fb21edcf4261d172e662e651f8e"
+          },
+          "metadata": {
+            "release_id": "fixed-fixture",
+            "rule_version": "rules-v1",
+            "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f",
+            "input_records": 200000,
+            "clean_events": 163580
+          }
+        },
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpuset.cpus.effective": "2,4",
+          "memory.max": "4294967296",
+          "memory.peak": "1026142208",
+          "memory.swap.max": "0",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        },
+        "measurement": "Includes archive verification, input ordering, full independent reference calculation and all output hashing; per-run fresh disk indexes; OS file cache shared/warm, not dropped",
+        "fixture": "83ce137954864d15df3a7259c681936821f17db31fa0db4213d602b9c4c8c698"
+      }
+    },
+    {
+      "mode": "disk",
+      "repeat": 1,
+      "exit_code": 0,
+      "oom_killed": false,
+      "measurement": {
+        "mode": "disk",
+        "elapsed_seconds": 70.36733935400116,
+        "warmup_seconds": 0.0007292020018212497,
+        "user_cpu_seconds": 64.761094,
+        "system_cpu_seconds": 1.503794,
+        "process_peak_rss_kib": 138444,
+        "scratch_disk_bytes": 634052608,
+        "output_fingerprints": {
+          "quality": {
+            "count": 200146,
+            "sha256": "4ccccc91c357a2844f04781129aa7c601d47218a4f592d23fa0cd177e3c4d317"
+          },
+          "metrics": {
+            "count": 63392,
+            "sha256": "22e1035b1d0d12c9452a3421d4d52b4b84b280ec486f37aa32ccc9715fbd2854"
+          },
+          "associations": {
+            "count": 27626,
+            "sha256": "0a68b819aac623e44388fc557cbbe57eb8775fb21edcf4261d172e662e651f8e"
+          },
+          "metadata": {
+            "release_id": "fixed-fixture",
+            "rule_version": "rules-v1",
+            "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f",
+            "input_records": 200000,
+            "clean_events": 163580
+          }
+        },
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpuset.cpus.effective": "2,4",
+          "memory.max": "4294967296",
+          "memory.peak": "853770240",
+          "memory.swap.max": "0",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        },
+        "measurement": "Includes archive verification, input ordering, full independent reference calculation and all output hashing; per-run fresh disk indexes; OS file cache shared/warm, not dropped",
+        "fixture": "83ce137954864d15df3a7259c681936821f17db31fa0db4213d602b9c4c8c698"
+      }
+    },
+    {
+      "mode": "disk",
+      "repeat": 2,
+      "exit_code": 0,
+      "oom_killed": false,
+      "measurement": {
+        "mode": "disk",
+        "elapsed_seconds": 63.890518143998634,
+        "warmup_seconds": 0.0004172389963059686,
+        "user_cpu_seconds": 58.784316,
+        "system_cpu_seconds": 1.354915,
+        "process_peak_rss_kib": 139076,
+        "scratch_disk_bytes": 634052608,
+        "output_fingerprints": {
+          "quality": {
+            "count": 200146,
+            "sha256": "4ccccc91c357a2844f04781129aa7c601d47218a4f592d23fa0cd177e3c4d317"
+          },
+          "metrics": {
+            "count": 63392,
+            "sha256": "22e1035b1d0d12c9452a3421d4d52b4b84b280ec486f37aa32ccc9715fbd2854"
+          },
+          "associations": {
+            "count": 27626,
+            "sha256": "0a68b819aac623e44388fc557cbbe57eb8775fb21edcf4261d172e662e651f8e"
+          },
+          "metadata": {
+            "release_id": "fixed-fixture",
+            "rule_version": "rules-v1",
+            "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f",
+            "input_records": 200000,
+            "clean_events": 163580
+          }
+        },
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpuset.cpus.effective": "2,4",
+          "memory.max": "4294967296",
+          "memory.peak": "854081536",
+          "memory.swap.max": "0",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        },
+        "measurement": "Includes archive verification, input ordering, full independent reference calculation and all output hashing; per-run fresh disk indexes; OS file cache shared/warm, not dropped",
+        "fixture": "83ce137954864d15df3a7259c681936821f17db31fa0db4213d602b9c4c8c698"
+      }
+    },
+    {
+      "mode": "memory",
+      "repeat": 2,
+      "exit_code": 0,
+      "oom_killed": false,
+      "measurement": {
+        "mode": "memory",
+        "elapsed_seconds": 30.717979711000226,
+        "warmup_seconds": 0.000818189000710845,
+        "user_cpu_seconds": 30.462122,
+        "system_cpu_seconds": 0.371867,
+        "process_peak_rss_kib": 1012068,
+        "scratch_disk_bytes": 0,
+        "output_fingerprints": {
+          "quality": {
+            "count": 200146,
+            "sha256": "4ccccc91c357a2844f04781129aa7c601d47218a4f592d23fa0cd177e3c4d317"
+          },
+          "metrics": {
+            "count": 63392,
+            "sha256": "22e1035b1d0d12c9452a3421d4d52b4b84b280ec486f37aa32ccc9715fbd2854"
+          },
+          "associations": {
+            "count": 27626,
+            "sha256": "0a68b819aac623e44388fc557cbbe57eb8775fb21edcf4261d172e662e651f8e"
+          },
+          "metadata": {
+            "release_id": "fixed-fixture",
+            "rule_version": "rules-v1",
+            "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f",
+            "input_records": 200000,
+            "clean_events": 163580
+          }
+        },
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpuset.cpus.effective": "2,4",
+          "memory.max": "4294967296",
+          "memory.peak": "1027616768",
+          "memory.swap.max": "0",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        },
+        "measurement": "Includes archive verification, input ordering, full independent reference calculation and all output hashing; per-run fresh disk indexes; OS file cache shared/warm, not dropped",
+        "fixture": "83ce137954864d15df3a7259c681936821f17db31fa0db4213d602b9c4c8c698"
+      }
+    },
+    {
+      "mode": "memory",
+      "repeat": 3,
+      "exit_code": 0,
+      "oom_killed": false,
+      "measurement": {
+        "mode": "memory",
+        "elapsed_seconds": 31.300380585998937,
+        "warmup_seconds": 0.0007913009976618923,
+        "user_cpu_seconds": 30.972633,
+        "system_cpu_seconds": 0.378665,
+        "process_peak_rss_kib": 1010892,
+        "scratch_disk_bytes": 0,
+        "output_fingerprints": {
+          "quality": {
+            "count": 200146,
+            "sha256": "4ccccc91c357a2844f04781129aa7c601d47218a4f592d23fa0cd177e3c4d317"
+          },
+          "metrics": {
+            "count": 63392,
+            "sha256": "22e1035b1d0d12c9452a3421d4d52b4b84b280ec486f37aa32ccc9715fbd2854"
+          },
+          "associations": {
+            "count": 27626,
+            "sha256": "0a68b819aac623e44388fc557cbbe57eb8775fb21edcf4261d172e662e651f8e"
+          },
+          "metadata": {
+            "release_id": "fixed-fixture",
+            "rule_version": "rules-v1",
+            "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f",
+            "input_records": 200000,
+            "clean_events": 163580
+          }
+        },
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpuset.cpus.effective": "2,4",
+          "memory.max": "4294967296",
+          "memory.peak": "1026256896",
+          "memory.swap.max": "0",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        },
+        "measurement": "Includes archive verification, input ordering, full independent reference calculation and all output hashing; per-run fresh disk indexes; OS file cache shared/warm, not dropped",
+        "fixture": "83ce137954864d15df3a7259c681936821f17db31fa0db4213d602b9c4c8c698"
+      }
+    },
+    {
+      "mode": "disk",
+      "repeat": 3,
+      "exit_code": 0,
+      "oom_killed": false,
+      "measurement": {
+        "mode": "disk",
+        "elapsed_seconds": 73.91198967899982,
+        "warmup_seconds": 0.0006805529992561787,
+        "user_cpu_seconds": 68.512582,
+        "system_cpu_seconds": 1.631014,
+        "process_peak_rss_kib": 138376,
+        "scratch_disk_bytes": 634052608,
+        "output_fingerprints": {
+          "quality": {
+            "count": 200146,
+            "sha256": "4ccccc91c357a2844f04781129aa7c601d47218a4f592d23fa0cd177e3c4d317"
+          },
+          "metrics": {
+            "count": 63392,
+            "sha256": "22e1035b1d0d12c9452a3421d4d52b4b84b280ec486f37aa32ccc9715fbd2854"
+          },
+          "associations": {
+            "count": 27626,
+            "sha256": "0a68b819aac623e44388fc557cbbe57eb8775fb21edcf4261d172e662e651f8e"
+          },
+          "metadata": {
+            "release_id": "fixed-fixture",
+            "rule_version": "rules-v1",
+            "rules_sha256": "cc839c14180529baf2f99d1ce4e65e82e49c62672e41547fe05c0fa405c83e4f",
+            "input_records": 200000,
+            "clean_events": 163580
+          }
+        },
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpuset.cpus.effective": "2,4",
+          "memory.max": "4294967296",
+          "memory.peak": "833232896",
+          "memory.swap.max": "0",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        },
+        "measurement": "Includes archive verification, input ordering, full independent reference calculation and all output hashing; per-run fresh disk indexes; OS file cache shared/warm, not dropped",
+        "fixture": "83ce137954864d15df3a7259c681936821f17db31fa0db4213d602b9c4c8c698"
+      }
+    }
+  ],
+  "cpu_model": "",
+  "candidate_sources": {
+    "adpulse/__init__.py": "130e708ae90f1ef42a025025066d157a11ebbce1b270b2961baf5f029e9d1217",
+    "adpulse/archive.py": "b4337d7c2bdf7234f17ea25b3cd7fb44c74d387bd9080edf7f45f9c43d088b08",
+    "adpulse/collector.py": "b702627286688ec1de0e89ec84b038bcbcc43a7aaf4dd57b1aab52c53a0865f3",
+    "adpulse/cli.py": "e8af85ce22615a240fdc2ad65e5dc67005d0a925ae480013422b9f8c60af39ef",
+    "adpulse/api.py": "812665fd1db3c2a39f14b804e6bd041416885502e417bef705a5538464a4b5ff",
+    "adpulse/pagination.py": "86624504a16125142a07ae6e72d1608a036ee6c4fad03fcdd9735a782b500f3b",
+    "adpulse/releases.py": "6876e09021a04efb1c097d7528982e578c31ac1edf6df389a093ac45510815eb",
+    "adpulse/generator.py": "f48b0f349cb13af6622f89a8f33e275d10e700cca2f11229d51958489ef2d096",
+    "adpulse/storage.py": "13c2802a47c61e885cab6d107662dd877aed05a5718fc2366c94462a4b214c69",
+    "adpulse/disk.py": "570f6972dcd28667cf7c75b94b0f46ee6e069b898a3e06335c9e9bdc03a04b3e",
+    "adpulse/reconciliation.py": "f7724b2f6663e9ee54e30ff733be6ee2a428d590af9d38fbe6157af3fd01cd4b",
+    "adpulse/inspection.py": "619c284ac14d4737783b2bfe111e5b811b0415278c147314a3104709315c9a5f",
+    "adpulse/worker.py": "096820b0bd7182a70292c39c64461a77ad3fbcb98b12686fc5208ac2ca36bbc8",
+    "adpulse/archive_index.py": "ea053e0bcbdb56814102a9248704b70aa72f714bce63dcc5adb08998e04838d2",
+    "adpulse/oracle.py": "67136d2534322bcd77c87c166855d6663662dae6d657c0770789c184f96412bc",
+    "adpulse/common.py": "5b71c44a884237a6af15f3dc329db7bbcfc505f0693bcf4af31dd0df2674d8eb"
+  },
+  "limitation": "CPU affinity and cgroup quotas are fixed; host disk/page cache and other user projects are shared. No production or Flink-throughput inference.",
+  "passed": true,
+  "all_outputs_identical": true,
+  "summary": {
+    "memory": {
+      "elapsed_seconds": 30.717979711000226,
+      "process_peak_rss_kib": 1010892,
+      "user_cpu_seconds": 30.462122,
+      "system_cpu_seconds": 0.371867,
+      "scratch_disk_bytes": 0
+    },
+    "disk": {
+      "elapsed_seconds": 70.36733935400116,
+      "process_peak_rss_kib": 138444,
+      "user_cpu_seconds": 64.761094,
+      "system_cpu_seconds": 1.503794,
+      "scratch_disk_bytes": 634052608
+    }
+  },
+  "rss_reduction_fraction": 0.8630476846191284,
+  "elapsed_ratio_disk_over_memory": 2.2907541451628197
+}

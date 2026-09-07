@@ -2,13 +2,17 @@
 from __future__ import annotations
 
 import argparse
+import os
+import tempfile
 import time
+from contextlib import closing
 from pathlib import Path
 
 import requests
 
 from adpulse import releases
 from adpulse.archive import S3Objects, reconcile, verified_records
+from adpulse.archive_index import ArchiveIndex
 from adpulse.cli import archived_dimensions
 from adpulse.common import canonical, digest, load_rules, now_ms, write_json
 from adpulse.generator import generate, save_dataset, send
@@ -40,7 +44,7 @@ def checkpoints():
     return {job["jid"]: requests.get(f"http://localhost:18081/jobs/{job['jid']}/checkpoints", timeout=10).json() for job in jobs()}
 
 
-def reconcile_live(expected_receipts=(), timeout=180):
+def _memory_reconcile_live(expected_receipts=(), timeout=180):
     db, objects = ClickHouse(), S3Objects()
     latest = {}
 
@@ -71,10 +75,39 @@ def reconcile_live(expected_receipts=(), timeout=180):
         raise AssertionError(f"Live reconciliation failed; see artifacts/integration/last-failure.json: {canonical(latest)[:1800]}") from exc
 
 
+def reconcile_live(expected_receipts=(), timeout=180):
+    if os.getenv("ADPULSE_REFERENCE_BACKEND", "disk") == "memory":
+        return _memory_reconcile_live(expected_receipts, timeout)
+    from adpulse.reconciliation import run as disk_reconcile
+    root = Path("artifacts/integration/disk-reference")
+    root.mkdir(parents=True, exist_ok=True)
+    latest = {}
+
+    def check():
+        with tempfile.TemporaryDirectory(prefix="attempt-", dir=root) as work:
+            result = disk_reconcile(root / "archive.sqlite", Path(work) / "oracle.sqlite",
+                                    expected_receipts=expected_receipts)
+        latest.clear()
+        latest.update(result)
+        return result if result["passed"] else False
+
+    try:
+        return wait_until(check, timeout=timeout, label="disk-backed full business reconciliation")
+    except TimeoutError as exc:
+        write_json("artifacts/integration/last-failure.json", latest)
+        raise AssertionError("Live reconciliation failed; see artifacts/integration/last-failure.json") from exc
+
+
+def dimensions_ready():
+    with closing(ArchiveIndex("artifacts/integration/disk-reference/archive.sqlite")) as index:
+        index.refresh(S3Objects())
+        return len(index.dimensions()) >= 4
+
+
 def run(scenario="mixed", users=200, output="artifacts/integration"):
     root = Path(output)
     wait_until(lambda: len(jobs()) == 2 and all(j["state"] == "RUNNING" for j in jobs()), label="two running Flink jobs")
-    wait_until(lambda: len(archived_dimensions(verified_records(S3Objects()))) >= 4, label="CDC initial snapshot archived")
+    wait_until(dimensions_ready, label="CDC initial snapshot archived")
     seed = now_ms() % 1_000_000_000
     dataset = generate(users=users, seed=seed, start_ms=now_ms() - users * 1000, scenario=scenario)
     save_dataset(dataset, root / "dataset")

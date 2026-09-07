@@ -1,0 +1,48 @@
+{
+  "passed": false,
+  "resume_eligible": false,
+  "stopped_at_epoch": 1788752196.2352014,
+  "reason": "SQLite selected kind-only index for receipt probes, making full coverage anti-join impractical; early attempt stopped and will be rerun with compound receipt/kind index.",
+  "plans": [
+    {
+      "sql": "SELECT row_json FROM records WHERE kind='raw' AND receipt='x'",
+      "plan": [
+        [
+          3,
+          0,
+          0,
+          "SEARCH records USING INDEX record_kind (kind=?)"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT e.receipt FROM expected e WHERE NOT EXISTS(SELECT 1 FROM records r WHERE r.kind='raw' AND r.receipt=e.receipt)",
+      "plan": [
+        [
+          2,
+          0,
+          0,
+          "SCAN e"
+        ],
+        [
+          5,
+          0,
+          0,
+          "CORRELATED SCALAR SUBQUERY 1"
+        ],
+        [
+          9,
+          5,
+          0,
+          "SEARCH r USING COVERING INDEX receipt_lookup (receipt=?)"
+        ]
+      ]
+    }
+  ],
+  "metrics_failure": {
+    "query": "pending conversion count through full-payload latest_results view",
+    "clickhouse_exception_code": 241,
+    "memory_budget_bytes": 536870912,
+    "fix_plan": "Reduce latest status scalar with argMax before counting, rather than retain every full payload."
+  }
+}

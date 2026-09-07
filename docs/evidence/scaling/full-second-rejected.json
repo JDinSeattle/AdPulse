@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "resume_eligible": false,
+  "recorded_at_epoch": 1788753356.151928,
+  "phase": "dimension-budget",
+  "source_counts": {
+    "adpulse.cdc.public.campaign_versions": 12,
+    "adpulse.quality": 3833724,
+    "adpulse.quarantine": 5,
+    "adpulse.raw": 3833704,
+    "adpulse.receipts": 42149
+  },
+  "reason": "All non-raw/non-receipt topics had been counted against the dimension-history cap. Actual archive also contains quality and quarantine. Restrict dimension input to campaign_versions topics without relaxing the dimension memory/count caps. Full receipt coverage completed before this rejection."
+}

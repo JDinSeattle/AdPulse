@@ -27,6 +27,10 @@ print(json.dumps({'environment':'GitHub-hosted runner' if os.getenv('GITHUB_ACTI
 PY
 "${compose[@]}" up -d --build --wait --wait-timeout 420 > artifacts/ci/startup.log 2>&1
 .venv/bin/python scripts/integration.py --users 80 --output artifacts/ci/integration
+.venv/bin/python scripts/disk_reconcile.py --output artifacts/ci/disk-reconciliation.json
+"${compose[@]}" exec -T inspection-coverage python -m adpulse.inspection coverage --once --wait-lock
+"${compose[@]}" exec -T inspection-metrics python -m adpulse.inspection metrics --once --wait-lock
+.venv/bin/python scripts/inspection_acceptance.py --output artifacts/ci/inspection.json --timeout 180
 .venv/bin/python -m adpulse.cli replay --from-s3 --release ci-verified --publish --output artifacts/ci/replay
 .venv/bin/python scripts/query_acceptance.py --release ci-verified --output artifacts/ci/query.json
 .venv/bin/python scripts/sink_acceptance.py --output artifacts/ci/sink-acceptance.json

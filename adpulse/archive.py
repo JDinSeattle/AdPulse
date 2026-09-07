@@ -28,6 +28,14 @@ class LocalObjects:
     def get(self, key):
         return (self.directory / key).read_bytes()
 
+    def open(self, key):
+        return (self.directory / key).open("rb")
+
+    def iter_keys(self, prefix):
+        for path in (self.directory / prefix).rglob("*"):
+            if path.is_file():
+                yield str(path.relative_to(self.directory))
+
     def keys(self, prefix):
         return sorted(str(p.relative_to(self.directory)) for p in (self.directory / prefix).rglob("*") if p.is_file())
 
@@ -52,6 +60,15 @@ class S3Objects:
 
     def get(self, key):
         return self.client.get_object(Bucket=self.bucket, Key=key)["Body"].read()
+
+    def open(self, key):
+        return self.client.get_object(Bucket=self.bucket, Key=key)["Body"]
+
+    def iter_keys(self, prefix):
+        pages = self.client.get_paginator("list_objects_v2").paginate(Bucket=self.bucket, Prefix=prefix)
+        for page in pages:
+            for item in page.get("Contents", []):
+                yield item["Key"]
 
     def keys(self, prefix):
         pages = self.client.get_paginator("list_objects_v2").paginate(Bucket=self.bucket, Prefix=prefix)

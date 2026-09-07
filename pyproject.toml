@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "adpulse"
-version = "0.2.0"
+version = "0.3.0"
 description = "广告行为实时数仓与质量治理平台"
 requires-python = ">=3.11"
 dependencies = [

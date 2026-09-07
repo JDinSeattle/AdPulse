@@ -1,7 +1,7 @@
 name: adpulse
 
 x-python: &python
-  image: adpulse-python:0.2.0
+  image: adpulse-python:0.3.0
   build:
     context: ..
     dockerfile: deployment/Dockerfile.python
@@ -207,6 +207,9 @@ services:
     environment:
       <<: *environment
       ADPULSE_CURSOR_SECRET: ${ADPULSE_CURSOR_SECRET:-adpulse-local-cursor-key-change-for-shared-deployments}
+      ADPULSE_INSPECTION_DIR: /inspection
+      ADPULSE_QUERY_CONCURRENCY: "4"
+    volumes: ["inspection-data:/inspection:ro"]
     ports: ["127.0.0.1:8080:8080"]
     depends_on:
       bootstrap: {condition: service_completed_successfully}
@@ -215,6 +218,39 @@ services:
       interval: 10s
       timeout: 5s
       retries: 20
+  inspection-init:
+    <<: *python
+    user: root
+    command: ["sh", "-c", "mkdir -p /inspection && chown 10001:10001 /inspection"]
+    volumes: ["inspection-data:/inspection"]
+  inspection-coverage:
+    <<: *python
+    command: python -m adpulse.inspection coverage
+    environment:
+      <<: *environment
+      ADPULSE_INSPECTION_DIR: /inspection
+    volumes: ["inspection-data:/inspection"]
+    mem_limit: 1g
+    memswap_limit: 1g
+    cpus: 1
+    depends_on:
+      inspection-init: {condition: service_completed_successfully}
+      bootstrap: {condition: service_completed_successfully}
+    restart: unless-stopped
+  inspection-metrics:
+    <<: *python
+    command: python -m adpulse.inspection metrics
+    environment:
+      <<: *environment
+      ADPULSE_INSPECTION_DIR: /inspection
+    volumes: ["inspection-data:/inspection"]
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 1
+    depends_on:
+      inspection-init: {condition: service_completed_successfully}
+      bootstrap: {condition: service_completed_successfully}
+    restart: unless-stopped
   prometheus:
     image: prom/prometheus:v3.3.0
     command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.retention.time=7d"]
@@ -242,3 +278,4 @@ volumes:
   flink-state:
   prometheus-data:
   grafana-data:
+  inspection-data:

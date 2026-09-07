@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "case": "full-history",
+      "query_id": "adpulse-scaling-full-history-0f8bf71034a74cd0b621356a243428f0",
+      "result": {
+        "oldest": 0,
+        "n": 0
+      },
+      "elapsed_seconds": 1.8976906719981343,
+      "memory_budget_bytes": 536870912,
+      "summary": {
+        "read_rows": "3935794",
+        "read_bytes": "460405704",
+        "written_rows": "0",
+        "written_bytes": "0",
+        "total_rows_to_read": "3935794",
+        "result_rows": "1",
+        "result_bytes": "272",
+        "elapsed_ns": "1895683409",
+        "memory_usage": "358901954"
+      }
+    },
+    {
+      "case": "missing-and-duplicate-lineage",
+      "query_id": "adpulse-scaling-missing-and-duplicate-lineage-226e1ffa277a499aa3f23e214caca8a9",
+      "result": {
+        "oldest": 100,
+        "n": 2
+      },
+      "elapsed_seconds": 0.005678841000190005,
+      "memory_budget_bytes": 536870912,
+      "summary": {
+        "read_rows": "2",
+        "read_bytes": "2",
+        "written_rows": "0",
+        "written_bytes": "0",
+        "total_rows_to_read": "2",
+        "result_rows": "1",
+        "result_bytes": "264",
+        "elapsed_ns": "4161936",
+        "memory_usage": "70013166"
+      }
+    }
+  ],
+  "environment": "Real local ClickHouse 26.3 LTS; full retained history and inline synthetic edge case",
+  "scope": "Exact missing-receipt anti-join within a configured query budget, not a hard server-wide memory limit"
+}

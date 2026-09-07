@@ -1,24 +1,26 @@
 from __future__ import annotations
 
-import json
 import os
 import time
+import sqlite3
+from contextlib import closing
+from threading import BoundedSemaphore
 from typing import Annotated, Literal
 
-import requests
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Path
 from fastapi.responses import Response
 from prometheus_client import CollectorRegistry, Counter, Gauge, Histogram, generate_latest, CONTENT_TYPE_LATEST
 
 from . import releases
-from .archive import S3Objects, verified_records, reconcile
-from .common import now_ms
+from .archive_index import ArchiveIndex
+from .inspection import SnapshotUnavailable, directory, read_snapshot
 from .storage import ClickHouse, PageQueryError
 from .pagination import CursorCodec, CursorPositionTooLarge, InvalidCursor, MAX_CURSOR_LENGTH, MAX_PAGE_SIZE, valid_release
 
-app = FastAPI(title="AdPulse measurement and governance API", version="0.2.0")
+app = FastAPI(title="AdPulse measurement and governance API", version="0.3.0")
 CURSORS = CursorCodec()
+QUERY_SLOTS = BoundedSemaphore(int(os.getenv("ADPULSE_QUERY_CONCURRENCY", "4")))
 QUERY_REGISTRY = CollectorRegistry()
 QUERY_TIME = Histogram("adpulse_query_seconds", "Bounded result query latency", ["kind", "outcome"], registry=QUERY_REGISTRY)
 QUERY_ROWS = Counter("adpulse_query_rows", "Rows served by bounded result queries", ["kind"], registry=QUERY_REGISTRY)
@@ -36,6 +38,17 @@ def release_id(value):
 
 
 def result_page(kind, release, cursor, limit, filters):
+    if not QUERY_SLOTS.acquire(blocking=False):
+        QUERY_TIME.labels(kind, "overloaded").observe(0)
+        raise HTTPException(503, {"code": "QUERY_OVERLOADED", "message": "Query capacity is busy; retry later"},
+                            headers={"Retry-After": "1"})
+    try:
+        return _result_page(kind, release, cursor, limit, filters)
+    finally:
+        QUERY_SLOTS.release()
+
+
+def _result_page(kind, release, cursor, limit, filters):
     filters = {k: v for k, v in filters.items() if v is not None}
     after, expires_at = "", None
     if cursor is not None:
@@ -118,78 +131,59 @@ def associations(release: Release = None, status: Literal["pending", "matched", 
     return result_page("association", release, cursor, limit, dict(status=status))
 
 
+def inspection_snapshot(kind):
+    try:
+        return read_snapshot(kind, max_age=600 if kind == "coverage" else 90)
+    except SnapshotUnavailable as exc:
+        raise HTTPException(503, {"code": "INSPECTION_UNAVAILABLE", "message": "Background inspection is unavailable or expired"},
+                            headers={"Retry-After": "30"}) from exc
+
+
 @app.get("/v1/quality")
 def quality():
-    db = ClickHouse()
-    summary = db.query("SELECT disposition,error_code,rule_version,count() AS records FROM adpulse.quality FINAL GROUP BY disposition,error_code,rule_version FORMAT JSONEachRow")
-    samples = db.query("SELECT payload FROM adpulse.quality FINAL WHERE disposition != 'cleaned' ORDER BY inserted_at DESC LIMIT 50 FORMAT JSONEachRow")
-    return {"summary": summary, "samples": [json.loads(r["payload"]) for r in samples]}
+    # Samples remain bounded in the database and in the response. Summary is
+    # sampled in the background rather than scanning all lineage per request.
+    snapshot = inspection_snapshot("coverage")
+    return {"summary": snapshot["payload"].get("quality_summary", []),
+            "samples": snapshot["payload"].get("quality_samples", []),
+            "checked_at_epoch": snapshot["generated_at"], "consistency": "inspection_snapshot"}
 
 
 @app.get("/v1/reconcile")
 def completeness():
-    db = ClickHouse()
-    expected = db.query("SELECT arrayJoin(receipt_ids) AS receipt_id FROM adpulse.receipts FINAL FORMAT JSONEachRow")
-    lineage = db.query("SELECT receipt_id,disposition FROM adpulse.quality FINAL WHERE disposition!='signal' FORMAT JSONEachRow")
-    return reconcile(verified_records(S3Objects()), lineage, [r["receipt_id"] for r in expected])
+    snapshot = inspection_snapshot("coverage")
+    return {**snapshot["payload"], "checked_at_epoch": snapshot["generated_at"],
+            "check_started_at_epoch": snapshot["started_at"], "consistency": "inspection_snapshot"}
 
 
 @app.get("/v1/trace/{receipt_id}")
-def trace(receipt_id: str):
-    """Bounded-development trace lookup through checksummed archive and quality evidence."""
-    rows = verified_records(S3Objects())
-    raw = [r for r in rows if r["topic"].endswith(".raw") and r["value"].get("receipt_id") == receipt_id]
+def trace(receipt_id: Annotated[str, Path(min_length=1, max_length=256)]):
+    snapshot = inspection_snapshot("coverage")
+    try:
+        with closing(ArchiveIndex(directory() / "archive.sqlite", readonly=True)) as index:
+            index.db.execute("BEGIN")
+            raw, quality = index.trace(receipt_id), index.quality(receipt_id)
+    except (OSError, sqlite3.Error, ValueError) as exc:
+        raise HTTPException(503, "Trace index unavailable or result exceeds budget") from exc
     if not raw:
-        raise HTTPException(404, "Receipt is not yet present in a committed archive manifest")
-    quality = ClickHouse().query("SELECT payload FROM adpulse.quality FINAL WHERE receipt_id={receipt:String} FORMAT JSONEachRow", {"receipt": receipt_id})
-    return {"receipt_id": receipt_id, "raw": raw, "quality": [json.loads(q["payload"]) for q in quality]}
+        raise HTTPException(404, {"message": "Receipt absent from the checked archive index", "checked_at_epoch": snapshot["generated_at"]})
+    return {"receipt_id": receipt_id, "raw": raw, "quality": quality,
+            "checked_at_epoch": snapshot["generated_at"], "consistency": "incremental_verified_archive_index"}
 
 
 @app.get("/metrics")
 def prometheus():
     registry = CollectorRegistry()
-    try:
-        response = requests.get(os.getenv("FLINK_REST_URL", "http://jobmanager:8081") + "/jobs/overview", timeout=3)
-        response.raise_for_status()
-        running = sum(j["state"] == "RUNNING" and j["name"].startswith("AdPulse") for j in response.json()["jobs"])
-    except requests.RequestException:
-        running = 0
-    Gauge("adpulse_flink_running_jobs", "Expected two running AdPulse jobs", registry=registry).set(running)
-    selected = releases.active()
-    if selected:
-        snapshot = ClickHouse().snapshots(selected, "metric")
-        business = Gauge("adpulse_business_value", "Latest logical values, cohort/currency must be selected",
-                         ["release", "cohort", "variant", "currency", "measure", "campaign", "region", "app_version"], registry=registry)
-        totals = {}
-        for row in snapshot["metrics"]:
-            for measure, value in row["values"].items():
-                key = (selected, row["cohort_basis"], row["variant"], row["currency"], measure,
-                       row["campaign_id"], row["region"], row["app_version"])
-                totals[key] = totals.get(key, 0) + value
-        for key, value in totals.items():
-            business.labels(*key).set(value)
-        Gauge("adpulse_active_release_info", "Active release", ["release"], registry=registry).labels(selected).set(1)
-        pending = ClickHouse().query("""SELECT countIf(JSONExtractString(payload,'status')='pending') AS n
-            FROM adpulse.latest_results WHERE release_id={release:String} AND startsWith(output_key,'a:') FORMAT JSONEachRow""", {"release": selected})[0]["n"]
-        Gauge("adpulse_pending_conversions", "Conversions awaiting click", registry=registry).set(pending)
-    db = ClickHouse()
-    if selected:
-        freshness = db.query("""SELECT count() AS records, quantileExact(0.95)(lag) AS p95 FROM
-            (SELECT receipt_id, (toUnixTimestamp64Milli(min(visible_at))-min(received_at))/1000.0 AS lag
-             FROM adpulse.visibility WHERE release_id={release:String} AND received_at >= {since:UInt64}
-             GROUP BY receipt_id) FORMAT JSONEachRow""", {"release": selected, "since": max(0, now_ms() - 300000)})[0]
-        if freshness["records"]:
-            Gauge("adpulse_freshness_p95_seconds", "Per-receipt acceptance to first visible metric P95", registry=registry).set(freshness["p95"])
-    q = Gauge("adpulse_quality_records", "Logical quality records", ["disposition", "error_code"], registry=registry)
-    for row in db.query("SELECT disposition,error_code,count() AS n FROM adpulse.quality FINAL GROUP BY disposition,error_code FORMAT JSONEachRow"):
-        q.labels(row["disposition"], row["error_code"]).set(row["n"])
-    accepted = db.query("SELECT sum(length(receipt_ids)) AS n FROM adpulse.receipts FINAL FORMAT JSONEachRow")[0]["n"]
-    Gauge("adpulse_acknowledged_records", "Durable receipt count", registry=registry).set(accepted)
-    # Receipt-to-lineage age catches a stopped cleaning job even when no bad records are emitted.
-    outstanding = db.query("""SELECT min(received_at) AS oldest, count() AS n FROM
-      (SELECT arrayJoin(receipt_ids) AS receipt_id, received_at FROM adpulse.receipts FINAL)
-      WHERE receipt_id NOT IN (SELECT receipt_id FROM adpulse.quality FINAL WHERE disposition!='signal') FORMAT JSONEachRow""")
-    Gauge("adpulse_lineage_pending_records", "Acknowledged records without terminal cleaning disposition", registry=registry).set(outstanding[0]["n"])
-    Gauge("adpulse_lineage_oldest_pending_seconds", "Age of oldest unclassified receipt", registry=registry).set(
-        max(0, (now_ms() - outstanding[0]["oldest"]) / 1000) if outstanding[0]["n"] else 0)
-    return Response(generate_latest(registry) + generate_latest(QUERY_REGISTRY), media_type=CONTENT_TYPE_LATEST)
+    ready = Gauge("adpulse_inspection_snapshot_ready", "Fresh successful background inspection available", ["kind"], registry=registry)
+    checked = Gauge("adpulse_inspection_snapshot_timestamp_seconds", "Successful inspection completion time", ["kind"], registry=registry)
+    text = ""
+    for kind, max_age in (("metrics", 90), ("coverage", 600)):
+        try:
+            snapshot = read_snapshot(kind, max_age=max_age)
+            ready.labels(kind).set(1)
+            checked.labels(kind).set(snapshot["generated_at"])
+            if kind == "metrics":
+                text = snapshot["payload"]["prometheus"]
+        except SnapshotUnavailable:
+            ready.labels(kind).set(0)
+    return Response(text.encode() + generate_latest(registry) + generate_latest(QUERY_REGISTRY), media_type=CONTENT_TYPE_LATEST)

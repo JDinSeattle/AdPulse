@@ -2,7 +2,7 @@
 
 A stateful advertising-measurement backend with auditable collection, event-time attribution, bounded OLAP APIs and immutable replay releases. Synthetic data only; a locally validated portfolio implementation with AI assistance.
 
-[中文说明](README.md) · [Architecture](docs/architecture.md) · [Query contract](docs/query-api.md) · [Operations evidence](docs/operations-validation.md) · [60-second demo](docs/demo/adpulse-local-demo.mp4)
+[中文说明](README.md) · [Architecture](docs/architecture.md) · [Query contract](docs/query-api.md) · [Operations evidence](docs/operations-validation.md) · [Scaling measurements](docs/scaling-validation.md) · [60-second demo](docs/demo/adpulse-local-demo.mp4)
 
 ```mermaid
 flowchart LR
@@ -28,7 +28,7 @@ Replays verify archived input and source lineage, compute an independent oracle,
 
 ## Run
 
-Requirements: Docker Engine/Compose, Python 3.12, Java 17, Maven and uv. Reserve at least 10 GB memory for the complete development stack.
+Requirements: Docker Engine/Compose, Python 3.12, Java 17, Maven and uv. Reserve at least 12 GB memory for a fresh complete development stack; retained archives, indexes and disk-reference workspaces need additional disk capacity.
 
 ```bash
 make setup
@@ -50,7 +50,11 @@ Do not recreate JobManager with empty state after a release has produced output.
 
 - Completed two 30-minute local input runs. The **1,000 events/s capacity profile** used two **8 GiB Flink process budgets** and attribution parallelism 6: **1,800,211** synthetic receipts all visible at **19.370 s P95**. Earlier 100/s validation used smaller process budgets; this is not a same-resource speedup comparison.
 - Reconciled **3,833,704** cumulative acknowledged records, **6,538** metric keys and **646,242** associations, including all failed load attempts.
-- **70 Python/Java tests** and [hosted Docker CI](https://github.com/JDinSeattle/AdPulse/actions/runs/34075884766) passed, including real large-batch conflict/retry checks, an occupied-worker SIGKILL and crash-after-write/before-offset-commit sink replay.
+- The earlier **70-test snapshot** and [hosted Docker CI](https://github.com/JDinSeattle/AdPulse/actions/runs/34075884766) passed, including real large-batch conflict/retry checks, an occupied-worker SIGKILL and crash-after-write/before-offset-commit sink replay.
+
+- **0.3.0:** disk-backed reference containers and verified receipt indexes, timestamped background inspection with explicit failure/expiry, and a four-query limit per API process. **88 Python/Java regressions** pass locally.
+- Three alternating pairs on identical **2 CPU / 4 GiB / no-swap** Docker budgets and a frozen **200,000-record** fixture produced identical complete output hashes. Median process peak RSS fell **86.3%** (987 → 135 MiB), at **2.29× elapsed time** and about **605 MiB** scratch disk. This is a memory/time tradeoff, not a throughput speedup.
+- Indexed/cached HTTP diagnostics remove per-request ClickHouse calls. [Serving measurements](docs/evidence/scaling/paired-serving.json) separately report setup/refresh and request costs; their staleness semantics and synthetic archive scope are explicit.
 
 Full reports, experiment methods, rejected attempts and CI provenance are in [operations validation](docs/operations-validation.md). A single-host replica experiment is not a physical-host failure test. Default Compose still uses one Kafka broker and no JobManager HA; no production, managed-cloud, 26-hour capacity, cloud-cost or ML-serving claim is made.
 

@@ -90,6 +90,22 @@ class ClickHouse:
         response.raise_for_status()
         return [json.loads(line) for line in response.text.splitlines() if line.strip()]
 
+    def iter_query(self, sql, parameters=None, *, seconds=120, memory_bytes=512 * 1024 * 1024):
+        """Stream JSONEachRow for offline verification; mid-stream DB errors fail closed."""
+        from .archive_index import chunks
+        params = {"output_format_json_quote_64bit_integers": 0, "max_execution_time": seconds,
+                  "max_memory_usage": memory_bytes, "max_threads": 2,
+                  "timeout_overflow_mode": "throw", "max_rows_to_read": 100_000_000,
+                  "read_overflow_mode": "throw",
+                  **{f"param_{key}": value for key, value in (parameters or {}).items()}}
+        with self.session.post(self.url, params=params, data=sql.encode(), auth=self.auth,
+                               timeout=(3, seconds + 5), stream=True) as response:
+            response.raise_for_status()
+            response.raw.decode_content = True
+            for line in chunks(response.raw, max_bytes=1024 ** 4):
+                if line.strip():
+                    yield json.loads(line)
+
     def insert(self, table, rows):
         if not rows:
             return

@@ -1,0 +1,711 @@
+{
+  "environment": "local Docker on shared physical host",
+  "image": "sha256:be41a53a8b6b62e8a9bb443d36f22b8bf0912c3251bb0d4a8019f2be5f135a8a",
+  "baseline_commit": "c3020d6f8ee314b6d09ec326e05e30e42f869edd",
+  "fixture_manifest_sha256": "83ce137954864d15df3a7259c681936821f17db31fa0db4213d602b9c4c8c698",
+  "fixture_records": 200000,
+  "cpus": 2,
+  "cpuset": "2,4",
+  "memory_bytes": 4294967296,
+  "swap_bytes": 0,
+  "workload": "serving",
+  "order": [
+    "memory-1",
+    "disk-1",
+    "disk-2",
+    "memory-2",
+    "memory-3",
+    "disk-3"
+  ],
+  "results": [
+    {
+      "mode": "memory",
+      "repeat": 1,
+      "exit_code": 0,
+      "oom_killed": false,
+      "measurement": {
+        "mode": "memory",
+        "setup_seconds": 1.8169957911595702e-06,
+        "setup_db_requests": 0,
+        "refresh_seconds": null,
+        "requests": [
+          {
+            "route": "trace",
+            "repeat": 1,
+            "seconds": 3.617309039000247,
+            "bytes": 546,
+            "db_requests": 1,
+            "semantic_sha256": "8bfe7150d9bb1550c1e7e993c8a8260b3cd785ad855cfec386b09bbf3d2ec675"
+          },
+          {
+            "route": "trace",
+            "repeat": 2,
+            "seconds": 5.083324844999879,
+            "bytes": 541,
+            "db_requests": 1,
+            "semantic_sha256": "0ecd4b357518496ccf4d11370de87814124c4e7eec69a9346ea418cf345bbd19"
+          },
+          {
+            "route": "trace",
+            "repeat": 3,
+            "seconds": 4.505000550001569,
+            "bytes": 603,
+            "db_requests": 1,
+            "semantic_sha256": "61d2abf9753ba95e663c323f9a72267914a3361d72296742d3cd9f8577fba933"
+          },
+          {
+            "route": "trace",
+            "repeat": 4,
+            "seconds": 4.782556236998062,
+            "bytes": 603,
+            "db_requests": 1,
+            "semantic_sha256": "249273ff02b07331e61f26f0ba2d96c08f9e2738b7258fa5c98f359c6db62145"
+          },
+          {
+            "route": "trace",
+            "repeat": 5,
+            "seconds": 4.461683610003092,
+            "bytes": 546,
+            "db_requests": 1,
+            "semantic_sha256": "fd0a1cc4b989db9ba6ee8771d02615d27fc53835ff43eb282aca6a0015e0dc77"
+          },
+          {
+            "route": "metrics",
+            "repeat": 1,
+            "seconds": 1.6972495689988136,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 2,
+            "seconds": 2.0996148379999795,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 3,
+            "seconds": 1.712649783003144,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 4,
+            "seconds": 1.762984591005079,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 5,
+            "seconds": 1.7678967339961673,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          }
+        ],
+        "process_peak_rss_kib": 851844,
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpuset.cpus.effective": "2,4",
+          "memory.max": "4294967296",
+          "memory.peak": "862781440",
+          "memory.swap.max": "0",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        },
+        "boundary": "Local synthetic 200k-row archive fixture, real HTTP and shared ClickHouse/PostgreSQL/Flink dependencies; fixture receipts have no DB lineage. Candidate has explicit inspection staleness semantics. Setup/refresh excluded from request latency and reported separately."
+      }
+    },
+    {
+      "mode": "disk",
+      "repeat": 1,
+      "exit_code": 0,
+      "oom_killed": false,
+      "measurement": {
+        "mode": "disk",
+        "setup_seconds": 13.521634165997966,
+        "setup_db_requests": 6,
+        "refresh_seconds": 3.1943789049983025,
+        "requests": [
+          {
+            "route": "trace",
+            "repeat": 1,
+            "seconds": 0.0296545539968065,
+            "bytes": 635,
+            "db_requests": 0,
+            "semantic_sha256": "8bfe7150d9bb1550c1e7e993c8a8260b3cd785ad855cfec386b09bbf3d2ec675"
+          },
+          {
+            "route": "trace",
+            "repeat": 2,
+            "seconds": 0.0023825659955036826,
+            "bytes": 630,
+            "db_requests": 0,
+            "semantic_sha256": "0ecd4b357518496ccf4d11370de87814124c4e7eec69a9346ea418cf345bbd19"
+          },
+          {
+            "route": "trace",
+            "repeat": 3,
+            "seconds": 0.002372319999267347,
+            "bytes": 692,
+            "db_requests": 0,
+            "semantic_sha256": "61d2abf9753ba95e663c323f9a72267914a3361d72296742d3cd9f8577fba933"
+          },
+          {
+            "route": "trace",
+            "repeat": 4,
+            "seconds": 0.002194948996475432,
+            "bytes": 692,
+            "db_requests": 0,
+            "semantic_sha256": "249273ff02b07331e61f26f0ba2d96c08f9e2738b7258fa5c98f359c6db62145"
+          },
+          {
+            "route": "trace",
+            "repeat": 5,
+            "seconds": 0.0015412629945785739,
+            "bytes": 635,
+            "db_requests": 0,
+            "semantic_sha256": "fd0a1cc4b989db9ba6ee8771d02615d27fc53835ff43eb282aca6a0015e0dc77"
+          },
+          {
+            "route": "metrics",
+            "repeat": 1,
+            "seconds": 0.0019062869978370145,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 2,
+            "seconds": 0.0017756550005287863,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 3,
+            "seconds": 0.002428220002911985,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 4,
+            "seconds": 0.00215899199974956,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 5,
+            "seconds": 0.002194107997638639,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          }
+        ],
+        "process_peak_rss_kib": 112780,
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpuset.cpus.effective": "2,4",
+          "memory.max": "4294967296",
+          "memory.peak": "386711552",
+          "memory.swap.max": "0",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        },
+        "boundary": "Local synthetic 200k-row archive fixture, real HTTP and shared ClickHouse/PostgreSQL/Flink dependencies; fixture receipts have no DB lineage. Candidate has explicit inspection staleness semantics. Setup/refresh excluded from request latency and reported separately."
+      }
+    },
+    {
+      "mode": "disk",
+      "repeat": 2,
+      "exit_code": 0,
+      "oom_killed": false,
+      "measurement": {
+        "mode": "disk",
+        "setup_seconds": 11.904032913000265,
+        "setup_db_requests": 6,
+        "refresh_seconds": 2.491490912005247,
+        "requests": [
+          {
+            "route": "trace",
+            "repeat": 1,
+            "seconds": 0.03273865100345574,
+            "bytes": 635,
+            "db_requests": 0,
+            "semantic_sha256": "8bfe7150d9bb1550c1e7e993c8a8260b3cd785ad855cfec386b09bbf3d2ec675"
+          },
+          {
+            "route": "trace",
+            "repeat": 2,
+            "seconds": 0.0025322699948446825,
+            "bytes": 630,
+            "db_requests": 0,
+            "semantic_sha256": "0ecd4b357518496ccf4d11370de87814124c4e7eec69a9346ea418cf345bbd19"
+          },
+          {
+            "route": "trace",
+            "repeat": 3,
+            "seconds": 0.002335488999960944,
+            "bytes": 692,
+            "db_requests": 0,
+            "semantic_sha256": "61d2abf9753ba95e663c323f9a72267914a3361d72296742d3cd9f8577fba933"
+          },
+          {
+            "route": "trace",
+            "repeat": 4,
+            "seconds": 0.0023580270062666386,
+            "bytes": 692,
+            "db_requests": 0,
+            "semantic_sha256": "249273ff02b07331e61f26f0ba2d96c08f9e2738b7258fa5c98f359c6db62145"
+          },
+          {
+            "route": "trace",
+            "repeat": 5,
+            "seconds": 0.0018478260026313365,
+            "bytes": 635,
+            "db_requests": 0,
+            "semantic_sha256": "fd0a1cc4b989db9ba6ee8771d02615d27fc53835ff43eb282aca6a0015e0dc77"
+          },
+          {
+            "route": "metrics",
+            "repeat": 1,
+            "seconds": 0.002294584999617655,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 2,
+            "seconds": 0.001987023002584465,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 3,
+            "seconds": 0.0016873030035640113,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 4,
+            "seconds": 0.0020961679983884096,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 5,
+            "seconds": 0.0020016519993077964,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          }
+        ],
+        "process_peak_rss_kib": 112956,
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpuset.cpus.effective": "2,4",
+          "memory.max": "4294967296",
+          "memory.peak": "386637824",
+          "memory.swap.max": "0",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        },
+        "boundary": "Local synthetic 200k-row archive fixture, real HTTP and shared ClickHouse/PostgreSQL/Flink dependencies; fixture receipts have no DB lineage. Candidate has explicit inspection staleness semantics. Setup/refresh excluded from request latency and reported separately."
+      }
+    },
+    {
+      "mode": "memory",
+      "repeat": 2,
+      "exit_code": 0,
+      "oom_killed": false,
+      "measurement": {
+        "mode": "memory",
+        "setup_seconds": 1.3360040611587465e-06,
+        "setup_db_requests": 0,
+        "refresh_seconds": null,
+        "requests": [
+          {
+            "route": "trace",
+            "repeat": 1,
+            "seconds": 4.52200343599543,
+            "bytes": 546,
+            "db_requests": 1,
+            "semantic_sha256": "8bfe7150d9bb1550c1e7e993c8a8260b3cd785ad855cfec386b09bbf3d2ec675"
+          },
+          {
+            "route": "trace",
+            "repeat": 2,
+            "seconds": 4.355713732002187,
+            "bytes": 541,
+            "db_requests": 1,
+            "semantic_sha256": "0ecd4b357518496ccf4d11370de87814124c4e7eec69a9346ea418cf345bbd19"
+          },
+          {
+            "route": "trace",
+            "repeat": 3,
+            "seconds": 4.238024995996966,
+            "bytes": 603,
+            "db_requests": 1,
+            "semantic_sha256": "61d2abf9753ba95e663c323f9a72267914a3361d72296742d3cd9f8577fba933"
+          },
+          {
+            "route": "trace",
+            "repeat": 4,
+            "seconds": 4.396421227000246,
+            "bytes": 603,
+            "db_requests": 1,
+            "semantic_sha256": "249273ff02b07331e61f26f0ba2d96c08f9e2738b7258fa5c98f359c6db62145"
+          },
+          {
+            "route": "trace",
+            "repeat": 5,
+            "seconds": 4.3441323270017165,
+            "bytes": 546,
+            "db_requests": 1,
+            "semantic_sha256": "fd0a1cc4b989db9ba6ee8771d02615d27fc53835ff43eb282aca6a0015e0dc77"
+          },
+          {
+            "route": "metrics",
+            "repeat": 1,
+            "seconds": 2.041035340997041,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 2,
+            "seconds": 1.8543714200059185,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 3,
+            "seconds": 1.6782481370028108,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 4,
+            "seconds": 1.6036180409937515,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 5,
+            "seconds": 1.6905649229956907,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          }
+        ],
+        "process_peak_rss_kib": 851716,
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpuset.cpus.effective": "2,4",
+          "memory.max": "4294967296",
+          "memory.peak": "853585920",
+          "memory.swap.max": "0",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        },
+        "boundary": "Local synthetic 200k-row archive fixture, real HTTP and shared ClickHouse/PostgreSQL/Flink dependencies; fixture receipts have no DB lineage. Candidate has explicit inspection staleness semantics. Setup/refresh excluded from request latency and reported separately."
+      }
+    },
+    {
+      "mode": "memory",
+      "repeat": 3,
+      "exit_code": 0,
+      "oom_killed": false,
+      "measurement": {
+        "mode": "memory",
+        "setup_seconds": 1.2129967217333615e-06,
+        "setup_db_requests": 0,
+        "refresh_seconds": null,
+        "requests": [
+          {
+            "route": "trace",
+            "repeat": 1,
+            "seconds": 4.266138709004736,
+            "bytes": 546,
+            "db_requests": 1,
+            "semantic_sha256": "8bfe7150d9bb1550c1e7e993c8a8260b3cd785ad855cfec386b09bbf3d2ec675"
+          },
+          {
+            "route": "trace",
+            "repeat": 2,
+            "seconds": 4.0293351559957955,
+            "bytes": 541,
+            "db_requests": 1,
+            "semantic_sha256": "0ecd4b357518496ccf4d11370de87814124c4e7eec69a9346ea418cf345bbd19"
+          },
+          {
+            "route": "trace",
+            "repeat": 3,
+            "seconds": 3.645239646000846,
+            "bytes": 603,
+            "db_requests": 1,
+            "semantic_sha256": "61d2abf9753ba95e663c323f9a72267914a3361d72296742d3cd9f8577fba933"
+          },
+          {
+            "route": "trace",
+            "repeat": 4,
+            "seconds": 3.7818128259968944,
+            "bytes": 603,
+            "db_requests": 1,
+            "semantic_sha256": "249273ff02b07331e61f26f0ba2d96c08f9e2738b7258fa5c98f359c6db62145"
+          },
+          {
+            "route": "trace",
+            "repeat": 5,
+            "seconds": 3.702345793004497,
+            "bytes": 546,
+            "db_requests": 1,
+            "semantic_sha256": "fd0a1cc4b989db9ba6ee8771d02615d27fc53835ff43eb282aca6a0015e0dc77"
+          },
+          {
+            "route": "metrics",
+            "repeat": 1,
+            "seconds": 1.3306686310024816,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 2,
+            "seconds": 1.6071698809973896,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 3,
+            "seconds": 1.5809866030031117,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 4,
+            "seconds": 1.4759983379990445,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 5,
+            "seconds": 1.5622279550007079,
+            "bytes": 54011,
+            "db_requests": 6,
+            "semantic_sha256": null
+          }
+        ],
+        "process_peak_rss_kib": 851896,
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpuset.cpus.effective": "2,4",
+          "memory.max": "4294967296",
+          "memory.peak": "853991424",
+          "memory.swap.max": "0",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        },
+        "boundary": "Local synthetic 200k-row archive fixture, real HTTP and shared ClickHouse/PostgreSQL/Flink dependencies; fixture receipts have no DB lineage. Candidate has explicit inspection staleness semantics. Setup/refresh excluded from request latency and reported separately."
+      }
+    },
+    {
+      "mode": "disk",
+      "repeat": 3,
+      "exit_code": 0,
+      "oom_killed": false,
+      "measurement": {
+        "mode": "disk",
+        "setup_seconds": 11.550146683999628,
+        "setup_db_requests": 6,
+        "refresh_seconds": 2.3484213880001334,
+        "requests": [
+          {
+            "route": "trace",
+            "repeat": 1,
+            "seconds": 0.02971316099865362,
+            "bytes": 635,
+            "db_requests": 0,
+            "semantic_sha256": "8bfe7150d9bb1550c1e7e993c8a8260b3cd785ad855cfec386b09bbf3d2ec675"
+          },
+          {
+            "route": "trace",
+            "repeat": 2,
+            "seconds": 0.002422277997538913,
+            "bytes": 630,
+            "db_requests": 0,
+            "semantic_sha256": "0ecd4b357518496ccf4d11370de87814124c4e7eec69a9346ea418cf345bbd19"
+          },
+          {
+            "route": "trace",
+            "repeat": 3,
+            "seconds": 0.0022022509947419167,
+            "bytes": 692,
+            "db_requests": 0,
+            "semantic_sha256": "61d2abf9753ba95e663c323f9a72267914a3361d72296742d3cd9f8577fba933"
+          },
+          {
+            "route": "trace",
+            "repeat": 4,
+            "seconds": 0.0020525420040939935,
+            "bytes": 692,
+            "db_requests": 0,
+            "semantic_sha256": "249273ff02b07331e61f26f0ba2d96c08f9e2738b7258fa5c98f359c6db62145"
+          },
+          {
+            "route": "trace",
+            "repeat": 5,
+            "seconds": 0.0019754949971684255,
+            "bytes": 635,
+            "db_requests": 0,
+            "semantic_sha256": "fd0a1cc4b989db9ba6ee8771d02615d27fc53835ff43eb282aca6a0015e0dc77"
+          },
+          {
+            "route": "metrics",
+            "repeat": 1,
+            "seconds": 0.002430256994557567,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 2,
+            "seconds": 0.0021076859993627295,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 3,
+            "seconds": 0.0020947359953424893,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 4,
+            "seconds": 0.0020299950047046877,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          },
+          {
+            "route": "metrics",
+            "repeat": 5,
+            "seconds": 0.002109911001753062,
+            "bytes": 54595,
+            "db_requests": 0,
+            "semantic_sha256": null
+          }
+        ],
+        "process_peak_rss_kib": 112696,
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpuset.cpus.effective": "2,4",
+          "memory.max": "4294967296",
+          "memory.peak": "386408448",
+          "memory.swap.max": "0",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        },
+        "boundary": "Local synthetic 200k-row archive fixture, real HTTP and shared ClickHouse/PostgreSQL/Flink dependencies; fixture receipts have no DB lineage. Candidate has explicit inspection staleness semantics. Setup/refresh excluded from request latency and reported separately."
+      }
+    }
+  ],
+  "cpu_model": "",
+  "candidate_sources": {
+    "adpulse/__init__.py": "130e708ae90f1ef42a025025066d157a11ebbce1b270b2961baf5f029e9d1217",
+    "adpulse/archive.py": "b4337d7c2bdf7234f17ea25b3cd7fb44c74d387bd9080edf7f45f9c43d088b08",
+    "adpulse/collector.py": "b702627286688ec1de0e89ec84b038bcbcc43a7aaf4dd57b1aab52c53a0865f3",
+    "adpulse/cli.py": "e8af85ce22615a240fdc2ad65e5dc67005d0a925ae480013422b9f8c60af39ef",
+    "adpulse/api.py": "00a76344c16c62ef3785680ff558473f564599f47643a7e0c2c7587108c2c22d",
+    "adpulse/pagination.py": "86624504a16125142a07ae6e72d1608a036ee6c4fad03fcdd9735a782b500f3b",
+    "adpulse/releases.py": "6876e09021a04efb1c097d7528982e578c31ac1edf6df389a093ac45510815eb",
+    "adpulse/generator.py": "f48b0f349cb13af6622f89a8f33e275d10e700cca2f11229d51958489ef2d096",
+    "adpulse/storage.py": "13c2802a47c61e885cab6d107662dd877aed05a5718fc2366c94462a4b214c69",
+    "adpulse/disk.py": "570f6972dcd28667cf7c75b94b0f46ee6e069b898a3e06335c9e9bdc03a04b3e",
+    "adpulse/reconciliation.py": "f7724b2f6663e9ee54e30ff733be6ee2a428d590af9d38fbe6157af3fd01cd4b",
+    "adpulse/inspection.py": "fbd009610140e5ca8f1a6c28e3c2f6cff0aa0a705cf30b0d8f7557252e7a4644",
+    "adpulse/worker.py": "096820b0bd7182a70292c39c64461a77ad3fbcb98b12686fc5208ac2ca36bbc8",
+    "adpulse/archive_index.py": "ea053e0bcbdb56814102a9248704b70aa72f714bce63dcc5adb08998e04838d2",
+    "adpulse/oracle.py": "67136d2534322bcd77c87c166855d6663662dae6d657c0770789c184f96412bc",
+    "adpulse/common.py": "5b71c44a884237a6af15f3dc329db7bbcfc505f0693bcf4af31dd0df2674d8eb"
+  },
+  "limitation": "CPU affinity and cgroup quotas are fixed; host disk/page cache and other user projects are shared. No production or Flink-throughput inference.",
+  "passed": true,
+  "trace_semantics_identical": true,
+  "summary": {
+    "memory": {
+      "setup_seconds_median": 1.3360040611587465e-06,
+      "setup_db_requests": [
+        0,
+        0,
+        0
+      ],
+      "trace": {
+        "requests": 15,
+        "median_seconds": 4.3441323270017165,
+        "max_seconds": 5.083324844999879,
+        "total_db_requests": 15
+      },
+      "metrics": {
+        "requests": 15,
+        "median_seconds": 1.6905649229956907,
+        "max_seconds": 2.0996148379999795,
+        "total_db_requests": 90
+      }
+    },
+    "disk": {
+      "setup_seconds_median": 11.904032913000265,
+      "setup_db_requests": [
+        6,
+        6,
+        6
+      ],
+      "trace": {
+        "requests": 15,
+        "median_seconds": 0.0023580270062666386,
+        "max_seconds": 0.03273865100345574,
+        "total_db_requests": 0
+      },
+      "metrics": {
+        "requests": 15,
+        "median_seconds": 0.0020961679983884096,
+        "max_seconds": 0.002430256994557567,
+        "total_db_requests": 0
+      }
+    }
+  },
+  "tradeoff": "Candidate serves indexed/datetime-stamped cached results. Setup and periodic refresh have nonzero cost; this is not a like-for-like live-query speedup or measured throughput improvement."
+}

@@ -2,7 +2,7 @@ PYTHON ?= .venv/bin/python
 MVN ?= mvn
 COMPOSE = docker compose -f deployment/compose.yaml
 
-.PHONY: setup test java-test verify demo up down generate replay smoke drill lint query-check query-benchmark
+.PHONY: setup test java-test verify demo up down generate replay smoke drill lint query-check query-benchmark reconcile
 setup:
 	UV_CACHE_DIR=.cache/uv uv venv --python 3.12
 	UV_CACHE_DIR=.cache/uv uv pip sync --python .venv/bin/python requirements.lock
@@ -30,3 +30,5 @@ query-check:
 	$(PYTHON) scripts/query_acceptance.py --release $(RELEASE) --output artifacts/query-acceptance.json
 query-benchmark:
 	$(PYTHON) scripts/query_benchmark.py --release $(RELEASE) --output artifacts/query-benchmark.json
+reconcile:
+	$(PYTHON) scripts/disk_reconcile.py --output $(OUTPUT)
