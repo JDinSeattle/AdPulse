@@ -1,0 +1,24 @@
+FROM debian:bookworm-slim
+
+ARG TARGETARCH
+# The official registry tags were removed. Keep the same release using its
+# upstream GitHub package, with architecture-specific immutable checksums.
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl \
+    && rm -rf /var/lib/apt/lists/* \
+    && case "$TARGETARCH" in \
+         amd64) checksum=d8898351831761e083e7ba6b74ea7ec478b9a6680794fe92e5e838145341c9c5 ;; \
+         arm64) checksum=4db1cf3c6399170afbfd9a5b788c9940d1eeb5668a3177027e1700a9afeb1b30 ;; \
+         *) echo "Unsupported MinIO architecture: $TARGETARCH" >&2; exit 1 ;; \
+       esac \
+    && curl --fail --location --retry 3 \
+         "https://github.com/minio/minio/releases/download/RELEASE.2025-04-22T22-12-26Z/minio_20250422221226.0.0_${TARGETARCH}.deb" \
+         --output /tmp/minio.deb \
+    && echo "$checksum  /tmp/minio.deb" | sha256sum --check --strict \
+    && dpkg --extract /tmp/minio.deb /tmp/minio-package \
+    && find /tmp/minio-package -type f -name minio \
+         -exec install -m 0755 '{}' /usr/local/bin/minio \; \
+    && test -x /usr/local/bin/minio \
+    && rm -rf /tmp/minio.deb /tmp/minio-package
+
+EXPOSE 9000 9001
+ENTRYPOINT ["minio"]

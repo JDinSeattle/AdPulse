@@ -4,5 +4,18 @@
   "passed": 83,
   "skipped": 0,
   "failed": 0,
-  "cloud_results": "experience-bank-results.json"
+  "cloud_results": "experience-bank-results.json",
+  "container_registry_repair": {
+    "reason": "GitHub Actions could not pull the pinned MinIO image from Docker Hub; the same Quay tag was also unavailable.",
+    "release": "RELEASE.2025-04-22T22-12-26Z",
+    "source": "https://github.com/minio/minio/releases/tag/RELEASE.2025-04-22T22-12-26Z",
+    "validation": {
+      "version": "minio version RELEASE.2025-04-22T22-12-26Z (commit-id=0d7408fc9969caf07de6a8c3a84f9fbb10a6739e)\nRuntime: go1.24.2 linux/amd64\nLicense: GNU AGPLv3 - https://www.gnu.org/licenses/agpl-3.0.html\nCopyright: 2015-2025 MinIO, Inc.",
+      "health": "passed",
+      "s3_create_put_get_list": "passed",
+      "payload_bytes": 27,
+      "scope": "Disposable local S3 smoke, not the full AdPulse pipeline."
+    },
+    "build": "Official GitHub deb packages verified against fixed upstream SHA-256 for amd64 and arm64; only the binary is extracted."
+  }
 }
