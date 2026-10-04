@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-04",
+  "scope": "Current local regression, separate from the experience-bank cloud measurements",
+  "passed": 83,
+  "skipped": 0,
+  "failed": 0,
+  "cloud_results": "experience-bank-results.json"
+}

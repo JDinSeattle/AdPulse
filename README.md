@@ -8,6 +8,22 @@
 
 **0.3.0 更新**：新增磁盘对账、归档 receipt 索引、带过期检查的后台检查快照及每进程查询并发限制。固定 2 CPU / 4 GiB、20 万条输入的 3 组对照中，oracle 进程峰值 RSS 中位数降低 86.3%，代价为 2.29 倍耗时与约 605 MiB 临时磁盘。trace / 监控服务成本与预计算成本分开记录，见 [本轮实现与实测](docs/scaling-validation.md)。完整历史 **3,833,704** 条输入在 4 GiB 容器中全量核对通过，91 项回归和最新托管 Docker CI 通过。原有 [分页接口契约](docs/query-api.md) 和 [岗位 / 技术依据](docs/market-and-technology-2026-09-06.md)保留。
 
+## Cloud qualification results
+
+These results follow the project owner’s separately run cloud qualification recorded in the experience bank. The workload, environment, denominators and limitations below belong to that round; local regression checks for this checkout are separate. [Result record](docs/experience-bank-results.json).
+
+- Completed a simulated full reconciliation over 3,949,000 synthetic advertising records, comparing receipt, disk-reference and database business results by business key and value: 0 unmatched rows and 0 duplicate business effects; intermediate event row counts are not required to equal the final association count.
+
+- Cut the median first-page query time from 622 ms to 32.9 ms (94.71% lower) in an independent 21,667-association, limit-100 experiment pinned to ClickHouse 24.8 and Python 3.12, by pushing filtering and keyset pagination into SQL instead of loading the full association set into Python.
+
+- Lowered the traced Python peak allocation for that first page from 71,300,000 B to 399,000 B (99.44%, decimal MB, not RSS) over five alternating paired runs after warmup; timing runs from query-function entry to result-object return and excludes ASGI and JSON serialization.
+
+- Pinned pagination to immutable releases with HMAC cursors binding release ID, filters, sort keys and original expiry: traversed 44 pages (43×500 + 167 = 21,667 associations) across 21 active-pointer switches with no missing or duplicate rows, and returned 503 after expiry with no renewal.
+
+- Cut median reference-process peak RSS from 1,100,000 KiB to 139,700 KiB (87.3% lower) on 206,000 synthetic records in a fixed 2 CPU / 4 GiB environment using SQLite disk-backed joins and sorting, trading 2.29x elapsed time (32.0 s to 73.28 s, cold index build included) and 605 MiB temporary disk for the memory reduction, with identical output hashes in 3/3 paired runs.
+
+- Verified collector admission with a 50-request barrier stress test (1 admitted, 49 rejected) and 9/9 independent health probes, and confirmed that a fenced producer stops admitting input, explicit replacement restores it, and cancellation does not release a running native transaction early.
+
 ## 快速启动
 
 需要 Python 3.12、Java 17 或可编译 Java 17 的 JDK、Maven 3.9、uv、Docker Engine / Compose。空白完整开发栈建议预留至少 12 GB 内存和 20 GB 磁盘；历史数据、索引与磁盘 oracle 另占存储，不能把此数当长期容量上限。首次启动会下载固定版本镜像和依赖。
@@ -100,3 +116,7 @@ curl http://localhost:8080/v1/quality
 | `docs/` | 契约、指标、交付语义、容量、发布恢复手册、实测证据 |
 
 默认完整栈保持单 broker；独立三 broker Docker 实验已验证 leader 故障、quorum 丢失与事务恢复。Flink 1.20.5 / ClickHouse 26.3 LTS 迁移及录屏已完成；100/1,000 两档各 30 分钟已完成，1,000 档 P95 19.370 秒（2×8 GiB 进程预算、归因并行度 6）；云端 Docker CI 已通过，详见运维验收。所有副本仍位于单宿主机，不能据此声称物理机或可用区容错。
+
+## Current checkout validation
+
+[Local regression record](docs/local-validation.json): 83 passed. These checks exercise the current implementation separately from the cloud measurements above.

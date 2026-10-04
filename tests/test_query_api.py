@@ -75,6 +75,29 @@ def test_pagination_pins_release_when_active_pointer_changes(serving):
     assert client.get("/v1/associations").json()["release_id"] == "r2"
 
 
+def test_expired_authenticated_cursor_returns_503_without_database_or_renewal(serving, monkeypatch):
+    client, active, calls = serving
+    clock = [100]
+    codec = CursorCodec(b"a" * 32, clock=lambda: clock[0])
+    monkeypatch.setattr(api, "CURSORS", codec)
+    token = codec.encode(release="r1", kind="association", after="a:next", filters={}, expires_at=101)
+    active[0] = "r2"
+    clock[0] = 101
+    response = client.get("/v1/associations", params={"cursor": token})
+    assert response.status_code == 503
+    assert response.json()["detail"]["code"] == "CURSOR_EXPIRED"
+    assert not calls and "next_cursor" not in response.json()
+    # A differently scoped cursor remains malformed even when also expired.
+    assert client.get("/v1/associations", params={"cursor": token, "status": "matched"}).status_code == 400
+
+
+def test_zero_expiry_is_not_replaced_with_fresh_ttl():
+    codec = CursorCodec(b"a" * 32, clock=lambda: 100)
+    token = codec.encode(release="r1", kind="association", after="a:next", filters={}, expires_at=0)
+    with pytest.raises(InvalidCursor, match="expired"):
+        codec.decode(token, kind="association", filters={})
+
+
 @pytest.mark.parametrize("query", ["limit=0", "limit=501", "limit=1.2", "status=bogus", "release=a%27--"])
 def test_invalid_requests_do_not_reach_database(serving, query):
     client, _, calls = serving

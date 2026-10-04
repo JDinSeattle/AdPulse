@@ -26,6 +26,22 @@ The collector acknowledges only after a Kafka transaction commits both the raw e
 
 Replays verify archived input and source lineage, compute an independent oracle, publish an immutable result release and verify sink visibility before promotion. PostgreSQL serializes active-release changes and keeps their audit trail. Prometheus/Grafana expose freshness, quality, lag, checkpoints and query budgets.
 
+## Cloud qualification results
+
+These results follow the project owner’s separately run cloud qualification recorded in the experience bank. The workload, environment, denominators and limitations below belong to that round; local regression checks for this checkout are separate. [Result record](docs/experience-bank-results.json).
+
+- Completed a simulated full reconciliation over 3,949,000 synthetic advertising records, comparing receipt, disk-reference and database business results by business key and value: 0 unmatched rows and 0 duplicate business effects; intermediate event row counts are not required to equal the final association count.
+
+- Cut the median first-page query time from 622 ms to 32.9 ms (94.71% lower) in an independent 21,667-association, limit-100 experiment pinned to ClickHouse 24.8 and Python 3.12, by pushing filtering and keyset pagination into SQL instead of loading the full association set into Python.
+
+- Lowered the traced Python peak allocation for that first page from 71,300,000 B to 399,000 B (99.44%, decimal MB, not RSS) over five alternating paired runs after warmup; timing runs from query-function entry to result-object return and excludes ASGI and JSON serialization.
+
+- Pinned pagination to immutable releases with HMAC cursors binding release ID, filters, sort keys and original expiry: traversed 44 pages (43×500 + 167 = 21,667 associations) across 21 active-pointer switches with no missing or duplicate rows, and returned 503 after expiry with no renewal.
+
+- Cut median reference-process peak RSS from 1,100,000 KiB to 139,700 KiB (87.3% lower) on 206,000 synthetic records in a fixed 2 CPU / 4 GiB environment using SQLite disk-backed joins and sorting, trading 2.29x elapsed time (32.0 s to 73.28 s, cold index build included) and 605 MiB temporary disk for the memory reduction, with identical output hashes in 3/3 paired runs.
+
+- Verified collector admission with a 50-request barrier stress test (1 admitted, 49 rejected) and 9/9 independent health probes, and confirmed that a fenced producer stops admitting input, explicit replacement restores it, and cancellation does not release a running native transaction early.
+
 ## Run
 
 Requirements: Docker Engine/Compose, Python 3.12, Java 17, Maven and uv. Reserve at least 12 GB memory for a fresh complete development stack; retained archives, indexes and disk-reference workspaces need additional disk capacity.

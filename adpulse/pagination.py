@@ -25,6 +25,10 @@ class InvalidCursor(ValueError):
     pass
 
 
+class ExpiredCursor(InvalidCursor):
+    """An authentic cursor whose original serving lease has ended."""
+
+
 class CursorPositionTooLarge(ValueError):
     pass
 
@@ -40,7 +44,8 @@ class CursorCodec:
         if not isinstance(after, str) or not 1 <= len(after) <= 1500:
             raise CursorPositionTooLarge("Result key exceeds the bounded cursor size")
         payload = canonical(dict(v=1, release=release, kind=kind, after=after, filters=digest(filters),
-                                 expires_at=expires_at or int(self.clock()) + CURSOR_TTL_SECONDS)).encode()
+                                 expires_at=(int(self.clock()) + CURSOR_TTL_SECONDS
+                                             if expires_at is None else expires_at))).encode()
         signature = hmac.digest(self.secret, payload, hashlib.sha256)
         token = base64.urlsafe_b64encode(payload + signature).decode().rstrip("=")
         if len(token) > MAX_CURSOR_LENGTH:
@@ -58,10 +63,14 @@ class CursorCodec:
             data = json.loads(payload)
             if (data["v"] != 1 or data["kind"] != kind or data["filters"] != digest(filters)
                     or not valid_release(data["release"]) or (release is not None and release != data["release"])
-                    or type(data["expires_at"]) is not int or data["expires_at"] <= self.clock()
+                    or type(data["expires_at"]) is not int
                     or not isinstance(data["after"], str) or not 1 <= len(data["after"]) <= 1500
                     or not data["after"].startswith("m:" if kind == "metric" else "a:")):
                 raise ValueError("scope or expiry")
+            if data["expires_at"] <= self.clock():
+                raise ExpiredCursor("Cursor expired; start a new traversal without renewing this cursor")
             return data
+        except ExpiredCursor:
+            raise
         except (ValueError, KeyError, TypeError, UnicodeDecodeError) as exc:
             raise InvalidCursor("Invalid, expired, or differently scoped cursor; restart pagination") from exc

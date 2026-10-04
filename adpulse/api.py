@@ -16,7 +16,7 @@ from . import releases
 from .archive_index import ArchiveIndex
 from .inspection import SnapshotUnavailable, directory, read_snapshot
 from .storage import ClickHouse, PageQueryError
-from .pagination import CursorCodec, CursorPositionTooLarge, InvalidCursor, MAX_CURSOR_LENGTH, MAX_PAGE_SIZE, valid_release
+from .pagination import CursorCodec, CursorPositionTooLarge, ExpiredCursor, InvalidCursor, MAX_CURSOR_LENGTH, MAX_PAGE_SIZE, valid_release
 
 app = FastAPI(title="AdPulse measurement and governance API", version="0.3.0")
 CURSORS = CursorCodec()
@@ -54,6 +54,8 @@ def _result_page(kind, release, cursor, limit, filters):
     if cursor is not None:
         try:
             decoded = CURSORS.decode(cursor, kind=kind, filters=filters, release=release)
+        except ExpiredCursor as exc:
+            raise HTTPException(503, {"code": "CURSOR_EXPIRED", "message": str(exc)}) from exc
         except InvalidCursor as exc:
             raise HTTPException(400, str(exc)) from exc
         release, after, expires_at = decoded["release"], decoded["after"], decoded["expires_at"]
